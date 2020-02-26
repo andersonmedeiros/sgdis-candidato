@@ -18,8 +18,15 @@
         
         <link rel="stylesheet" type="text/css" href="assets/node_modules/bootstrap/compiler/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="assets/css/estilo_universal.css">
-        <link rel="stylesheet" type="text/css" href="assets/css/estilo_formulario_etapas.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/estilo_formulario_etapas.css">        
+                
         
+        
+        <script type='text/javascript' src='<%=request.getContextPath() %>/dwr/engine.js'></script>
+        <script type='text/javascript' src='<%=request.getContextPath() %>/dwr/interface/FacadeAjax.js'></script>
+        <script type='text/javascript' src='<%=request.getContextPath() %>/dwr/util.js'></script> 
+        
+        <script type='text/javascript' src='assets/js/dwr/candidato/inicio/campos-dinamicos.js'></script>
     </head>
     <body>
         <header>
@@ -117,8 +124,8 @@
         <script src="assets/node_modules/bootstrap/dist/js/bootstrap.js"></script>
         <script src="assets/js/formularioEtapas.js"></script>
         <script src="assets/js/formulario/validacao/mascaras.js"></script>
-        <script src="assets/js/formulario/camposdinamico/cursos.js"></script>
-        <script src="assets/js/formulario/validacao/form-casdatroCandidato-cos.js"></script>
+        <!--<script src="assets/js/formulario/camposdinamico/cursos.js"></script>
+        <script src="assets/js/formulario/validacao/form-casdatroCandidato-cos.js"></script>-->
         <script src="assets/js/bootstrap-validate.js"></script>
     </body>
 </html>
