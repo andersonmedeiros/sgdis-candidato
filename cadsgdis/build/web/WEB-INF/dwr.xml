@@ -28,5 +28,9 @@
     <convert converter="bean" match="dao.EstadoForcaDAO" />
     <convert converter="bean" match="bean.Om" />
     <convert converter="bean" match="dao.OmDAO" />
+    <convert converter="bean" match="bean.Curso" />
+    <convert converter="bean" match="dao.CursoDAO" />
+    <convert converter="bean" match="bean.Categoria" />
+    <convert converter="bean" match="dao.CategoriaDAO" />
   </allow>
 </dwr>
