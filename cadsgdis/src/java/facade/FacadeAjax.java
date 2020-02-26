@@ -5,11 +5,15 @@
  */
 package facade;
 
+import bean.Categoria;
+import bean.Curso;
 import bean.EstadoForca;
 import bean.Forca;
 import bean.Militar;
 import bean.Om;
 import bean.PostoGraduacao;
+import dao.CategoriaDAO;
+import dao.CursoDAO;
 import dao.EstadoForcaDAO;
 import dao.ForcaDAO;
 import dao.MilitarDAO;
@@ -31,7 +35,22 @@ public class FacadeAjax {
         * @throws Throwable
         * @throws Exception
     */
+    
 
+    public List getCursos() throws Throwable, Exception{
+        List<Curso> listCursos = new ArrayList();
+        listCursos = CursoDAO.getCursos();
+        return listCursos;
+    }
+    
+    public List getCategorias() throws Throwable, Exception{
+        List<Categoria> listResult = new ArrayList();
+        listResult = CategoriaDAO.getCategorias();
+        return listResult;
+    }
+    
+   
+    
     public List selectAllMilitar() throws Throwable, Exception{
         List<Militar> listResult = new ArrayList();
         listResult = MilitarDAO.selectAllMilitar();
