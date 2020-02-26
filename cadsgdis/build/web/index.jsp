@@ -128,6 +128,7 @@
         <a href="javascript:cleanAddOptions('combo3')" >Limpar</a>
         <select id="combo3"></select>
         <button class="btn btn-danger my-2 my-sm-0" type="submit">Sair</button>
+        <a href="inicio.jsp" >Início Cadastro</a>
         <script src="assets/node_modules/jquery/dist/jquery.js"></script>
         <script src="assets/node_modules/popper.js/dist/popper.js"></script>
         <script src="assets/node_modules/bootstrap/dist/js/bootstrap.js"></script>
