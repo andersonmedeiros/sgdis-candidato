@@ -12,13 +12,16 @@ import bean.Forca;
 import bean.Militar;
 import bean.Om;
 import bean.PostoGraduacao;
+import bean.Tentativa;
 import dao.CategoriaDAO;
 import dao.CursoDAO;
+import dao.CursoHasCategoriaDAO;
 import dao.EstadoForcaDAO;
 import dao.ForcaDAO;
 import dao.MilitarDAO;
 import dao.OmDAO;
 import dao.PostoGraduacaoDAO;
+import dao.TentativaDAO;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,14 +46,24 @@ public class FacadeAjax {
         return listCursos;
     }
     
-    public List getCategorias() throws Throwable, Exception{
+    public List getCategoriasByCurso(int idCurso) throws Throwable, Exception{
         List<Categoria> listResult = new ArrayList();
-        listResult = CategoriaDAO.getCategorias();
+        listResult = CursoHasCategoriaDAO.getCategoriasByCurso(idCurso);
         return listResult;
     }
     
-   
+    public int getQtdeTentativasCand(String idCandidato) throws Throwable, Exception{
+        int qtdeTentativas = 0;
+        qtdeTentativas = TentativaDAO.getQtdeTentativasCand(idCandidato);
+        return qtdeTentativas;
+    }
     
+    public List getTentativasByCand(String idCandidato) throws Throwable, Exception{
+        List<Tentativa> listResult = new ArrayList();
+        listResult = TentativaDAO.getTentativasByCand(idCandidato);
+        return listResult;
+    }
+    //
     public List selectAllMilitar() throws Throwable, Exception{
         List<Militar> listResult = new ArrayList();
         listResult = MilitarDAO.selectAllMilitar();

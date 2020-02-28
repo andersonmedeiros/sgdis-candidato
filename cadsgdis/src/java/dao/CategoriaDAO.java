@@ -6,7 +6,6 @@
 package dao;
 
 import bean.Categoria;
-import bean.Curso;
 import conection.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

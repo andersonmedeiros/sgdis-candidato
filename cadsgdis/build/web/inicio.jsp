@@ -19,6 +19,7 @@
         <link rel="stylesheet" type="text/css" href="assets/node_modules/bootstrap/compiler/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="assets/css/estilo_universal.css">
         <link rel="stylesheet" type="text/css" href="assets/css/estilo_formulario_etapas.css">        
+        <link rel="stylesheet" type="text/css" href="assets/css/inicio_cadastro_candidato.css">
                 
         
         
@@ -80,25 +81,66 @@
                                 <label for="txtIdtCandidato">Identidade Militar: <span class="campo-obrigatorio">*</span></label>
                                 <input type="text" class="form-control idt-mil" id="txtIdtCandidato" name="txtIdtCandidato" placeholder="Ex. 000000000-0">
                                 <div class="valid-feedback">Selva!</div>
-                                <div class="invalid-feedback invalid-idtMilAl">Campo Obrigatório!</div>
+                                <div class="invalid-feedback invalid-idtCandidato">Campo Obrigatório!</div>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="txtCurso">Curso: </label>
-                                <select class="form-control" id="txtCurso" name="txtCurso">
-                                    <option value="0" selected>Selecione um Curso...</option>
-                                    
+                                <select class="form-control" id="txtCurso" name="txtCurso" onchange="montaSelectDependenteCurso(this.value);">
+                                    <option value="0" selected>Selecione um Curso...</option>                                    
                                 </select>
+                                <div class="valid-feedback">Selva!</div>
+                                <div class="invalid-feedback">Campo Obrigatório!</div>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="txtCategoria">Categoria: </label>
                                 <select class="form-control" id="txtCategoria" name="txtCategoria">
-                                    <option value="0" selected>Selecione uma Categoria...</option>
-                                    
+                                    <option value="0" selected>Selecione uma Categoria...</option>                                    
                                 </select>
+                                <div class="valid-feedback">Selva!</div>
+                                <div class="invalid-feedback">Campo Obrigatório!</div>
                             </div>
+                            <button type="button" id="btn" name="btnTentativa" class="btn btn-warning" value="ICadastro" >Verificar Tentativas</button>
                         </div>
+                        
+                        <div class="header-interno">
+                                <h5 class="title-interno">Tentativas</h5>
+                            </div>
+                            <div class="fieldset-interno">
+                                <div class="title-table">
+                                    <b>Quantidade de Tentativas: <span id="qtdeTentativas"></span></b>
+                                </div>
+                                <div class="table">
+                                    <table class="table">
+                                        <thead class="thead-light text">
+                                            <tr>
+                                                <th scope="col">Ano</th>
+                                                <th scope="col">Motivo de Desligamento</th>
+                                                <th scope="col">Fase de Desligamento</th>                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tentativas">
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div id="info-tent-danger-3" class="alert alert-danger to ml-auto shadow-sm text-center" role="alert" style="display: none;">
+                                    Infelizmente você não pode mais se candidatar a este curso, por ter atingido o número máximo de tentativas.
+                                </div>
+                                <div id="info-tent-success-2" class="alert alert-success to ml-auto shadow-sm text-center" role="alert" style="display: none;">
+                                    Você possui mais uma Tentativa.
+                                </div>
+                                <div id="info-tent-success-1" class="alert alert-success to ml-auto shadow-sm text-center" role="alert" style="display: none;">
+                                    Você possui mais duas Tentativa.
+                                </div>
+                                <div id="info-tent-success-0" class="alert alert-success to ml-auto shadow-sm text-center" role="alert" style="display: none;">
+                                    Você possui três Tentativa.
+                                </div>
+                                
+                            </div>
+                        
+                        
                     </div>
-                    <button type="submit" id="btn" name="btnIniciar" class="btn btn-success prox acao" value="ICadastro">Inciar Cadastro</button>
+                    <button type="submit" id="btn" name="btnInicioCad" class="btn btn-success prox acao" value="ICadastro">Inciar Cadastro</button>
                 </fieldset>
                 
             </form>
@@ -124,6 +166,7 @@
         <script src="assets/node_modules/bootstrap/dist/js/bootstrap.js"></script>
         <script src="assets/js/formularioEtapas.js"></script>
         <script src="assets/js/formulario/validacao/mascaras.js"></script>
+        <script src="assets/js/formulario/validacao/inicio/form-inicio-cadastro.js"></script>
         <!--<script src="assets/js/formulario/camposdinamico/cursos.js"></script>
         <script src="assets/js/formulario/validacao/form-casdatroCandidato-cos.js"></script>-->
         <script src="assets/js/bootstrap-validate.js"></script>

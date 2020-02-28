@@ -7,6 +7,7 @@ package bean;
 
 import dao.CategoriaDAO;
 import dao.CursoDAO;
+import dao.TentativaDAO;
 import java.util.List;
 
 /**
@@ -17,6 +18,6 @@ public class teste {
     public static void main(String[] args) throws Throwable {
         CategoriaDAO catDAO = new CategoriaDAO();
         
-        System.out.println(catDAO.getCategorias().get(0).nome);
+        System.out.println(TentativaDAO.getQtdeTentativasCand("1207151111"));
     }
 }

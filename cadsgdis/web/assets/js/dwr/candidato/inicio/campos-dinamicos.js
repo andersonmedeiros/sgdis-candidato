@@ -2,9 +2,58 @@ FacadeAjax.getCursos(montaSelectCurso);
 function montaSelectCurso(listBeans){
     //var select = document.getElementById("#forca");
     dwr.util.removeAllOptions("txtCurso");
-    //dwr.util.addOptions("forca", [{id:"0", nome:"select"}], "id", "nome");
+    dwr.util.addOptions("txtCurso", [{id: "0", nome: "Selecione um Curso..."}], "id", "nome");
     dwr.util.addOptions("txtCurso", listBeans, "id", "nome");
 }
+function montaSelectDependenteCurso(idCurso){
+    FacadeAjax.getCategoriasByCurso(idCurso, {
+       callback: function(list){
+           dwr.util.removeAllOptions("txtCategoria");
+           dwr.util.addOptions("txtCategoria", [{id: "0", nome: "Selecione uma Categoria..."}], "id", "nome");
+           dwr.util.addOptions("txtCategoria", list, "id", "nome");
+       } 
+    });
+}
+
+var cellFuncsTentativas = [
+    function(data){ return data.ano;},
+    function(data){ return data.mtvDeslg;},
+    function(data){ return data.faseDeslg;}
+];
+
+function qtdeTentativas(idtCandidato){
+    FacadeAjax.getQtdeTentativasCand(idtCandidato, {
+       callback:function(qtdeTentativas){
+            if(qtdeTentativas == 0){
+                $("#info-tent-success-0").show();
+            }
+            if(qtdeTentativas == 1){
+                $("#info-tent-success-1").show();
+            }
+            else if(qtdeTentativas == 2){
+                $("#info-tent-success-2").show();
+            }
+            else if(qtdeTentativas == 3){
+                $("#info-tent-danger-3").show();
+            }
+       }
+    });    
+}
+
+
+
+function getTentativasByCand(idtCandidato){
+    FacadeAjax.getTentativasByCand(idtCandidato, {
+        callback:function(data){ 
+            dwr.util.removeAllRows("tentativas");
+            dwr.util.addRows("tentativas", data, cellFuncsTentativas, { escapeHtml: false });
+        }
+    });
+    
+    qtdeTentativas('1207151111');
+}
+
+
 /*FacadeAjax.selectAllForca(montaSelectForca);
 function montaSelectForca(listBeans){
     var select = document.getElementById("#forca");
