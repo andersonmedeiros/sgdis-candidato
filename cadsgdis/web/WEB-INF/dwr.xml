@@ -8,16 +8,10 @@
     <create creator="new" javascript="JDate">
         <param name="class" value="java.util.Date"/>
     </create>
-    <create creator="new" javascript="util">
-        <param name="class" value="java.util.util"/>
-    </create>
     <create creator="new" javascript="FacadeAjax">
         <param name="class" value="facade.FacadeAjax" />
-
     </create>
-    <create creator="new" javascript="Demo">
-        <param name="class" value="java.Bean"/>
-    </create>
+    
     <convert converter="bean" match="bean.Militar" />
     <convert converter="bean" match="dao.MilitarDAO" />
     <convert converter="bean" match="bean.Forca" />
