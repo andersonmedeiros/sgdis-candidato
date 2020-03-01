@@ -12,23 +12,34 @@
         <param name="class" value="facade.FacadeAjax" />
     </create>
     
-    <convert converter="bean" match="bean.Militar" />
-    <convert converter="bean" match="dao.MilitarDAO" />
-    <convert converter="bean" match="bean.Forca" />
-    <convert converter="bean" match="dao.ForcaDAO" />
-    <convert converter="bean" match="bean.PostoGraduacao" />
-    <convert converter="bean" match="dao.PostoGraduacaoDAO" />
-    <convert converter="bean" match="bean.EstadoForca" />
-    <convert converter="bean" match="dao.EstadoForcaDAO" />
-    <convert converter="bean" match="bean.Om" />
-    <convert converter="bean" match="dao.OmDAO" />
     <convert converter="bean" match="bean.Curso" />
     <convert converter="bean" match="dao.CursoDAO" />
     <convert converter="bean" match="bean.Categoria" />
     <convert converter="bean" match="dao.CategoriaDAO" />
     <convert converter="bean" match="bean.CursoHasCategoria" />
     <convert converter="bean" match="dao.CursoHasCategoriaDAO" />
+    
     <convert converter="bean" match="bean.Tentativa" />
     <convert converter="bean" match="dao.TentativaDAO" />
+    
+    <convert converter="bean" match="bean.Forca" />
+    <convert converter="bean" match="dao.ForcaDAO" />
+    <convert converter="bean" match="bean.Estado" />
+    <convert converter="bean" match="dao.EstadoDAO" />
+    <convert converter="bean" match="bean.ForcaHasEstado" />
+    <convert converter="bean" match="dao.ForcaHasEstadoDAO" />
+    
+    <convert converter="bean" match="bean.Om" />
+    <convert converter="bean" match="dao.OmDAO" />
+    
+    <convert converter="bean" match="bean.PostoGraduacao" />
+    <convert converter="bean" match="dao.PostoGraduacaoDAO" />
+    <convert converter="bean" match="bean.Militar" />
+    <convert converter="bean" match="dao.MilitarDAO" />    
+    
+    <convert converter="bean" match="bean.EstadoForca" />
+    <convert converter="bean" match="dao.EstadoForcaDAO" />
+    
+    
   </allow>
 </dwr>

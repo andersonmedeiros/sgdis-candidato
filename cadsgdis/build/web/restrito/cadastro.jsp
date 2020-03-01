@@ -4,6 +4,10 @@
     Author     : andersondepaula
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="bean.Forca"%>
+<%@page import="dao.ForcaDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,18 +17,23 @@
         <meta name="description" content="">
         <meta name="author" content="Anderson de Paula Andrade Medeiros">
         
-        <link rel="icon" type="image/x-icon" href="../../assets/img/logo_sgdis.png" />
+        <link rel="icon" type="image/x-icon" href="../assets/img/logo_sgdis.png" />
         <title>Cadastro de Candidato</title>
         
-        <link rel="stylesheet" type="text/css" href="../../assets/node_modules/bootstrap/compiler/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="../../assets/css/estilo_universal.css">
-        <link rel="stylesheet" type="text/css" href="../../assets/css/estilo_formulario_etapas.css">
+        <link rel="stylesheet" type="text/css" href="../assets/node_modules/bootstrap/compiler/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="../assets/css/estilo_universal.css">
+        <link rel="stylesheet" type="text/css" href="../assets/css/estilo_formulario_etapas.css">
+        
+        <script type='text/javascript' src='../dwr/engine.js'></script>
+        <script type='text/javascript' src='../dwr/interface/FacadeAjax.js'></script>
+        <script type='text/javascript' src='../dwr/util.js'></script> 
+        
         
     </head>
     <body>
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-success fixed-top">
-                <a class="navbar-brand active" href="../../restrito/inicial.jsp">SGDIS <span class="sr-only">(Página atual)</span></a>
+                <a class="navbar-brand active" href="../restrito/inicial.jsp">SGDIS <span class="sr-only">(Página atual)</span></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerSgdis" aria-controls="navbarTogglerSgdis" aria-expanded="false" aria-label="Alterna navegação">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -33,16 +42,16 @@
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                         
                         <li class="nav-item">
-                            <a class="nav-link" href="../../restrito/cursos.jsp">Cursos</a>
+                            <a class="nav-link" href="../restrito/cursos.jsp">Cursos</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 STE
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">                                
-                                <a class="dropdown-item" href="../../restrito/curso.jsp">Curso</a>
+                                <a class="dropdown-item" href="../estrito/curso.jsp">Curso</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="../../restrito/gradeCurricular.jsp">Grade Curricular</a>
+                                <a class="dropdown-item" href="../restrito/gradeCurricular.jsp">Grade Curricular</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -50,7 +59,7 @@
                                 DivAl
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">                                
-                                <a class="dropdown-item active" href="../../restrito/candidato/inicio.jsp">Cadastrar Candidato</a>
+                                <a class="dropdown-item active" href="../restrito/candidato/inicio.jsp">Cadastrar Candidato</a>
                             </div>
                         </li>
                     </ul>
@@ -64,9 +73,15 @@
         
         <section class="container-fluid col-md-10 mr-auto ml-auto area">
             <%
-                String curso = request.getParameter("c");
-                String categoria = request.getParameter("cat");
-                if(curso.equals("COS")){
+                HttpSession sessao = request.getSession();
+                String curso = String.valueOf(sessao.getAttribute("curso"));
+                String categoria = String.valueOf(sessao.getAttribute("categoria"));
+                
+                
+                ForcaDAO forcaDAO = new ForcaDAO();
+                
+                if(curso.equals("1")){
+                    List<Forca> forcas = forcaDAO.getForcas();
                     out.println("<form id=\"formCadCandidato\" class=\"col-md-10\">"+
                                     "<ul id=\"progress\">"+
                                         "<li class=\"ativo\">OM Atual</li>"+
@@ -87,13 +102,19 @@
                                             "<div class=\"form-row\">"+
                                                 "<div class=\"form-group col-md-6\">"+
                                                     "<label for=\"txtForca\">Força: <span class=\"campo-obrigatorio\">*</span></label>"+
-                                                    "<select class=\"form-control\" id=\"txtForca\" name=\"txtForca\"></select>"+
+                                                    "<select class=\"form-control\" id=\"txtForca\" name=\"txtForca\">"+
+                                                        "<option value=\"0\">Selecione uma Força...</option>");
+                                                        int qtdeForcas = forcas.size();
+                                                        for(int i=0; i<qtdeForcas; i++){
+                                                            out.println("<option value='"+forcas.get(i).getId()+"'>"+forcas.get(i).getNome()+"</option>");
+                                                        }
+                    out.println(                    "</select>"+
                                                     "<div class=\"valid-feedback\">Selva!</div>"+
                                                     "<div class=\"invalid-feedback\">Campo Obrigatório!</div>"+
                                                 "</div>"+                            
                                                 "<div class=\"form-group col-md-6\">"+
                                                     "<label for=\"txtEstadoForca\">Estado: <span class=\"campo-obrigatorio\">*</span></label>"+
-                                                    "<select class=\"form-control\" id=\"txtEstadoForca\" name=\"txtEstadoForca\"></select>"+
+                                                    "<select class=\"form-control\" id=\"txtEstadoForca\" name=\"txtEstadoForca\">"+"</select>"+
                                                     "<div class=\"valid-feedback\">Selva!</div>"+
                                                     "<div class=\"invalid-feedback\">Campo Obrigatório!</div>"+
                                                 "</div>"+    
@@ -3032,23 +3053,23 @@
             <b class="text-center copy">&copy; 2019</b>
         </footer>
         
-        <script src="../../assets/node_modules/jquery/dist/jquery.js"></script>
-        <script src="../../assets/node_modules/popper.js/dist/popper.js"></script>
-        <script src="../../assets/node_modules/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="../../assets/js/formularioEtapas.js"></script>
-        <script src="../../assets/js/formulario/validacao/mascaras.js"></script>
+        <script src="../assets/node_modules/jquery/dist/jquery.js"></script>
+        <script src="../assets/node_modules/popper.js/dist/popper.js"></script>
+        <script src="../assets/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="../assets/js/formularioEtapas.js"></script>
+        <script src="../assets/js/formulario/validacao/mascaras.js"></script>
+        
         <!--<script src="../assets/js/formulario/validacao/obrigatoriedade.js"></script>
         <script src="../assets/js/formulario/validacao/tempo-real.js"></script>
         <script src="../assets/js/formulario/validacao/ao-carregar-pagina.js"></script>
         <script src="../assets/js/formulario/validacao/campos-especificos.js"></script>-->
-        <script src="../../assets/js/formulario/validacao/funcoes-form-cadastroCandidato-cos.js"></script>        
-        <script src="../../assets/js/formulario/validacao/teste.json"></script>
+        <script src="../assets/js/formulario/validacao/funcoes-form-cadastroCandidato-cos.js"></script>
         <!--<script src="../../assets/js/formulario/validacao/form-casdatroCandidato-cos.js"></script>-->
-        <script src="../../assets/js/formulario/camposdinamico/estados-cidades.js"></script>
-        <script src="../../assets/js/formulario/camposdinamico/enderecodinamico.js"></script>
-        <script src="../../assets/js/formulario/camposdinamico/forca.js"></script>
-        
-        <script src="../../assets/js/bootstrap-validate.js"></script>
+        <!-<script src="../assets/js/formulario/camposdinamico/estados-cidades.js"></script>-->
+        <script src="../assets/js/formulario/camposdinamico/enderecodinamico.js"></script>
+        <!--<script src="../assets/js/formulario/camposdinamico/forca.js"></script>-->
+        <script src="../assets/js/dwr/candidato/cadastro/campos-dinamicos.js"></script>
+        <script src="../assets/js/bootstrap-validate.js"></script>
         <!--<script>
                 bootstrapValidate('#txtAbrevOM', 'required:Campo Obrigatótio!');
                 bootstrapValidate('#txtNomeOM', 'required:Campo Obrigatótio!');
