@@ -72,30 +72,19 @@ public class InicioCadastro extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        HttpSession sessao = request.getSession();
-        String idt = "";
-        String curso = "";
-        String categoria = "";
-        if(sessao.getAttribute("militarAutenticado") != null){
-            try{
-            idt = request.getParameter("txtIdtCandidato").replace(" ", "").replace("-", "").toUpperCase();
-            curso = request.getParameter("txtCurso").toUpperCase();
-            categoria = request.getParameter("txtCategoria").toUpperCase();
-           
+        String idt = request.getParameter("txtIdtCandidato").replace(" ", "").replace("-", "").toUpperCase();
+        String curso = request.getParameter("txtCurso").toUpperCase();
+        String categoria = request.getParameter("txtCategoria").toUpperCase();
+        
+        if((idt != "") && (curso != "") && (categoria != "")){
+            HttpSession sessao = request.getSession();
+            sessao.setAttribute("idtCandidato", idt);
+            sessao.setAttribute("curso", curso);
+            sessao.setAttribute("categoria", categoria);
             
-            }catch(Exception ex){
-                //e=2: erro durante realização do cadastro
-                response.sendRedirect("/sgdis/restrito/curso.jsp?e=2");
-                throw new ServletException(ex);
-            }
-            //e=1: cadastro sucesso
-            response.sendRedirect("cadastro.jsp?idt="+idt+"&c="+curso+"&cat="+categoria);
-            /*RequestDispatcher despachante = getServletContext().getRequestDispatcher("/restrito/cadastroCurso.jsp?e=1");
-            despachante.forward(request, response);*/
-        }
-        else{
-            //e=4: Sessão Encerrada
-            response.sendRedirect("index.jsp?e=4");
+            response.sendRedirect("/cadsgdis/restrito/cadastro.jsp");
+        }else{
+            response.sendRedirect("/cadsgdis/inicio.jsp");
         }
     }
 
