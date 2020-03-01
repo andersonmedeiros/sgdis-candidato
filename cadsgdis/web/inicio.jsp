@@ -99,7 +99,14 @@
                                 <div class="valid-feedback">Selva!</div>
                                 <div class="invalid-feedback">Campo Obrigatório!</div>
                             </div>
-                            <button type="button" id="btn" name="btnTentativa" class="btn btn-warning" value="ICadastro" >Verificar Tentativas</button>
+                            
+                        </div>
+                        <div class="form-row">
+                            
+                               <button type="button" id="btn" name="btnTentativa" class="btn btn-warning btn-tentativas" value="ICadastro" >Verificar Tentativas</button>
+                            
+                            
+                            
                         </div>
                         
                         <div class="header-interno">
@@ -123,8 +130,9 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div id="info-tent-danger-3" class="alert alert-danger to ml-auto shadow-sm text-center" role="alert" style="display: none;">
-                                    Infelizmente você não pode mais se candidatar a este curso, por ter atingido o número máximo de tentativas.
+                                <a id="google">google</a>
+                                <div id="info-tent" class="alert to ml-auto shadow-sm text-center" role="alert">
+                                    
                                 </div>
                                 <div id="info-tent-success-2" class="alert alert-success to ml-auto shadow-sm text-center" role="alert" style="display: none;">
                                     Você possui mais uma Tentativa.

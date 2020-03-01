@@ -21,6 +21,11 @@ var cellFuncsTentativas = [
     function(data){ return data.faseDeslg;}
 ];
 
+var teste = [
+    function(data){ return data.qtdeTent;}
+];
+
+
 function qtdeTentativas(idtCandidato){
     FacadeAjax.getQtdeTentativasCand(idtCandidato, {
        callback:function(qtdeTentativas){
@@ -42,15 +47,34 @@ function qtdeTentativas(idtCandidato){
 
 
 
-function getTentativasByCand(idtCandidato){
-    FacadeAjax.getTentativasByCand(idtCandidato, {
+function getTentativasByCandidatoAndCurso(idtCandidato, idCurso){
+    
+    
+    FacadeAjax.getTentativasByCandidatoAndCurso(idtCandidato, idCurso, {
         callback:function(data){ 
+            dwr.util.setValues({qtdeTentativas: data[0].qtde});
             dwr.util.removeAllRows("tentativas");
             dwr.util.addRows("tentativas", data, cellFuncsTentativas, { escapeHtml: false });
+            if(data[0].qtde == 0){
+                $("#info-tent").append("Você tem mais 3 tentativas.");
+                $("#info-tent").addClass("alert-success"); 
+            }
+            if(data[0].qtde == 1){
+                $("#info-tent").append("Você tem mais 2 tentativas.");
+                $("#info-tent").addClass("alert-success"); 
+            }
+            else if(data[0].qtde == 2){
+                $("#info-tent").append("Você tem mais 1 tentativas.");
+                $("#info-tent").addClass("alert-success"); 
+            }
+            else if(data[0].qtde == 3){
+                $("#info-tent").append("Você não tem mais tentativas.");
+                $("#info-tent").addClass("alert-danger"); 
+            }
         }
     });
     
-    qtdeTentativas('1207151111');
+    
 }
 
 

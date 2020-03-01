@@ -152,7 +152,46 @@ $("button[name=btnInicioCad]").click(function(){
 });
 
 $("button[name=btnTentativa]").click(function(){
-    getTentativasByCand($("#txtIdtCandidato").val().replace("-",""));
+    var idtCandidato = $("input[name=txtIdtCandidato]").val().replace("-","").replace(" ","");
+    
+    if(idtCandidato == ''){
+        $("input[name=txtIdtCandidato]").removeClass("is-valid");
+        $("input[name=txtIdtCandidato]").addClass("is-invalid");
+        $("input[name=txtIdtCandidato]").focus();
+        $(".invalid-idtCandidato").html("Campo Obrigatório!");
+        
+        return false;
+    }
+    else if(idtCandidato == '0000000000' || idtCandidato == '1111111111' || idtCandidato == '2222222222' || idtCandidato == '3333333333' ||                 
+            idtCandidato == '4444444444' || idtCandidato == '5555555555' || idtCandidato == '6666666666' || idtCandidato == '7777777777' ||                 
+            idtCandidato == '8888888888' || idtCandidato == '9999999999'){
+        $("input[name=txtIdtCandidato]").removeClass("is-valid");
+        $("input[name=txtIdtCandidato]").addClass("is-invalid");
+        $("input[name=txtIdtCandidato]").focus();
+        $(".invalid-idtCandidato").html("Identidade Militar Inválida!");
+        
+        return false;
+    }
+    else if($("select[name=txtCurso]").val() == '0'){
+        $("select[name=txtCurso]").removeClass("is-valid");
+        $("select[name=txtCurso]").addClass("is-invalid");
+        $("select[name=txtCurso]").focus();
+        
+        return false;
+    }
+    else if($("select[name=txtCategoria]").val() == '0'){
+        $("select[name=txtCategoria]").removeClass("is-valid");
+        $("select[name=txtCategoria]").addClass("is-invalid");
+        $("select[name=txtCategoria]").focus();
+        
+        return false;
+    }
+    else{        
+        var idtCandidato = $("#txtIdtCandidato").val().replace("-","");
+        var idCurso = $("#txtCurso").val();
+        getTentativasByCandidatoAndCurso(idtCandidato, idCurso);
+        
+    }
     //qtdeTentativas($("#txtIdtCandidato").val().replace("-",""));
     /*if(q < 3){
         $("#infoTent").show();
