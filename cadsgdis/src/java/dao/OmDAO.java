@@ -5,11 +5,14 @@
  */
 package dao;
 
+import bean.Estado;
 import bean.EstadoForca;
 import bean.Om;
 import conection.ConnectionFactory;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,61 +21,64 @@ import java.util.List;
  * @author anderson
  */
 public class OmDAO {
-    public static List selectAllOmByEstadoForca(int id_estforca) throws Throwable, Exception{
-        List<Om> dadosOmList = new ArrayList();
-        PreparedStatement stmt = null;
+    private final static String GETOMBYFORCAANDESTADO = "select * " +
+                                                        "from OM " +
+                                                        "where idForca = ? and idEstado = ?";
+    
+    private final static String GETABREVOM = "select abreviatura " +
+                                             "from OM " +
+                                             "where id = ?";
+    
+    public static List<Om> getOmsByForcaAndEstado(int idForca, int idEstado){
+        Connection conn = null;
+        PreparedStatement pstm = null;
         ResultSet rs = null;
-
-        stmt = ConnectionFactory.getConnection().prepareStatement("select * from om where idEstadoForca = ? order by id");
-        stmt.setInt(1, id_estforca);
-        rs = stmt.executeQuery();
+        List<Om> oms = new ArrayList<>();
         
-        Om om = null;
-        while(rs.next()){
-            om = new Om();
-            
-            int id = rs.getInt("id");
-            int idEstadoForca = rs.getInt("idEstadoForca");
-            String nome = rs.getString("nome");
-            String abreviatura = rs.getString("abreviatura");
-            om.setId(id);
-            om.setIdEstadoForca(idEstadoForca);
-            om.setNome(nome);
-            om.setAbreviatura(abreviatura);
-
-            dadosOmList.add(om);
+        try {
+            conn = ConnectionFactory.getConnection();
+            pstm = conn.prepareStatement(GETOMBYFORCAANDESTADO);
+            pstm.setInt(1, idForca);
+            pstm.setInt(2, idEstado);
+           
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+               Om om = new Om();
+               
+               om.setId(rs.getInt("id"));
+               om.setNome(rs.getString("nome"));
+               om.setAbreviatura(rs.getString("abreviatura"));
+               om.setIdEstadoForca(rs.getInt("idEstado"));
+                
+               oms.add(om);
+            }
+            ConnectionFactory.fechaConexao(conn, pstm, rs);
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());           
         }
-
-        stmt.close();
-        rs.close();
-        
-       return dadosOmList;
+        return oms;
     }
-    public static Om selectOmById(int id_om) throws Throwable, Exception{
-        PreparedStatement stmt = null;
+    public static String getAbreviaturaOM(int idOM){
+        Connection conn = null;
+        PreparedStatement pstm = null;
         ResultSet rs = null;
-
-        stmt = ConnectionFactory.getConnection().prepareStatement("select * from om where id = ?");
-        stmt.setInt(1, id_om);
-        rs = stmt.executeQuery();
+        String abreviatura = "";
         
-        Om om = null;
-        while(rs.next()){
-            om = new Om();
-            
-            int id = rs.getInt("id");
-            int idEstadoForca = rs.getInt("idEstadoForca");
-            String nome = rs.getString("nome");
-            String abreviatura = rs.getString("abreviatura");
-            om.setId(id);
-            om.setIdEstadoForca(idEstadoForca);
-            om.setNome(nome);
-            om.setAbreviatura(abreviatura);
+        try {
+            conn = ConnectionFactory.getConnection();
+            pstm = conn.prepareStatement(GETABREVOM);
+            pstm.setInt(1, idOM);
+           
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+               
+               abreviatura = rs.getString("abreviatura");
+               
+            }
+            ConnectionFactory.fechaConexao(conn, pstm, rs);
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());           
         }
-
-        stmt.close();
-        rs.close();
-        
-       return om;
+        return abreviatura;
     }
 }

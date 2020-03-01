@@ -79,6 +79,17 @@ public class FacadeAjax {
         return listResult;
     }
     
+    public List getOmsByForcaAndEstado(int idForca, int idEstado) throws Throwable, Exception{
+        List<Om> listResult = new ArrayList();
+        listResult = OmDAO.getOmsByForcaAndEstado(idForca, idEstado);
+        return listResult;
+    }
+    
+    public String getAbreviaturaOM(int idOM) throws Throwable, Exception{
+        String abreviatura = OmDAO.getAbreviaturaOM(idOM);
+        return abreviatura;
+    }
+    
     
     public List selectAllMilitar() throws Throwable, Exception{
         List<Militar> listResult = new ArrayList();
@@ -100,11 +111,7 @@ public class FacadeAjax {
         return listResult;
     }
     
-    public List selectAllOmByEstadoForca(int id_estforca) throws Throwable, Exception{
-        List<Om> listResult = new ArrayList();
-        listResult = OmDAO.selectAllOmByEstadoForca(id_estforca);
-        return listResult;
-    }
+   
 
     /*public String teste(){
         return "isso: ";
@@ -124,11 +131,7 @@ public class FacadeAjax {
         mil = listResult.get(0);
         return mil;
     }
-    public Om selectOM(int id_om) throws Throwable, Exception{
-        Om om = OmDAO.selectOmById(id_om);
-
-        return om;
-    }
+    
 
     /*
         * Executa um select na tabela mil e retorna um Map com os *valores(id, nome)
