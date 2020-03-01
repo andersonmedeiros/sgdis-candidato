@@ -27,8 +27,7 @@
     <convert converter="bean" match="bean.Estado" />
     <convert converter="bean" match="dao.EstadoDAO" />
     <convert converter="bean" match="bean.ForcaHasEstado" />
-    <convert converter="bean" match="dao.ForcaHasEstadoDAO" />
-    
+    <convert converter="bean" match="dao.ForcaHasEstadoDAO" />    
     <convert converter="bean" match="bean.Om" />
     <convert converter="bean" match="dao.OmDAO" />
     
