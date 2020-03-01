@@ -101,54 +101,36 @@
                             </div>
                             
                         </div>
-                        <div class="form-row">
-                            
+                        <div class="form-row">                            
                                <button type="button" id="btn" name="btnTentativa" class="btn btn-warning btn-tentativas" value="ICadastro" >Verificar Tentativas</button>
-                            
-                            
-                            
                         </div>
                         
                         <div class="header-interno">
-                                <h5 class="title-interno">Tentativas</h5>
+                            <h5 class="title-interno">Tentativas</h5>
+                        </div>
+                        <div class="fieldset-interno">
+                            <div class="title-table">
+                                <b>Quantidade de Tentativas: <span id="qtdeTentativas"></span></b>
                             </div>
-                            <div class="fieldset-interno">
-                                <div class="title-table">
-                                    <b>Quantidade de Tentativas: <span id="qtdeTentativas"></span></b>
-                                </div>
-                                <div class="table">
-                                    <table class="table">
-                                        <thead class="thead-light text">
-                                            <tr>
-                                                <th scope="col">Ano</th>
-                                                <th scope="col">Motivo de Desligamento</th>
-                                                <th scope="col">Fase de Desligamento</th>                                                
-                                            </tr>
-                                        </thead>
-                                        <tbody id="tentativas">
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <a id="google">google</a>
-                                <div id="info-tent" class="alert to ml-auto shadow-sm text-center" role="alert">
-                                    
-                                </div>
-                                <div id="info-tent-success-2" class="alert alert-success to ml-auto shadow-sm text-center" role="alert" style="display: none;">
-                                    Você possui mais uma Tentativa.
-                                </div>
-                                <div id="info-tent-success-1" class="alert alert-success to ml-auto shadow-sm text-center" role="alert" style="display: none;">
-                                    Você possui mais duas Tentativa.
-                                </div>
-                                <div id="info-tent-success-0" class="alert alert-success to ml-auto shadow-sm text-center" role="alert" style="display: none;">
-                                    Você possui três Tentativa.
-                                </div>
-                                
+                            <div class="table">
+                                <table class="table">
+                                    <thead class="thead-light text">
+                                        <tr>
+                                            <th scope="col">Ano</th>
+                                            <th scope="col">Motivo de Desligamento</th>
+                                            <th scope="col">Fase de Desligamento</th>                                                
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tentativas">
+
+                                    </tbody>
+                                </table>
                             </div>
-                        
-                        
-                    </div>
-                    <button type="submit" id="btn" name="btnInicioCad" class="btn btn-success prox acao" value="ICadastro">Inciar Cadastro</button>
+                            
+                            <div id="info-tent" class="alert to col-md-12 shadow-sm text-center" role="alert"></div>                            
+                            <div id="div-btn-inicio-cad" class="form-row"></div>
+                        </div>
+                    
                 </fieldset>
                 
             </form>

@@ -21,9 +21,6 @@ var cellFuncsTentativas = [
     function(data){ return data.faseDeslg;}
 ];
 
-var teste = [
-    function(data){ return data.qtdeTent;}
-];
 
 
 function qtdeTentativas(idtCandidato){
@@ -48,30 +45,54 @@ function qtdeTentativas(idtCandidato){
 
 
 function getTentativasByCandidatoAndCurso(idtCandidato, idCurso){
-    
+    FacadeAjax.getQtdeTentativasByCandidatoAndCurso(idtCandidato, idCurso, {
+       callback:function(qtdeTentativas){
+            dwr.util.setValues({qtdeTentativas: qtdeTentativas});
+       }
+    }); 
     
     FacadeAjax.getTentativasByCandidatoAndCurso(idtCandidato, idCurso, {
         callback:function(data){ 
-            dwr.util.setValues({qtdeTentativas: data[0].qtde});
             dwr.util.removeAllRows("tentativas");
-            dwr.util.addRows("tentativas", data, cellFuncsTentativas, { escapeHtml: false });
-            if(data[0].qtde == 0){
+            dwr.util.addRows("tentativas", data, cellFuncsTentativas, { escapeHtml: false });            
+        }
+    });
+    
+    FacadeAjax.getQtdeTentativasByCandidatoAndCurso(idtCandidato, idCurso, {
+       callback:function(qtdeTentativas){
+            if(qtdeTentativas == 0){
+                $("#info-tent").empty();
                 $("#info-tent").append("Você tem mais 3 tentativas.");
                 $("#info-tent").addClass("alert-success"); 
+                $("#info-tent").removeClass("alert-danger");
+                $("#div-btn-inicio-cad").empty();
+                $("#div-btn-inicio-cad").append("<button type=\"submit\" id=\"btn\" class=\"btn btn-success btn-inicio-cadastro\" value=\"InicioCadastro\">Inciar Cadastro</button>");
             }
-            if(data[0].qtde == 1){
+            if(qtdeTentativas == 1){
+                $("#info-tent").empty();
                 $("#info-tent").append("Você tem mais 2 tentativas.");
                 $("#info-tent").addClass("alert-success"); 
+                $("#info-tent").removeClass("alert-danger");
+                $("#div-btn-inicio-cad").empty();
+                $("#div-btn-inicio-cad").append("<button type=\"submit\" id=\"btn\" class=\"btn btn-success btn-inicio-cadastro\" value=\"InicioCadastro\">Inciar Cadastro</button>");
+                
             }
-            else if(data[0].qtde == 2){
+            else if(qtdeTentativas == 2){
+                $("#info-tent").empty();
                 $("#info-tent").append("Você tem mais 1 tentativas.");
                 $("#info-tent").addClass("alert-success"); 
+                $("#info-tent").removeClass("alert-danger");
+                $("#div-btn-inicio-cad").empty();
+                $("#div-btn-inicio-cad").append("<button type=\"submit\" id=\"btn\" class=\"btn btn-success btn-inicio-cadastro\" value=\"InicioCadastro\">Inciar Cadastro</button>");
             }
-            else if(data[0].qtde == 3){
+            else if(qtdeTentativas == 3){
+                $("#info-tent").empty();
                 $("#info-tent").append("Você não tem mais tentativas.");
                 $("#info-tent").addClass("alert-danger"); 
+                $("#info-tent").removeClass("alert-success");
+                $("#div-btn-inicio-cad").empty();
             }
-        }
+       }
     });
     
     
