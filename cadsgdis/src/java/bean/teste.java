@@ -18,6 +18,5 @@ public class teste {
     public static void main(String[] args) throws Throwable {
         CategoriaDAO catDAO = new CategoriaDAO();
         
-        System.out.println(TentativaDAO.getQtdeTentativasCand("1207151111"));
     }
 }

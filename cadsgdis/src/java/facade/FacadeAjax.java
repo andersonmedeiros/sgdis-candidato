@@ -7,17 +7,18 @@ package facade;
 
 import bean.Categoria;
 import bean.Curso;
+import bean.Estado;
 import bean.EstadoForca;
 import bean.Forca;
 import bean.Militar;
 import bean.Om;
 import bean.PostoGraduacao;
 import bean.Tentativa;
-import dao.CategoriaDAO;
 import dao.CursoDAO;
 import dao.CursoHasCategoriaDAO;
 import dao.EstadoForcaDAO;
 import dao.ForcaDAO;
+import dao.ForcaHasEstadoDAO;
 import dao.MilitarDAO;
 import dao.OmDAO;
 import dao.PostoGraduacaoDAO;
@@ -39,7 +40,7 @@ public class FacadeAjax {
         * @throws Exception
     */
     
-
+    //Curso / Categorias
     public List getCursos() throws Throwable, Exception{
         List<Curso> listCursos = new ArrayList();
         listCursos = CursoDAO.getCursos();
@@ -52,7 +53,7 @@ public class FacadeAjax {
         return listResult;
     }
     
-    
+    //Tentativas
     public int getQtdeTentativasByCandidatoAndCurso(String idtCandidato, int idCurso) throws Throwable, Exception{
         int qtde = 0;
         qtde = TentativaDAO.getQtdeTentativasByCandidatoAndCurso(idtCandidato, idCurso);
@@ -64,18 +65,28 @@ public class FacadeAjax {
         listResult = TentativaDAO.getTentativasByCandidatoAndCurso(idtCandidato, idCurso);
         return listResult;
     }
-    //
+    
+    //Forca / Estados / OM
+    public List selectAllForca() throws Throwable, Exception{
+        List<Forca> listResult = new ArrayList();
+        listResult = ForcaDAO.selectAllForca();
+        return listResult;
+    }
+    
+    public List getEstadosByForca(int idForca) throws Throwable, Exception{
+        List<Estado> listResult = new ArrayList();
+        listResult = ForcaHasEstadoDAO.getEstadosByForca(idForca);
+        return listResult;
+    }
+    
+    
     public List selectAllMilitar() throws Throwable, Exception{
         List<Militar> listResult = new ArrayList();
         listResult = MilitarDAO.selectAllMilitar();
         return listResult;
     }
     
-    public List selectAllForca() throws Throwable, Exception{
-        List<Forca> listResult = new ArrayList();
-        listResult = ForcaDAO.selectAllForca();
-        return listResult;
-    }
+    
     
     public List selectAllPostoGraduacao(int id_forca) throws Throwable, Exception{
         List<PostoGraduacao> listResult = new ArrayList();

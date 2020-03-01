@@ -8,8 +8,10 @@ package dao;
 import bean.Forca;
 import bean.Militar;
 import conection.ConnectionFactory;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +20,7 @@ import java.util.List;
  * @author anderson
  */
 public class ForcaDAO {
+    private final String GETFORCAS = "select * from Forca";
     public static List selectAllForca() throws Throwable, Exception{
         List<Militar> dadosMilitarList = new ArrayList();
         List<Forca> dadosForcaList = new ArrayList();
@@ -47,5 +50,33 @@ public class ForcaDAO {
         rs.close();
         
        return dadosForcaList;
+    }
+    
+    public List<Forca> getForcas(){
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        List<Forca> forcas = new ArrayList<>();
+        
+        try {
+            conn = ConnectionFactory.getConnection();
+            pstm = conn.prepareStatement(GETFORCAS);
+           
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                Forca forca = new Forca();
+                
+                forca.setId(rs.getInt("id"));
+                forca.setNome(rs.getString("nome"));
+                forca.setSigla(rs.getString("sigla"));
+                
+                
+                forcas.add(forca);
+            }
+            ConnectionFactory.fechaConexao(conn, pstm, rs);
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());           
+        }
+        return forcas;
     }
 }
