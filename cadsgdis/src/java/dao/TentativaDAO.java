@@ -26,12 +26,20 @@ public class TentativaDAO {
                                                 "from Tentativa as t " +
                                                 "where t.idtAluno = ?";
     
+    private final static String GETTENTBYCANDANDCURSO = "select count(idtAluno) as qtdeTent, t.* " +
+                                                      "from Tentativa as t, Aluno as a, Curso as c " +
+                                                      "where t.idtAluno = a.identidade and t.idtAluno = ? and t.idCurso = c.id and t.idCurso = ?";
+    
+    private final static String GETQTDETENTBYCANDANDCURSO = "select count(idtAluno) " +
+                                                      "from Tentativa as t, Aluno as a, Curso as c " +
+                                                      "where t.idtAluno = a.identidade and t.idtAluno = ? and t.idCurso = c.id and t.idCurso = ?";
+    
     static Connection conn = null;
     static PreparedStatement pstm = null;
     static ResultSet rs = null;
     
-    //Lista com tentativas por curso
-    public static int getQtdeTentativasCand(String idtCandidato){
+    //Quantidade de tentativas por candidato
+    public static int getQtdeTentativasByCandidatoAndCurso(String idtCandidato, int idCurso){
         conn = null;
         pstm = null;
         rs = null;
@@ -39,13 +47,17 @@ public class TentativaDAO {
         
         try {
             conn = ConnectionFactory.getConnection();
-            pstm = conn.prepareStatement(GETQTDETENTBYCAND);
+            pstm = conn.prepareStatement(GETQTDETENTBYCANDANDCURSO);
             pstm.setString(1, idtCandidato);
+            pstm.setInt(2, idCurso);
+            
            
             rs = pstm.executeQuery();
-            while (rs.next()) {
-                qtdeTentativas = rs.getInt("qtdeTentativas");
+            if(rs.next()){
+                qtdeTentativas = rs.getInt("count(idtAluno)");
             }
+                
+            
             ConnectionFactory.fechaConexao(conn, pstm, rs);
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());           
@@ -53,7 +65,7 @@ public class TentativaDAO {
         return qtdeTentativas;
     }
     
-    //Lista com tentativas por curso
+    //Lista com tentativas por candidato
     public static ArrayList<Tentativa> getTentativasByCand(String idtCandidato){
         conn = null;
         pstm = null;
@@ -76,6 +88,42 @@ public class TentativaDAO {
                 tentativa.setIdPostoGraduacaoCand(rs.getInt("idPostoGraduacaoAluno"));
                 tentativa.setIdtCand(rs.getString("idtAluno"));
                 tentativa.setIdOM(rs.getInt("idOM"));
+                
+                tentativas.add(tentativa);
+            }
+            ConnectionFactory.fechaConexao(conn, pstm, rs);
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());           
+        }
+        return tentativas;
+    }
+    
+    //Lista com tentativas por candidato & curso
+    public static ArrayList<Tentativa> getTentativasByCandidatoAndCurso(String idtCandidato, int idCurso){
+        conn = null;
+        pstm = null;
+        rs = null;
+        ArrayList<Tentativa> tentativas = new ArrayList<>();
+        
+        try {
+            conn = ConnectionFactory.getConnection();
+            pstm = conn.prepareStatement(GETTENTBYCANDANDCURSO);
+            pstm.setString(1, idtCandidato);
+            pstm.setInt(2, idCurso);
+           
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                Tentativa tentativa = new Tentativa();
+                
+                tentativa.setQtde(rs.getInt("qtdeTent"));
+                tentativa.setId(rs.getInt("id"));
+                tentativa.setAno(rs.getString("ano"));
+                tentativa.setMtvDeslg(rs.getString("mtvDeslg"));
+                tentativa.setFaseDeslg(rs.getString("faseDeslg"));
+                tentativa.setIdPostoGraduacaoCand(rs.getInt("idPostoGraduacaoAluno"));
+                tentativa.setIdtCand(rs.getString("idtAluno"));
+                tentativa.setIdOM(rs.getInt("idOM"));
+                tentativa.setIdCurso(rs.getInt("idCurso"));
                 
                 tentativas.add(tentativa);
             }

@@ -24,7 +24,7 @@ public class ForcaDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        stmt = ConnectionFactory.getConnection().prepareStatement("select * from forca order by id");
+        stmt = ConnectionFactory.getConnection().prepareStatement("select * from Forca order by id");
         rs = stmt.executeQuery();
 
         Militar mil = null;

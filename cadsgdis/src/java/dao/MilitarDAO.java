@@ -24,7 +24,7 @@ public class MilitarDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        stmt = ConnectionFactory.getConnection().prepareStatement("select * from militar order by nome asc");
+        stmt = ConnectionFactory.getConnection().prepareStatement("select * from Militar order by nome asc");
         rs = stmt.executeQuery();
 
         Militar mil = null;

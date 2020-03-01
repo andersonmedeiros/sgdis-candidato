@@ -52,15 +52,16 @@ public class FacadeAjax {
         return listResult;
     }
     
-    public int getQtdeTentativasCand(String idCandidato) throws Throwable, Exception{
-        int qtdeTentativas = 0;
-        qtdeTentativas = TentativaDAO.getQtdeTentativasCand(idCandidato);
-        return qtdeTentativas;
+    
+    public int getQtdeTentativasByCandidatoAndCurso(String idtCandidato, int idCurso) throws Throwable, Exception{
+        int qtde = 0;
+        qtde = TentativaDAO.getQtdeTentativasByCandidatoAndCurso(idtCandidato, idCurso);
+        return qtde;
     }
     
-    public List getTentativasByCand(String idCandidato) throws Throwable, Exception{
+    public List getTentativasByCandidatoAndCurso(String idtCandidato, int idCurso) throws Throwable, Exception{
         List<Tentativa> listResult = new ArrayList();
-        listResult = TentativaDAO.getTentativasByCand(idCandidato);
+        listResult = TentativaDAO.getTentativasByCandidatoAndCurso(idtCandidato, idCurso);
         return listResult;
     }
     //
@@ -94,9 +95,9 @@ public class FacadeAjax {
         return listResult;
     }
 
-    public String teste(){
+    /*public String teste(){
         return "isso: ";
-    }
+    }*/
 
     /*
         * Executa um select na tabela mil, mais so retorna um objeto Militar.
