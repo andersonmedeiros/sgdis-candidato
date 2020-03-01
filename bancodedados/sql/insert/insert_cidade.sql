@@ -1,0 +1,1 @@
+INSERT INTO `sgdis`.`Cidadde` (`id`, `nome`, `idEstado`) VALUES ('1', 'MANAUS', '1');
