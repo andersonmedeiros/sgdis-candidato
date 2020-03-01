@@ -26,11 +26,11 @@ public class TentativaDAO {
                                                 "from Tentativa as t " +
                                                 "where t.idtAluno = ?";
     
-    private final static String GETTENTBYCANDANDCURSO = "select count(idtAluno) as qtdeTent, t.* " +
+    private final static String GETTENTBYCANDANDCURSO = "select t.* " +
                                                       "from Tentativa as t, Aluno as a, Curso as c " +
                                                       "where t.idtAluno = a.identidade and t.idtAluno = ? and t.idCurso = c.id and t.idCurso = ?";
     
-    private final static String GETQTDETENTBYCANDANDCURSO = "select count(idtAluno) " +
+    private final static String GETQTDETENTBYCANDANDCURSO = "select count(t.id) as qtde " +
                                                       "from Tentativa as t, Aluno as a, Curso as c " +
                                                       "where t.idtAluno = a.identidade and t.idtAluno = ? and t.idCurso = c.id and t.idCurso = ?";
     
@@ -40,9 +40,9 @@ public class TentativaDAO {
     
     //Quantidade de tentativas por candidato
     public static int getQtdeTentativasByCandidatoAndCurso(String idtCandidato, int idCurso){
-        conn = null;
-        pstm = null;
-        rs = null;
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
         int qtdeTentativas = 0;
         
         try {
@@ -54,7 +54,7 @@ public class TentativaDAO {
            
             rs = pstm.executeQuery();
             if(rs.next()){
-                qtdeTentativas = rs.getInt("count(idtAluno)");
+                qtdeTentativas = rs.getInt("qtde");
             }
                 
             
@@ -81,13 +81,13 @@ public class TentativaDAO {
             while (rs.next()) {
                 Tentativa tentativa = new Tentativa();
                 
-                tentativa.setId(rs.getInt("id"));
-                tentativa.setAno(rs.getString("ano"));
-                tentativa.setMtvDeslg(rs.getString("mtvDeslg"));
-                tentativa.setFaseDeslg(rs.getString("faseDeslg"));
-                tentativa.setIdPostoGraduacaoCand(rs.getInt("idPostoGraduacaoAluno"));
-                tentativa.setIdtCand(rs.getString("idtAluno"));
-                tentativa.setIdOM(rs.getInt("idOM"));
+                tentativa.setId(rs.getInt("t.id"));
+                tentativa.setAno(rs.getString("t.ano"));
+                tentativa.setMtvDeslg(rs.getString("t.mtvDeslg"));
+                tentativa.setFaseDeslg(rs.getString("t.faseDeslg"));
+                tentativa.setIdPostoGraduacaoCand(rs.getInt("t.idPostoGraduacaoAluno"));
+                tentativa.setIdtCand(rs.getString("t.idtAluno"));
+                tentativa.setIdOM(rs.getInt("t.idOM"));
                 
                 tentativas.add(tentativa);
             }
@@ -100,9 +100,9 @@ public class TentativaDAO {
     
     //Lista com tentativas por candidato & curso
     public static ArrayList<Tentativa> getTentativasByCandidatoAndCurso(String idtCandidato, int idCurso){
-        conn = null;
-        pstm = null;
-        rs = null;
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
         ArrayList<Tentativa> tentativas = new ArrayList<>();
         
         try {
@@ -115,7 +115,7 @@ public class TentativaDAO {
             while (rs.next()) {
                 Tentativa tentativa = new Tentativa();
                 
-                tentativa.setQtde(rs.getInt("qtdeTent"));
+                
                 tentativa.setId(rs.getInt("id"));
                 tentativa.setAno(rs.getString("ano"));
                 tentativa.setMtvDeslg(rs.getString("mtvDeslg"));

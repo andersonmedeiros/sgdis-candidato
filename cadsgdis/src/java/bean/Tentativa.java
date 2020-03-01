@@ -10,7 +10,7 @@ package bean;
  * @author depaula
  */
 public class Tentativa {
-    int id, idPostoGraduacaoCand, idOM, idCurso, qtde;
+    int id, idPostoGraduacaoCand, idOM, idCurso;
     String ano, mtvDeslg, faseDeslg, idtCand;
 
     public int getId() {
@@ -77,13 +77,7 @@ public class Tentativa {
         this.idtCand = idtCand;
     }
 
-    public int getQtde() {
-        return qtde;
-    }
-
-    public void setQtde(int qtde) {
-        this.qtde = qtde;
-    }
+    
     
     
     
