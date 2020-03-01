@@ -3,16 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/depaula/Documentos/gitHub/sgdis-candidato/cadsgdis/src/java/dao/OmDAO.java</file>
-            <file>file:/home/depaula/Documentos/gitHub/sgdis-candidato/cadsgdis/web/WEB-INF/dwr.xml</file>
-            <file>file:/home/depaula/Documentos/gitHub/sgdis-candidato/cadsgdis/web/inicio.jsp</file>
-            <file>file:/home/depaula/Documentos/gitHub/sgdis-candidato/cadsgdis/src/java/dao/CursoDAO.java</file>
-            <file>file:/home/depaula/Documentos/gitHub/sgdis-candidato/cadsgdis/web/index.jsp</file>
-            <file>file:/home/depaula/Documentos/gitHub/sgdis-candidato/cadsgdis/web/WEB-INF/web.xml</file>
-            <file>file:/home/depaula/Documentos/gitHub/sgdis-candidato/cadsgdis/src/java/dao/ForcaDAO.java</file>
-            <file>file:/home/depaula/Documentos/gitHub/sgdis-candidato/cadsgdis/src/java/facade/FacadeAjax.java</file>
-            <file>file:/home/depaula/Documentos/gitHub/sgdis-candidato/cadsgdis/src/java/bean/teste.java</file>
-            <file>file:/home/depaula/Documentos/gitHub/sgdis-candidato/cadsgdis/src/java/dao/CategoriaDAO.java</file>
+            <file>file:/home/anderson/Documentos/gitHub/sgdis-candidato/cadsgdis/web/WEB-INF/web.xml</file>
+            <file>file:/home/anderson/Documentos/gitHub/sgdis-candidato/cadsgdis/src/java/dao/TentativaDAO.java</file>
+            <file>file:/home/anderson/Documentos/gitHub/sgdis-candidato/cadsgdis/src/java/bean/Tentativa.java</file>
+            <file>file:/home/anderson/Documentos/gitHub/sgdis-candidato/cadsgdis/src/java/facade/FacadeAjax.java</file>
+            <file>file:/home/anderson/Documentos/gitHub/sgdis-candidato/cadsgdis/web/inicio.jsp</file>
+            <file>file:/home/anderson/Documentos/gitHub/sgdis-candidato/cadsgdis/web/WEB-INF/dwr.xml</file>
         </group>
     </open-files>
 </project-private>
