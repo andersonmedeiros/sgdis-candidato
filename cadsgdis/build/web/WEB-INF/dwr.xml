@@ -30,6 +30,8 @@
     <convert converter="bean" match="dao.ForcaHasEstadoDAO" />    
     <convert converter="bean" match="bean.Om" />
     <convert converter="bean" match="dao.OmDAO" />
+    <convert converter="bean" match="bean.Endereco" />
+    <convert converter="bean" match="dao.EnderecoDAO" />
     
     <convert converter="bean" match="bean.PostoGraduacao" />
     <convert converter="bean" match="dao.PostoGraduacaoDAO" />

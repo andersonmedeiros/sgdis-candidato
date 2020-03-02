@@ -81,7 +81,6 @@
                 ForcaDAO forcaDAO = new ForcaDAO();
                 
                 if(curso.equals("1")){
-                    List<Forca> forcas = forcaDAO.getForcas();
                     out.println("<form id=\"formCadCandidato\" class=\"col-md-10\">"+
                                     "<ul id=\"progress\">"+
                                         "<li class=\"ativo\">OM Atual</li>"+
@@ -103,18 +102,17 @@
                                                 "<div class=\"form-group col-md-6\">"+
                                                     "<label for=\"txtForca\">Força: <span class=\"campo-obrigatorio\">*</span></label>"+
                                                     "<select class=\"form-control\" id=\"txtForca\" name=\"txtForca\">"+
-                                                        "<option value=\"0\">Selecione uma Força...</option>");
-                                                        int qtdeForcas = forcas.size();
-                                                        for(int i=0; i<qtdeForcas; i++){
-                                                            out.println("<option value='"+forcas.get(i).getId()+"'>"+forcas.get(i).getNome()+"</option>");
-                                                        }
+                                                        "<option value=\"0\" selected>Selecione uma Força...</option>");
+                                                        
                     out.println(                    "</select>"+
                                                     "<div class=\"valid-feedback\">Selva!</div>"+
                                                     "<div class=\"invalid-feedback\">Campo Obrigatório!</div>"+
                                                 "</div>"+                            
                                                 "<div class=\"form-group col-md-6\">"+
                                                     "<label for=\"txtEstadoForca\">Estado: <span class=\"campo-obrigatorio\">*</span></label>"+
-                                                    "<select class=\"form-control\" id=\"txtEstadoForca\" name=\"txtEstadoForca\">"+"</select>"+
+                                                    "<select class=\"form-control\" id=\"txtEstadoForca\" name=\"txtEstadoForca\">"+
+                                                    "<option value=\"0\">Selecione um Estado...</option>"+
+                                                    "</select>"+
                                                     "<div class=\"valid-feedback\">Selva!</div>"+
                                                     "<div class=\"invalid-feedback\">Campo Obrigatório!</div>"+
                                                 "</div>"+    
@@ -122,7 +120,9 @@
                                             "<div class=\"form-row\">"+
                                                 "<div class=\"form-group col-md-6\">"+
                                                     "<label for=\"txtNomeOM\">Nome: <span class=\"campo-obrigatorio\">*</span></label>"+
-                                                    "<select class=\"form-control\" id=\"txtNomeOM\" name=\"txtNomeOM\"></select>"+
+                                                    "<select class=\"form-control\" id=\"txtNomeOM\" name=\"txtNomeOM\">"+
+                                                    "<option value=\"0\">Selecione uma OM...</option>"+
+                                                    "</select>"+
                                                     "<div class=\"valid-feedback\">Selva!</div>"+
                                                     "<div class=\"invalid-feedback\">Campo Obrigatório!</div>"+
                                                 "</div>"+                                                
@@ -3063,11 +3063,12 @@
         <script src="../assets/js/formulario/validacao/tempo-real.js"></script>
         <script src="../assets/js/formulario/validacao/ao-carregar-pagina.js"></script>
         <script src="../assets/js/formulario/validacao/campos-especificos.js"></script>-->
-        <script src="../assets/js/formulario/validacao/funcoes-form-cadastroCandidato-cos.js"></script>
+        <!--<script src="../assets/js/formulario/validacao/funcoes-form-cadastroCandidato-cos.js"></script>-->
         <!--<script src="../../assets/js/formulario/validacao/form-casdatroCandidato-cos.js"></script>-->
-        <!-<script src="../assets/js/formulario/camposdinamico/estados-cidades.js"></script>-->
+        <!--<script src="../assets/js/formulario/camposdinamico/estados-cidades.js"></script>-->
         <script src="../assets/js/formulario/camposdinamico/enderecodinamico.js"></script>
         <!--<script src="../assets/js/formulario/camposdinamico/forca.js"></script>-->
+        <script src="../assets/js/formulario/validacao/cadastro/form-cadastro-candidato.js"></script>
         <script src="../assets/js/dwr/candidato/cadastro/campos-dinamicos.js"></script>
         <script src="../assets/js/bootstrap-validate.js"></script>
         <!--<script>

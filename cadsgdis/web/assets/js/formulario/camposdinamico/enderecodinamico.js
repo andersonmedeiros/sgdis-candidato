@@ -311,55 +311,67 @@ $(document).ready(function() {
                 //Consulta o webservice viacep.com.br/
                 $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
                     if (!("erro" in dados)) {
+                        $("#txtEndCepOM").removeClass("is-invalid");
+                        $("#txtEndCepOM").addClass("is-valid");
+                        $("#txtEndCepOM").prop("readonly", true);
                         //Atualiza os campos com os valores da consulta
                         if(dados.logradouro != ""){
                             $("#txtEndNomeOM").val(dados.logradouro);
                             $("#txtEndNomeOM").removeClass("is-invalid");
                             $("#txtEndNomeOM").addClass("is-valid");
+                            $("#txtEndNomeOM").prop("readonly", true);
                         }
                         else{
                             $("#txtEndNomeOM").val('');
                             $("#txtEndNomeOM").removeClass("is-invalid");
                             $("#txtEndNomeOM").removeClass("is-valid");
+                            $("#txtEndNomeOM").prop("readonly", false);
                         }
 
                         if(dados.uf != ""){
                             $("#txtEndEstadoOM").val(dados.uf);
                             $("#txtEndEstadoOM").removeClass("is-invalid");
                             $("#txtEndEstadoOM").addClass("is-valid");
+                            $("#txtEndEstadoOM").prop("readonly", true);
                         }
                         else{
                             $("#txtEndEstadoOM").val('');
                             $("#txtEndEstadoOM").removeClass("is-invalid");
                             $("#txtEndEstadoOM").removeClass("is-valid");
+                            $("#txtEndEstadoOM").prop("readonly", false);
                         }
 
                         if(dados.localidade != ""){
                             $("#txtEndCidadeOM").val(dados.localidade);
                             $("#txtEndCidadeOM").removeClass("is-invalid");
                             $("#txtEndCidadeOM").addClass("is-valid");
+                            $("#txtEndCidadeOM").prop("readonly", true);
                         }
                         else{
                             $("#txtEndCidadeOM").val('');
                             $("#txtEndCidadeOM").removeClass("is-invalid");
                             $("#txtEndCidadeOM").removeClass("is-valid");
+                            $("#txtEndCidadeOM").prop("readonly", false);
                         }                            
 
                         if(dados.bairro != ""){
                             $("#txtEndBairroOM").val(dados.bairro);
                             $("#txtEndBairroOM").removeClass("is-invalid");
                             $("#txtEndBairroOM").addClass("is-valid");
+                            $("#txtEndBairroOM").prop("readonly", true);
                         }
                         else{
                             $("#txtEndBairroOM").val('');
                             $("#txtEndBairroOM").removeClass("is-invalid");
                             $("#txtEndBairroOM").removeClass("is-valid");
+                            $("#txtEndBairroOM").prop("readonly", false);
                         }                            
 
                         if(dados.complemento != ""){
                            $("#txtEndCompOM").val(dados.complemento);
                             $("#txtEndCompOM").removeClass("is-invalid");
                             $("#txtEndCompOM").addClass("is-valid");
+                            $("#txtEndCompOM").prop("readonly", true);
                         }
                         else{
                             $("#txtEndCompOM").val('');
