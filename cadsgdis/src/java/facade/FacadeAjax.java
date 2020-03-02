@@ -7,6 +7,7 @@ package facade;
 
 import bean.Categoria;
 import bean.Curso;
+import bean.Endereco;
 import bean.Estado;
 import bean.EstadoForca;
 import bean.Forca;
@@ -16,6 +17,7 @@ import bean.PostoGraduacao;
 import bean.Tentativa;
 import dao.CursoDAO;
 import dao.CursoHasCategoriaDAO;
+import dao.EnderecoDAO;
 import dao.EstadoForcaDAO;
 import dao.ForcaDAO;
 import dao.ForcaHasEstadoDAO;
@@ -67,9 +69,9 @@ public class FacadeAjax {
     }
     
     //Forca / Estados / OM
-    public List selectAllForca() throws Throwable, Exception{
+    public List getForcas() throws Throwable, Exception{
         List<Forca> listResult = new ArrayList();
-        listResult = ForcaDAO.selectAllForca();
+        listResult = ForcaDAO.getForcas();
         return listResult;
     }
     
@@ -88,6 +90,11 @@ public class FacadeAjax {
     public String getAbreviaturaOM(int idOM) throws Throwable, Exception{
         String abreviatura = OmDAO.getAbreviaturaOM(idOM);
         return abreviatura;
+    }
+    
+    public Endereco getEnderecoByOM(int idOM) throws Throwable, Exception{
+        Endereco endereco = EnderecoDAO.getEnderecoByOm(idOM);
+        return endereco;
     }
     
     

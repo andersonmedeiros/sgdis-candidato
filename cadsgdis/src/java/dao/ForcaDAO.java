@@ -20,7 +20,7 @@ import java.util.List;
  * @author anderson
  */
 public class ForcaDAO {
-    private final String GETFORCAS = "select * from Forca";
+    private final static String GETFORCAS = "select * from Forca";
     public static List selectAllForca() throws Throwable, Exception{
         List<Militar> dadosMilitarList = new ArrayList();
         List<Forca> dadosForcaList = new ArrayList();
@@ -52,7 +52,7 @@ public class ForcaDAO {
        return dadosForcaList;
     }
     
-    public List<Forca> getForcas(){
+    public static List<Forca> getForcas(){
         Connection conn = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
