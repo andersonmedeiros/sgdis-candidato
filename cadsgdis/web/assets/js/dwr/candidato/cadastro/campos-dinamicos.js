@@ -102,21 +102,33 @@ function montaSelectForca(forcas){
 }
 function montaSelectDependenteForca(idForca){
     FacadeAjax.getEstadosByForca(idForca, {
-       callback: function(list){
-           dwr.util.removeAllOptions("txtEstadoForca");
-           dwr.util.addOptions("txtEstadoForca", [{id: "0", nome: "Selecione um Estado..."}], "id", "nome");
-           dwr.util.addOptions("txtEstadoForca", list, "id", "nome");
-       } 
+        callback: function(list){
+            dwr.util.removeAllOptions("txtEstadoForca");
+            dwr.util.addOptions("txtEstadoForca", [{id: "0", nome: "Selecione um Estado..."}], "id", "nome");
+            dwr.util.addOptions("txtEstadoForca", list, "id", "nome");
+        } 
+    });
+    
+    FacadeAjax.getPostoGraduacoesByForcaExcetoCbSd(idForca, {
+        callback: function(list){
+            dwr.util.removeAllOptions("txtPGradCmtOM");
+            dwr.util.addOptions("txtPGradCmtOM", [{id: "0", nome: "Selecione um Posto/Graduação..."}], "id", "nome");
+            dwr.util.addOptions("txtPGradCmtOM", list, "id", "nome");
+
+            dwr.util.removeAllOptions("txtPGradChImtoOM");
+            dwr.util.addOptions("txtPGradChImtoOM", [{id: "0", nome: "Selecione um Posto/Graduação..."}], "id", "nome");
+            dwr.util.addOptions("txtPGradChImtoOM", list, "id", "nome");
+        } 
     });
 }
 
 function montaSelectDependenteEstadoForca(idForca, idEstado){
     FacadeAjax.getOmsByForcaAndEstado(idForca, idEstado, {
-       callback: function(list){
-           dwr.util.removeAllOptions("txtNomeOM");
-           dwr.util.addOptions("txtNomeOM", [{id: "0", nome: "Selecione uma OM..."}], "id", "nome");
-           dwr.util.addOptions("txtNomeOM", list, "id", "nome");
-       } 
+        callback: function(list){
+            dwr.util.removeAllOptions("txtNomeOM");
+            dwr.util.addOptions("txtNomeOM", [{id: "0", nome: "Selecione uma OM..."}], "id", "nome");
+            dwr.util.addOptions("txtNomeOM", list, "id", "nome");
+        } 
     });
 }
 function montaSelectDependenteOM(idOM){
@@ -133,12 +145,33 @@ function montaSelectDependenteOM(idOM){
             }
         } 
     });
+    FacadeAjax.getOM(idOM, {
+        callback: function(om){
+            dwr.util.setValues({txtAbrevOM: om.abreviatura, txtEndNumOM: om.numEndereco});
+            if((om.abreviatura == "") || (om.abreviatura == null)){
+                 $("input[name=txtAbrevOM]").removeClass("is-valid");
+                 $("input[name=txtAbrevOM]").removeClass("is-invalid");
+            }
+            else{
+                 $("input[name=txtAbrevOM]").addClass("is-valid");
+                 $("input[name=txtAbrevOM]").removeClass("is-invalid");
+            }
+            if((om.numEndereco == "") || (om.numEndereco == null)){
+                 $("input[name=txtEndNumOM]").removeClass("is-valid");
+                 $("input[name=txtEndNumOM]").removeClass("is-invalid");
+            }
+            else{
+                 $("input[name=txtEndNumOM]").addClass("is-valid");
+                 $("input[name=txtEndNumOM]").removeClass("is-invalid");
+            }
+        } 
+    });
     
     FacadeAjax.getEnderecoByOM(idOM, {
-       callback: function(endereco){
-           dwr.util.setValues({txtEndCepOM: endereco.cep});
-           $("#txtEndCepOM").trigger('change');
-       } 
+        callback: function(endereco){
+            dwr.util.setValues({txtEndCepOM: endereco.cep});
+            $("#txtEndCepOM").trigger('change');
+        } 
     });
 }
 

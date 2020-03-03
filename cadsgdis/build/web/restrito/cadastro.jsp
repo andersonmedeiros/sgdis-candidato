@@ -204,8 +204,10 @@
                                             "<div class=\"fieldset-interno\">"+
                                                 "<div class=\"form-row\">"+                                                        
                                                     "<div class=\"form-group col-md-3\">"+
-                                                        "<label for=txtPGradCmtOMcat"+categoria+">Posto/Graduação: <span class=\"campo-obrigatorio\">*</span></label>"+
-                                                        "<select class=form-control id=txtPGradCmtOMcat"+categoria+" name=txtPGradCmtOMcat"+categoria+"></select>"+
+                                                        "<label for=\"txtPGradCmtOM\">Posto/Graduação: <span class=\"campo-obrigatorio\">*</span></label>"+
+                                                        "<select class=\"form-control\" id=\"txtPGradCmtOM\" name=\"txtPGradCmtOM\">"+
+                                                        "<option value=\"0\">Selecione um Posto/Graduação...</option>"+
+                                                        "</select>"+
                                                         "<div class=\"valid-feedback\">Selva!</div>"+
                                                         "<div class=\"invalid-feedback\">Campo Obrigatório!</div>"+
                                                     "</div>"+
@@ -235,8 +237,10 @@
                                             "<div class=\"fieldset-interno\">"+
                                                 "<div class=\"form-row\">"+
                                                     "<div class=\"form-group col-md-3\">"+
-                                                        "<label for=txtPGradChImtoOMcat"+categoria+">Posto/Graduação: <span class=\"campo-obrigatorio\">*</span></label>"+
-                                                        "<select class=form-control id=txtPGradChImtoOMcat"+categoria+" name=txtPGradChImtoOMcat"+categoria+"></select>"+
+                                                        "<label for=\"txtPGradChImtoOM\">Posto/Graduação: <span class=\"campo-obrigatorio\">*</span></label>"+
+                                                        "<select class=\"form-control\" id=\"txtPGradChImtoOM\" name=\"txtPGradChImtoOM\">"+
+                                                        "<option value=\"0\">Selecione um Posto/Graduação...</option>"+
+                                                        "</select>"+
                                                         "<div class=\"valid-feedback\">Selva!</div>"+
                                                         "<div class=\"invalid-feedback\">Campo Obrigatório!</div>"+
                                                     "</div>"+

@@ -203,6 +203,7 @@ function validCPF(campo){
         }    
     } 
 };
+
 //CPF
 function validCPFAl(campo){
     var cpf = $(campo).val().replace(".","").replace(".","").replace("-","");
@@ -967,6 +968,7 @@ function validCPFTReal(campo){
         }        
     });
 };
+
 //CPF
 function validCPFAlTReal(campo){
     $(campo).change(function(){
