@@ -10,8 +10,8 @@ package bean;
  * @author anderson
  */
 public class Om {
-    int id, idEstadoForca;
-    String nome, abreviatura;
+    int id, idForca, idEstado, idEndereco;
+    String nome, abreviatura, numEndereco;
 
     public int getId() {
         return id;
@@ -21,12 +21,28 @@ public class Om {
         this.id = id;
     }
 
-    public int getIdEstadoForca() {
-        return idEstadoForca;
+    public int getIdForca() {
+        return idForca;
     }
 
-    public void setIdEstadoForca(int idEstadoForca) {
-        this.idEstadoForca = idEstadoForca;
+    public void setIdForca(int idForca) {
+        this.idForca = idForca;
+    }
+
+    public int getIdEstado() {
+        return idEstado;
+    }
+
+    public void setIdEstado(int idEstado) {
+        this.idEstado = idEstado;
+    }
+
+    public int getIdEndereco() {
+        return idEndereco;
+    }
+
+    public void setIdEndereco(int idEndereco) {
+        this.idEndereco = idEndereco;
     }
 
     public String getNome() {
@@ -43,6 +59,14 @@ public class Om {
 
     public void setAbreviatura(String abreviatura) {
         this.abreviatura = abreviatura;
+    }
+
+    public String getNumEndereco() {
+        return numEndereco;
+    }
+
+    public void setNumEndereco(String numEndereco) {
+        this.numEndereco = numEndereco;
     }
     
     

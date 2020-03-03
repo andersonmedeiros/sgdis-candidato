@@ -10,8 +10,8 @@ package bean;
  * @author anderson
  */
 public class PostoGraduacao {
-    int id, idForaca;
-    String nome, abreviatura;
+    int id, idForca;
+    String nome, abreviatura, categoria, circulo;
 
     public int getId() {
         return id;
@@ -21,12 +21,12 @@ public class PostoGraduacao {
         this.id = id;
     }
 
-    public int getIdForaca() {
-        return idForaca;
+    public int getIdForca() {
+        return idForca;
     }
 
-    public void setIdForaca(int idForaca) {
-        this.idForaca = idForaca;
+    public void setIdForca(int idForca) {
+        this.idForca = idForca;
     }
 
     public String getNome() {
@@ -44,6 +44,20 @@ public class PostoGraduacao {
     public void setAbreviatura(String abreviatura) {
         this.abreviatura = abreviatura;
     }
-    
-    
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getCirculo() {
+        return circulo;
+    }
+
+    public void setCirculo(String circulo) {
+        this.circulo = circulo;
+    } 
 }

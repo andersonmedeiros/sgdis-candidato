@@ -92,6 +92,11 @@ public class FacadeAjax {
         return abreviatura;
     }
     
+    public Om getOM(int idOM) throws Throwable, Exception{
+        Om om = OmDAO.getOM(idOM);
+        return om;
+    }
+    
     public Endereco getEnderecoByOM(int idOM) throws Throwable, Exception{
         Endereco endereco = EnderecoDAO.getEnderecoByOm(idOM);
         return endereco;
@@ -104,11 +109,9 @@ public class FacadeAjax {
         return listResult;
     }
     
-    
-    
-    public List selectAllPostoGraduacao(int id_forca) throws Throwable, Exception{
+    public List getPostoGraduacoesByForcaExcetoCbSd(int idForca) throws Throwable, Exception{
         List<PostoGraduacao> listResult = new ArrayList();
-        listResult = PostoGraduacaoDAO.selectAllPGByForca(id_forca);
+        listResult = PostoGraduacaoDAO.getPostoGraduacoesByForcaExcetoCbSd(idForca);
         return listResult;
     }
     

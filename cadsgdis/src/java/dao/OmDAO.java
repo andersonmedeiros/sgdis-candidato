@@ -29,6 +29,10 @@ public class OmDAO {
                                              "from OM " +
                                              "where id = ?";
     
+    private final static String GETOM = "select * " +
+                                             "from OM " +
+                                             "where id = ?";
+    
     public static List<Om> getOmsByForcaAndEstado(int idForca, int idEstado){
         Connection conn = null;
         PreparedStatement pstm = null;
@@ -48,7 +52,10 @@ public class OmDAO {
                om.setId(rs.getInt("id"));
                om.setNome(rs.getString("nome"));
                om.setAbreviatura(rs.getString("abreviatura"));
-               om.setIdEstadoForca(rs.getInt("idEstado"));
+               om.setNumEndereco(rs.getString("numendereco"));
+               om.setIdForca(rs.getInt("idForca"));
+               om.setIdEstado(rs.getInt("idEstado"));
+               om.setIdEndereco(rs.getInt("idEndereco"));
                 
                oms.add(om);
             }
@@ -80,5 +87,32 @@ public class OmDAO {
             throw new RuntimeException(e.getMessage());           
         }
         return abreviatura;
+    }
+    public static Om getOM(int idOM){
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        Om om = new Om();
+        
+        try {
+            conn = ConnectionFactory.getConnection();
+            pstm = conn.prepareStatement(GETOM);
+            pstm.setInt(1, idOM);
+           
+            rs = pstm.executeQuery();
+            while (rs.next()) {   
+               om.setId(rs.getInt("id"));
+               om.setNome(rs.getString("nome"));
+               om.setAbreviatura(rs.getString("abreviatura"));
+               om.setNumEndereco(rs.getString("numendereco"));
+               om.setIdForca(rs.getInt("idForca"));
+               om.setIdEstado(rs.getInt("idEstado"));
+               om.setIdEndereco(rs.getInt("idEndereco"));
+            }
+            ConnectionFactory.fechaConexao(conn, pstm, rs);
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());           
+        }
+        return om;
     }
 }

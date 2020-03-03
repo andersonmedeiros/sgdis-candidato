@@ -7,10 +7,13 @@ package dao;
 
 import bean.Forca;
 import bean.Militar;
+import bean.Om;
 import bean.PostoGraduacao;
 import conection.ConnectionFactory;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,38 +22,38 @@ import java.util.List;
  * @author anderson
  */
 public class PostoGraduacaoDAO {
-    public static List selectAllPGByForca(int id_forca) throws Throwable, Exception{
-        List<PostoGraduacao> dadosPGList = new ArrayList();
-        PreparedStatement stmt = null;
+    private final static String GETPOSTOGRADUACAOSEMCBSD = "select pg.* " +
+                                                    "from PostoGraduacao as pg, Forca as f " +
+                                                    "where pg.idForca = f.id and pg.idForca = ? and pg.circulo != 'CB_SD'";
+    
+    public static List<PostoGraduacao> getPostoGraduacoesByForcaExcetoCbSd(int idForca){
+        Connection conn = null;
+        PreparedStatement pstm = null;
         ResultSet rs = null;
-
-        stmt = ConnectionFactory.getConnection().prepareStatement("select * from postograduacao where idForca = ? order by id");
-        stmt.setInt(1, id_forca);
-        rs = stmt.executeQuery();
-
-        Militar mil = null;
-        Forca forca = null;
-        PostoGraduacao pg = null;
-        while(rs.next()){
-            mil = new Militar();
-            forca = new Forca();
-            pg = new PostoGraduacao();
-            
-            int id = rs.getInt("id");
-            int idForca = rs.getInt("idForca");
-            String nome = rs.getString("nome");
-            String abreviatura = rs.getString("abreviatura");
-            pg.setId(id);
-            pg.setIdForaca(idForca);
-            pg.setNome(nome);
-            pg.setAbreviatura(abreviatura);
-
-            dadosPGList.add(pg);
-        }
-
-        stmt.close();
-        rs.close();
+        List<PostoGraduacao> pgs = new ArrayList<>();
         
-       return dadosPGList;
+        try{
+            conn = ConnectionFactory.getConnection();
+            pstm = conn.prepareStatement(GETPOSTOGRADUACAOSEMCBSD);
+            pstm.setInt(1, idForca);
+           
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+               PostoGraduacao pg = new PostoGraduacao();
+               
+               pg.setId(rs.getInt("pg.id"));
+               pg.setNome(rs.getString("pg.nome"));
+               pg.setAbreviatura(rs.getString("pg.abreviatura"));
+               pg.setCategoria(rs.getString("pg.categoria"));
+               pg.setCirculo(rs.getString("pg.circulo"));
+               pg.setIdForca(rs.getInt("pg.idForca"));
+                
+               pgs.add(pg);
+            }
+            ConnectionFactory.fechaConexao(conn, pstm, rs);
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());           
+        }
+        return pgs;
     }
 }
