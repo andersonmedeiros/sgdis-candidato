@@ -121,13 +121,17 @@ function montaSelectDependenteEstadoForca(idForca, idEstado){
 }
 function montaSelectDependenteOM(idOM){
     FacadeAjax.getAbreviaturaOM(idOM, {
-       callback: function(abreviatura){
-           dwr.util.setValues({txtAbrevOM: abreviatura});
-           if((abreviatura != "") || (abreviatura != null)){
-                $("input[name=txtAbrevOM]").addClass("is-valid");
-                $("input[name=txtAbrevOM]").removeClass("is-invalid");
-           }
-       } 
+        callback: function(abreviatura){
+            dwr.util.setValues({txtAbrevOM: abreviatura});
+            if((abreviatura == "") || (abreviatura == null)){
+                 $("input[name=txtAbrevOM]").removeClass("is-valid");
+                 $("input[name=txtAbrevOM]").removeClass("is-invalid");
+            }
+            else{
+                 $("input[name=txtAbrevOM]").addClass("is-valid");
+                 $("input[name=txtAbrevOM]").removeClass("is-invalid");
+            }
+        } 
     });
     
     FacadeAjax.getEnderecoByOM(idOM, {
@@ -187,9 +191,6 @@ $("select[name=txtEstadoForca]").change(function(){
 });
 
 $("select[name=txtNomeOM]").change(function(){
-    $("input[name=txtAbrevOM]").val('');
-    $("input[name=txtAbrevOM]").removeClass("is-valid");
-    $("input[name=txtAbrevOM]").removeClass("is-invalid");
     
     limpaFormEndOM();
     readonlyFormEndOM();
