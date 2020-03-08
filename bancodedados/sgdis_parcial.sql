@@ -304,24 +304,6 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 
--- -----------------------------------------------------
--- Table `sgdis`.`EscolaFormacao`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sgdis`.`EscolaFormacao` (
-  `id` INT(11) NOT NULL,
-  `nome` VARCHAR(50) NOT NULL,
-  `abreviatura` VARCHAR(10) NOT NULL,
-  `idForca` INT(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_EscolaFormacao_Forca1_idx` (`idForca` ASC),
-  CONSTRAINT `fk_EscolaFormacao_Forca1`
-    FOREIGN KEY (`idForca`)
-    REFERENCES `sgdis`.`Forca` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
