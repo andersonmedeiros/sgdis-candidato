@@ -5,7 +5,7 @@
  */
 package dao;
 
-import bean.Estado;
+import bean.EstadoCivil;
 import conection.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,40 +14,37 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 /**
  *
  * @author depaula
  */
-public class EstadoDAO {
-    private final static String GETESTADOS = "select * " +
-                                            "from Estado";
+public class EstadoCivilDAO {
+    private final static String GETESTADOSCIVIS = "select * " +
+                                                  "from EstadoCivil";
     
-    public static List<Estado> getEstados(){
+    public static List<EstadoCivil> getEstadosCivis(){
         Connection conn = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
-        List<Estado> estados = new ArrayList<>();
+        List<EstadoCivil> estadoscivis = new ArrayList<>();
         
         try{
             conn = ConnectionFactory.getConnection();
-            pstm = conn.prepareStatement(GETESTADOS);
+            pstm = conn.prepareStatement(GETESTADOSCIVIS);
            
             rs = pstm.executeQuery();
             while (rs.next()) {
-               Estado estado = new Estado();
+               EstadoCivil estadocivil = new EstadoCivil();
                
-               estado.setId(rs.getInt("id"));
-               estado.setNome(rs.getString("nome"));
-               estado.setSigla(rs.getString("sigla"));
+               estadocivil.setId(rs.getInt("id"));
+               estadocivil.setNome(rs.getString("nome"));
                 
-               estados.add(estado);
+               estadoscivis.add(estadocivil);
             }
             ConnectionFactory.fechaConexao(conn, pstm, rs);
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());           
         }
-        return estados;
+        return estadoscivis;
     }
 }

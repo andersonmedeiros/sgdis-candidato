@@ -5,7 +5,7 @@
  */
 package dao;
 
-import bean.Estado;
+import bean.QasQms;
 import conection.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,40 +14,38 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 /**
  *
  * @author depaula
  */
-public class EstadoDAO {
-    private final static String GETESTADOS = "select * " +
-                                            "from Estado";
+public class QasQmsDAO {
+    private final static String GETQASQMS = "SELECT * " +
+                                            "FROM QasQms;";
     
-    public static List<Estado> getEstados(){
+    public static List<QasQms> getQasQms(){
         Connection conn = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
-        List<Estado> estados = new ArrayList<>();
+        List<QasQms> qasqms = new ArrayList<>();
         
         try{
             conn = ConnectionFactory.getConnection();
-            pstm = conn.prepareStatement(GETESTADOS);
+            pstm = conn.prepareStatement(GETQASQMS);
            
             rs = pstm.executeQuery();
             while (rs.next()) {
-               Estado estado = new Estado();
+               QasQms qq = new QasQms();
                
-               estado.setId(rs.getInt("id"));
-               estado.setNome(rs.getString("nome"));
-               estado.setSigla(rs.getString("sigla"));
+               qq.setId(rs.getInt("id"));
+               qq.setNome(rs.getString("nome"));
+               qq.setAbreviatura(rs.getString("abreviatura"));
                 
-               estados.add(estado);
+               qasqms.add(qq);
             }
             ConnectionFactory.fechaConexao(conn, pstm, rs);
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());           
         }
-        return estados;
+        return qasqms;
     }
 }

@@ -6,24 +6,31 @@
 package facade;
 
 import bean.Categoria;
+import bean.Cidade;
 import bean.Curso;
 import bean.Endereco;
 import bean.Estado;
+import bean.EstadoCivil;
 import bean.EstadoForca;
 import bean.Forca;
 import bean.Militar;
 import bean.Om;
 import bean.PostoGraduacao;
+import bean.QasQms;
 import bean.Tentativa;
+import dao.CidadeDAO;
 import dao.CursoDAO;
 import dao.CursoHasCategoriaDAO;
 import dao.EnderecoDAO;
+import dao.EstadoCivilDAO;
+import dao.EstadoDAO;
 import dao.EstadoForcaDAO;
 import dao.ForcaDAO;
 import dao.ForcaHasEstadoDAO;
 import dao.MilitarDAO;
 import dao.OmDAO;
 import dao.PostoGraduacaoDAO;
+import dao.QasQmsDAO;
 import dao.TentativaDAO;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -112,6 +119,42 @@ public class FacadeAjax {
     public List getPostoGraduacoesByForcaExcetoCbSd(int idForca) throws Throwable, Exception{
         List<PostoGraduacao> listResult = new ArrayList();
         listResult = PostoGraduacaoDAO.getPostoGraduacoesByForcaExcetoCbSd(idForca);
+        return listResult;
+    }
+    
+    public List getPostoGraduacoesByForcaCatA(int idForca) throws Throwable, Exception{
+        List<PostoGraduacao> listResult = new ArrayList();
+        listResult = PostoGraduacaoDAO.getPostoGraduacoesByForcaCatA(idForca);
+        return listResult;
+    }
+    
+    public List getPostoGraduacoesByForcaCatB(int idForca) throws Throwable, Exception{
+        List<PostoGraduacao> listResult = new ArrayList();
+        listResult = PostoGraduacaoDAO.getPostoGraduacoesByForcaAndCatB(idForca);
+        return listResult;
+    }
+    
+    public List getQasQms() throws Throwable, Exception{
+        List<QasQms> listResult = new ArrayList();
+        listResult = QasQmsDAO.getQasQms();
+        return listResult;
+    }
+    
+    public List getEstados() throws Throwable, Exception{
+        List<Estado> listResult = new ArrayList();
+        listResult = EstadoDAO.getEstados();
+        return listResult;
+    }
+    
+    public List getCidadesByEstado(int idEstado) throws Throwable, Exception{
+        List<Cidade> listResult = new ArrayList();
+        listResult = CidadeDAO.getCidadesByEstado(idEstado);
+        return listResult;
+    }
+    
+    public List getEstadosCivis() throws Throwable, Exception{
+        List<EstadoCivil> listResult = new ArrayList();
+        listResult = EstadoCivilDAO.getEstadosCivis();
         return listResult;
     }
     

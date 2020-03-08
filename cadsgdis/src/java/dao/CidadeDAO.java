@@ -5,7 +5,7 @@
  */
 package dao;
 
-import bean.Estado;
+import bean.Cidade;
 import conection.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,40 +14,40 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 /**
  *
  * @author depaula
  */
-public class EstadoDAO {
-    private final static String GETESTADOS = "select * " +
-                                            "from Estado";
+public class CidadeDAO {
+    private final static String GETCIDADES = "select * " +
+                                             "from Cidade " +
+                                             "where idEstado = ?";
     
-    public static List<Estado> getEstados(){
+    public static List<Cidade> getCidadesByEstado(int idEstado){
         Connection conn = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
-        List<Estado> estados = new ArrayList<>();
+        List<Cidade> cidades = new ArrayList<>();
         
         try{
             conn = ConnectionFactory.getConnection();
-            pstm = conn.prepareStatement(GETESTADOS);
+            pstm = conn.prepareStatement(GETCIDADES);
+            pstm.setInt(1, idEstado);
            
             rs = pstm.executeQuery();
             while (rs.next()) {
-               Estado estado = new Estado();
+               Cidade cidade = new Cidade();
                
-               estado.setId(rs.getInt("id"));
-               estado.setNome(rs.getString("nome"));
-               estado.setSigla(rs.getString("sigla"));
+               cidade.setId(rs.getInt("id"));
+               cidade.setNome(rs.getString("nome"));
+               cidade.setIdEstado(rs.getInt("idEstado"));
                 
-               estados.add(estado);
+               cidades.add(cidade);
             }
             ConnectionFactory.fechaConexao(conn, pstm, rs);
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());           
         }
-        return estados;
+        return cidades;
     }
 }
