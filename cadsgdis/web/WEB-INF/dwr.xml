@@ -35,6 +35,14 @@
     
     <convert converter="bean" match="bean.PostoGraduacao" />
     <convert converter="bean" match="dao.PostoGraduacaoDAO" />
+    <convert converter="bean" match="bean.QasQms" />
+    <convert converter="bean" match="dao.QasQmsDAO" />
+        
+    <convert converter="bean" match="bean.Cidade" />
+    <convert converter="bean" match="dao.CidadeDAO" /> 
+    <convert converter="bean" match="bean.EstadoCivil" />
+    <convert converter="bean" match="dao.EstadoCivilDAO" /> 
+       
     <convert converter="bean" match="bean.Militar" />
     <convert converter="bean" match="dao.MilitarDAO" />    
     

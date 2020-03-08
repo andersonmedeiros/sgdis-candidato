@@ -275,8 +275,10 @@
                                         "<div class=\"fieldset-body\">"+
                                             "<div class=\"form-row\">"+
                                                 "<div class=\"form-group col-md-4\">"+
-                                                    "<label for=txtPGradAlcat"+categoria+">Posto/Graduação: <span class=campo-obrigatorio>*</span></label>"+
-                                                    "<select class=form-control id=txtPGradAlcat"+categoria+" name=txtPGradAlcat"+categoria+"></select>"+
+                                                    "<label for=\"txtPGradAl\">Posto/Graduação: <span class=campo-obrigatorio>*</span></label>"+
+                                                    "<select class=\"form-control\" id=\"txtPGradAl\" name=\"txtPGradAl\">"+
+                                                        "<option value=\"0\" selected>Selecione um Posto/Graduação...</option>"+
+                                                    "</select>"+
                                                     "<div class=\"valid-feedback\">Selva!</div>"+
                                                     "<div class=\"invalid-feedback\">Campo Obrigatório!</div>"+
                                                 "</div>"+
@@ -284,7 +286,6 @@
                                                     "<label for=\"txtArmaAl\">Arma: <span class=\"campo-obrigatorio\">*</span></label>"+
                                                     "<select class=\"form-control\" id=\"txtArmaAl\" name=\"txtArmaAl\">"+
                                                         "<option value=\"0\" selected>Selecione uma Arma...</option>"+
-                                                        "<option value=\"t\">Teste</option>"+
                                                     "</select>"+
                                                     "<div class=\"valid-feedback\">Selva!</div>"+
                                                     "<div class=\"invalid-feedback\">Campo Obrigatório!</div>"+
@@ -349,7 +350,6 @@
                                                     "<label for=\"txtNatEstAl\">Naturalidade (Estado): <span class=\"campo-obrigatorio\">*</span></label>"+
                                                     "<select class=\"form-control\" id=\"txtNatEstAl\" name=\"txtNatEstAl\">"+
                                                         "<option value=\"0\" selected>Selecione um Estado...</option>"+
-                                                        "<option value=\"t\">Teste</option>"+
                                                     "</select>"+
                                                     "<div class=\"valid-feedback\">Selva!</div>"+
                                                     "<div class=\"invalid-feedback\">Campo Obrigatório!</div>"+
@@ -358,7 +358,6 @@
                                                     "<label for=\"txtNatCidAl\">Naturalidade (Cidade): <span class=\"campo-obrigatorio\">*</span></label>"+
                                                     "<select class=\"form-control\" id=\"txtNatCidAl\" name=\"txtNatCidAl\">"+
                                                         "<option value=\"0\" selected>Selecione uma Cidade...</option>"+
-                                                        "<option value=\"t\">Teste</option>"+
                                                     "</select>"+
                                                     "<div class=\"valid-feedback\">Selva!</div>"+
                                                     "<div class=\"invalid-feedback\">Campo Obrigatório!</div>"+
@@ -444,7 +443,6 @@
                                                         "<label for=\"txtTitEleitorEstAl\">Estado: <span class=\"campo-obrigatorio\"> *</span></label>"+
                                                         "<select class=\"form-control\" id=\"txtTitEleitorEstAl\" name=\"txtTitEleitorEstAl\">"+
                                                             "<option value=\"0\" selected>Selecione um Estado...</option>"+
-                                                            "<option value=\"t\">Teste</option>"+
                                                         "</select>"+
                                                         "<div class=\"valid-feedback\">Selva!</div>"+
                                                         "<div class=\"invalid-feedback\">Campo Obrigatório!</div>"+
@@ -453,7 +451,6 @@
                                                         "<label for=\"txtTitEleitorCidAl\">Cidade: <span class=\"campo-obrigatorio\"> *</span></label>"+
                                                         "<select class=\"form-control\" id=\"txtTitEleitorCidAl\" name=\"txtTitEleitorCidAl\">"+
                                                             "<option value=\"0\" selected>Selecione uma Cidade...</option>"+
-                                                            "<option value=\"t\">Teste</option>"+
                                                         "</select>"+
                                                         "<div class=\"valid-feedback\">Selva!</div>"+
                                                         "<div class=\"invalid-feedback\">Campo Obrigatório!</div>"+

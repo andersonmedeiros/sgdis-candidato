@@ -94,12 +94,14 @@ function readonlyFormEndOM(){
         $("input[name=txtEndPtRefOM]").prop("readonly", true);
     }
 }
-FacadeAjax.getForcas(montaSelectForca);
+
 function montaSelectForca(forcas){
     dwr.util.removeAllOptions("txtForca");
     dwr.util.addOptions("txtForca", [{id: "0", nome: "Selecione uma Força..."}], "id", "nome");
     dwr.util.addOptions("txtForca", forcas, "id", "nome");
 }
+FacadeAjax.getForcas(montaSelectForca);
+
 function montaSelectDependenteForca(idForca){
     FacadeAjax.getEstadosByForca(idForca, {
         callback: function(list){
@@ -112,12 +114,18 @@ function montaSelectDependenteForca(idForca){
     FacadeAjax.getPostoGraduacoesByForcaExcetoCbSd(idForca, {
         callback: function(list){
             dwr.util.removeAllOptions("txtPGradCmtOM");
-            dwr.util.addOptions("txtPGradCmtOM", [{id: "0", nome: "Selecione um Posto/Graduação..."}], "id", "nome");
-            dwr.util.addOptions("txtPGradCmtOM", list, "id", "nome");
+            dwr.util.addOptions("txtPGradCmtOM", [{id: "0", abreviatura: "Selecione um Posto/Graduação..."}], "id", "abreviatura");
+            dwr.util.addOptions("txtPGradCmtOM", list, "id", "abreviatura");
 
             dwr.util.removeAllOptions("txtPGradChImtoOM");
-            dwr.util.addOptions("txtPGradChImtoOM", [{id: "0", nome: "Selecione um Posto/Graduação..."}], "id", "nome");
-            dwr.util.addOptions("txtPGradChImtoOM", list, "id", "nome");
+            dwr.util.addOptions("txtPGradChImtoOM", [{id: "0", abreviatura: "Selecione um Posto/Graduação..."}], "id", "abreviatura");
+            dwr.util.addOptions("txtPGradChImtoOM", list, "id", "abreviatura");
+            
+            dwr.util.removeAllOptions("txtPGradAl");
+            dwr.util.addOptions("txtPGradAl", [{id: "0", abreviatura: "Selecione um Posto/Graduação..."}], "id", "abreviatura");
+            dwr.util.addOptions("txtPGradAl", list, "id", "abreviatura");
+            
+            
         } 
     });
 }
@@ -175,6 +183,54 @@ function montaSelectDependenteOM(idOM){
     });
 }
 
+function montaSelectArma(qasqms){
+    dwr.util.removeAllOptions("txtArmaAl");
+    dwr.util.addOptions("txtArmaAl", [{id: "0", nome: "Selecione uma Arma..."}], "id", "nome");
+    dwr.util.addOptions("txtArmaAl", qasqms, "id", "nome");
+}
+FacadeAjax.getQasQms(montaSelectArma);
+
+function montaSelectNatEstado(estados){
+    dwr.util.removeAllOptions("txtNatEstAl");
+    dwr.util.addOptions("txtNatEstAl", [{id: "0", nome: "Selecione um Estado..."}], "id", "nome");
+    dwr.util.addOptions("txtNatEstAl", estados, "id", "nome");
+}
+FacadeAjax.getEstados(montaSelectNatEstado);
+
+function montaSelectDependenteNatEstado(idEstado){
+    FacadeAjax.getCidadesByEstado(idEstado, {
+        callback: function(cidades){
+            dwr.util.removeAllOptions("txtNatCidAl");
+            dwr.util.addOptions("txtNatCidAl", [{id: "0", nome: "Selecione uma Cidade..."}], "id", "nome");
+            dwr.util.addOptions("txtNatCidAl", cidades, "id", "nome");        
+        } 
+    });
+}
+
+function montaSelectEstadoCivil(estadoscivis){
+    dwr.util.removeAllOptions("txtEstCivilAl");
+    dwr.util.addOptions("txtEstCivilAl", [{id: "0", nome: "Selecione uma Estado Civil..."}], "id", "nome");
+    dwr.util.addOptions("txtEstCivilAl", estadoscivis, "id", "nome");
+}
+FacadeAjax.getEstadosCivis(montaSelectEstadoCivil);
+
+function montaSelectTitEleitorEstado(estados){
+    dwr.util.removeAllOptions("txtTitEleitorEstAl");
+    dwr.util.addOptions("txtTitEleitorEstAl", [{id: "0", nome: "Selecione um Estado..."}], "id", "nome");
+    dwr.util.addOptions("txtTitEleitorEstAl", estados, "id", "nome");
+}
+FacadeAjax.getEstados(montaSelectTitEleitorEstado);
+
+function montaSelectDependenteTitEleitorEstado(idEstado){
+    FacadeAjax.getCidadesByEstado(idEstado, {
+        callback: function(cidades){
+            dwr.util.removeAllOptions("txtTitEleitorCidAl");
+            dwr.util.addOptions("txtTitEleitorCidAl", [{id: "0", nome: "Selecione uma Cidade..."}], "id", "nome");
+            dwr.util.addOptions("txtTitEleitorCidAl", cidades, "id", "nome");        
+        } 
+    });
+}
+
 $(function(){
     $("input[name=txtAbrevOM]").prop("readonly", true);
     $("input[name=txtAbrevOM]").val('');
@@ -223,10 +279,17 @@ $("select[name=txtEstadoForca]").change(function(){
     
 });
 
-$("select[name=txtNomeOM]").change(function(){
-    
+$("select[name=txtNomeOM]").change(function(){    
     limpaFormEndOM();
     readonlyFormEndOM();
     montaSelectDependenteOM(this.value);
+});
+
+$("select[name=txtNatEstAl]").change(function(){    
+    montaSelectDependenteNatEstado(this.value);
+});
+
+$("select[name=txtTitEleitorEstAl]").change(function(){    
+    montaSelectDependenteTitEleitorEstado(this.value);
 });
 
