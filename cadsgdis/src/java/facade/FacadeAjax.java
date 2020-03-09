@@ -7,8 +7,10 @@ package facade;
 
 import bean.Categoria;
 import bean.Cidade;
+import bean.Comportamento;
 import bean.Curso;
 import bean.Endereco;
+import bean.EscolaFormacao;
 import bean.Estado;
 import bean.EstadoCivil;
 import bean.EstadoForca;
@@ -19,9 +21,11 @@ import bean.PostoGraduacao;
 import bean.QasQms;
 import bean.Tentativa;
 import dao.CidadeDAO;
+import dao.ComportamentoDAO;
 import dao.CursoDAO;
 import dao.CursoHasCategoriaDAO;
 import dao.EnderecoDAO;
+import dao.EscolaFormacaoDAO;
 import dao.EstadoCivilDAO;
 import dao.EstadoDAO;
 import dao.EstadoForcaDAO;
@@ -155,6 +159,23 @@ public class FacadeAjax {
     public List getEstadosCivis() throws Throwable, Exception{
         List<EstadoCivil> listResult = new ArrayList();
         listResult = EstadoCivilDAO.getEstadosCivis();
+        return listResult;
+    }
+    
+    public List getEscolasFormacao(int idForca) throws Throwable, Exception{
+        List<EscolaFormacao> listResult = new ArrayList();
+        listResult = EscolaFormacaoDAO.getEscolasFormacao(idForca);
+        return listResult;
+    }
+            
+    public String getAbreviaturaEscola(int idEscolaFormacao) throws Throwable, Exception{
+        String abreviatura = EscolaFormacaoDAO.getAbreviaturaEscola(idEscolaFormacao);
+        return abreviatura;
+    }
+            
+    public List getComportamentos() throws Throwable, Exception{
+        List<Comportamento> listResult = new ArrayList();
+        listResult = ComportamentoDAO.getComportamentos();
         return listResult;
     }
     
