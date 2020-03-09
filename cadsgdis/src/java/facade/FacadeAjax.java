@@ -15,6 +15,7 @@ import bean.Estado;
 import bean.EstadoCivil;
 import bean.EstadoForca;
 import bean.Forca;
+import bean.GrauParentesco;
 import bean.Militar;
 import bean.Om;
 import bean.PostoGraduacao;
@@ -31,6 +32,7 @@ import dao.EstadoDAO;
 import dao.EstadoForcaDAO;
 import dao.ForcaDAO;
 import dao.ForcaHasEstadoDAO;
+import dao.GrauParentescoDAO;
 import dao.MilitarDAO;
 import dao.OmDAO;
 import dao.PostoGraduacaoDAO;
@@ -176,6 +178,12 @@ public class FacadeAjax {
     public List getComportamentos() throws Throwable, Exception{
         List<Comportamento> listResult = new ArrayList();
         listResult = ComportamentoDAO.getComportamentos();
+        return listResult;
+    }
+            
+    public List getGrausParentesco() throws Throwable, Exception{
+        List<GrauParentesco> listResult = new ArrayList();
+        listResult = GrauParentescoDAO.getGrausParentesco();
         return listResult;
     }
     
