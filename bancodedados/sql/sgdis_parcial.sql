@@ -187,7 +187,17 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sgdis`.`EstadoCivil` (
   `id` INT(11) NOT NULL,
-  `nome` VARCHAR(45) NOT NULL,
+  `nome` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sgdis`.`Comportamento`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sgdis`.`Comportamento` (
+  `id` INT NOT NULL,
+  `nome` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -203,11 +213,13 @@ CREATE TABLE IF NOT EXISTS `sgdis`.`Aluno` (
   `idOM` INT(11) NOT NULL,
   `idQasQms` INT(11) NOT NULL,
   `idEstadoCivil` INT(11) NOT NULL,
+  `idComportamento` INT NOT NULL,
   PRIMARY KEY (`identidade`),
   INDEX `fk_Aluno_OM1_idx` (`idOM` ASC),
   INDEX `fk_Aluno_PostoGraduacao_idx` (`idPostoGraduacao` ASC),
   INDEX `fk_Aluno_QasQms2_idx` (`idQasQms` ASC),
   INDEX `fk_Aluno_EstadoCivil1_idx` (`idEstadoCivil` ASC),
+  INDEX `fk_Aluno_Comportamento1_idx` (`idComportamento` ASC),
   CONSTRAINT `fk_Aluno_OM1`
     FOREIGN KEY (`idOM`)
     REFERENCES `sgdis`.`OM` (`id`)
@@ -226,6 +238,11 @@ CREATE TABLE IF NOT EXISTS `sgdis`.`Aluno` (
   CONSTRAINT `fk_Aluno_EstadoCivil1`
     FOREIGN KEY (`idEstadoCivil`)
     REFERENCES `sgdis`.`EstadoCivil` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Aluno_Comportamento1`
+    FOREIGN KEY (`idComportamento`)
+    REFERENCES `sgdis`.`Comportamento` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
