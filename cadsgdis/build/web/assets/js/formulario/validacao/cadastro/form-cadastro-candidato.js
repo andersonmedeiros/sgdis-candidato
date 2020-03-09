@@ -1871,6 +1871,82 @@ $(document).ready(function(){
     //Campo Input Função 3
     validInput("input[name=txtFunc3]");
     validInputTReal("input[name=txtFunc3]");
+    
+    //Etapa 5: DADOS FAMILIARES
+    //Campo Select Possui Cônjuge
+    validSelect("select[name=txtPossuiConjuge]");
+    validSelectTReal("select[name=txtPossuiConjuge]");
+    acionamentoForm("select[name=txtPossuiConjuge]", "#divConjuge");    
+    
+    //Campo Input Nome Cônjuge
+    validInput("input[name=txtNomeConjuge]");
+    validInputTReal("input[name=txtNomeConjuge]");
+    
+    //Campo Input Sobrenome Cônjuge
+    validInput("input[name=txtSobrenomeConjuge]");
+    validInputTReal("input[name=txtSobrenomeConjuge]");
+    
+    //Campo Input CPF Cônjuge
+    validCPF("input[name=txtCpfConjuge]");
+    validCPFTReal("input[name=txtCpfConjuge]");
+    
+    //Campo Input Email Cônjuge
+    //$("input[name=txtEmailConjuge]");
+    
+    //Campo Input Fone Cônjuge
+    validFoneCel("input[name=txtFoneConjuge]");
+    validFoneCelTReal("input[name=txtFoneConjuge]");
+    
+    //Campo Select Parentesco Referência
+    validSelect("select[name=txtParentescoRef]");
+    validSelectTReal("select[name=txtParentescoRef]");
+    
+    //Campo Input Nome Referência
+    validInput("input[name=txtNomeRef]");
+    validInputTReal("input[name=txtNomeRef]");
+    
+    //Campo Input Sobrenome Referência
+    validInput("input[name=txtSobrenomeRef]");
+    validInputTReal("input[name=txtSobrenomeRef]");
+    
+    //Campo Input CPF Referência
+    validCPF("input[name=txtCpfRef]");
+    validCPFTReal("input[name=txtCpfRef]");
+    
+    //Campo Input Email Referência
+    //if($("input[name=txtEmailRef]");
+    
+    //Campo Input Fone Referência
+    validFoneCel("input[name=txtFoneRef]");
+    validFoneCelTReal("input[name=txtFoneRef]");
+    
+    //Campo Select Referência Conclusão
+    validSelect("select[name=txtAddRefConclusao]");
+    validSelectTReal("select[name=txtAddRefConclusao]");
+    acionamentoForm("select[name=txtAddRefConclusao]", "#divRefConclusao");
+    
+    //Campo Select Parentesco Referência Conclusão
+    validSelect("select[name=txtParentescoRefConclusao]");
+    validSelectTReal("select[name=txtParentescoRefConclusao]");
+    
+    //Campo Input Nome Referência Conclusão
+    validInput("input[name=txtNomeRefConclusao]");
+    validInputTReal("input[name=txtNomeRefConclusao]");
+    
+     //Campo Input Sobrenome Referência Conclusão
+    validInput("input[name=txtSobrenomeRefConclusao]");
+    validInputTReal("input[name=txtSobrenomeRefConclusao]");
+    
+    //Campo Input CPF Referência Conclusão
+    validCPF("input[name=txtCpfRefConclusao]");
+    validCPFTReal("input[name=txtCpfRefConclusao]");
+    
+    //Campo Input Email Referência Conclusão
+    //if($("input[name=txtEmailRefConclusao]");
+    
+    //Campo Input Fone Referência Conclusão
+    validFoneCel("input[name=txtFoneRefConclusao]");
+    validFoneCelTReal("input[name=txtFoneRefConclusao]");
 });
 
 
@@ -3061,5 +3137,484 @@ $(function(){
                 proximo($(this));
             }
         } 
+    });
+    
+    //Etapa 5: DADOS FAMILIARES
+    $("button[name=btnProximo6]").click(function(){
+        var cpfConjuge = $("input[name=txtCpfConjuge]").val().replace(".","").replace(".","").replace("-","");
+        var foneCelConjuge = $("input[name=txtFoneConjuge]").val().replace("-","").replace("(","").replace(")","").replace(" ","");
+        
+        var cpfRef = $("input[name=txtCpfRef]").val().replace(".","").replace(".","").replace("-","");        
+        var foneCelRef = $("input[name=txtFoneRef]").val().replace("-","").replace("(","").replace(")","").replace(" ","");
+        
+        var cpfRefConclusao = $("input[name=txtCpfRefConclusao]").val().replace(".","").replace(".","").replace("-","");        
+        var foneCelRefConclusao = $("input[name=txtFoneRefConclusao]").val().replace("-","").replace("(","").replace(")","").replace(" ","");
+        
+        
+        if($("select[name=txtPossuiConjuge]").val() == '0'){
+            $("select[name=txtPossuiConjuge]").removeClass("is-valid");
+            $("select[name=txtPossuiConjuge]").addClass("is-invalid");
+            $("select[name=txtPossuiConjuge]").focus();
+        }
+        else if($("select[name=txtAddRefConclusao]").val() == '0'){
+            $("select[name=txtAddRefConclusao]").removeClass("is-valid");
+            $("select[name=txtAddRefConclusao]").addClass("is-invalid");
+            $("select[name=txtAddRefConclusao]").focus();
+        }
+        else if($("select[name=txtPossuiConjuge]").val() == 'n'){
+            //Referência
+            if($("select[name=txtParentescoRef]").val() == '0'){
+                $("select[name=txtParentescoRef]").removeClass("is-valid");
+                $("select[name=txtParentescoRef]").addClass("is-invalid");
+                $("select[name=txtParentescoRef]").focus();
+            }
+            else if($("input[name=txtNomeRef]").val() == ''){
+                $("input[name=txtNomeRef]").removeClass("is-valid");
+                $("input[name=txtNomeRef]").addClass("is-invalid");
+                $("input[name=txtNomeRef]").focus();                
+            }
+            else if($("input[name=txtSobrenomeRef]").val() == ''){
+                $("input[name=txtSobrenomeRef]").removeClass("is-valid");
+                $("input[name=txtSobrenomeRef]").addClass("is-invalid");
+                $("input[name=txtSobrenomeRef]").focus();                
+            }
+            else if(cpfRef == ''){
+                $("input[name=txtCpfRef]").removeClass("is-valid");
+                $("input[name=txtCpfRef]").addClass("is-invalid");
+                $("input[name=txtCpfRef]").focus();
+                $(".invalid-cpf").html("Campo Obrigatório!");
+                cpfOk = 0;
+            }
+            else if(cpfRef == '00000000000' || cpfRef == '11111111111' || cpfRef == '22222222222' || cpfRef == '33333333333' ||                 
+                    cpfRef == '44444444444' || cpfRef == '55555555555' || cpfRef == '66666666666' || cpfRef == '77777777777' ||                 
+                    cpfRef == '88888888888' || cpfRef == '99999999999'){
+                $("input[name=txtCpfRef]").removeClass("is-valid");
+                $("input[name=txtCpfRef]").addClass("is-invalid");
+                $("input[name=txtCpfRef]").focus();
+                $(".invalid-cpf").html("CPF Inválido!");
+                cpfOk = 0;
+            }else if(cpfOk == 0){
+                // Valida 1o digito	
+                var add = 0;	
+                for (var i=0; i < 9; i ++)		
+                    add += parseInt(cpfRef.charAt(i)) * (10 - i);	
+                    var rev = 11 - (add % 11);	
+                    if (rev == 10 || rev == 11)		
+                        rev = 0;	
+                    if (rev != parseInt(cpfRef.charAt(9))){
+                        $("input[name=txtCpfRef]").removeClass("is-valid");
+                        $("input[name=txtCpfRef]").addClass("is-invalid");
+                        $("input[name=txtCpfRef]").focus();
+                        $(".invalid-cpf").html("CPF Inválido!");
+                        cpfOk = 0;
+                    }else{
+                        $("input[name=txtCpfRef]").removeClass("is-invalid");
+                        $("input[name=txtCpfRef]").addClass("is-valid");
+                        cpfOk = 1;
+                    }
+                // Valida 2o digito	
+                add = 0;	
+                for (var i = 0; i < 10; i ++)		
+                    add += parseInt(cpfRef.charAt(i)) * (11 - i);	
+                rev = 11 - (add % 11);	
+                if (rev == 10 || rev == 11)	
+                    rev = 0;	
+                if (rev != parseInt(cpfRef.charAt(10))){
+                    $("input[name=txtCpfRef]").removeClass("is-valid");
+                    $("input[name=txtCpfRef]").addClass("is-invalid");
+                    $("input[name=txtCpfRef]").focus();
+                    $(".invalid-cpf").html("CPF Inválido!");
+                    cpfOk = 0;
+                }else{
+                    $("input[name=txtCpfRef]").removeClass("is-invalid");
+                    $("input[name=txtCpfRef]").addClass("is-valid");
+                    cpfOk = 1;
+                }    
+            }
+            else if($("input[name=txtEmailRef]").val() == ''){
+                $("input[name=txtEmailRef]").removeClass("is-valid");
+                $("input[name=txtEmailRef]").addClass("is-invalid");
+                $("input[name=txtEmailRef]").focus();                
+            }            
+            else if(foneCelRef == ''){
+                $("input[name=txtFoneRef]").removeClass("is-valid");
+                $("input[name=txtFoneRef]").addClass("is-invalid");
+                $("input[name=txtFoneRef]").focus();
+                $(".invalid-foneCel").html("Campo Obrigatório!");
+            }
+            else if(foneCelRef == '00000000000' || foneCelRef == '11111111111' || foneCelRef == '22222222222' || foneCelRef == '33333333333' ||                 
+                    foneCelRef == '44444444444' || foneCelRef == '55555555555' || foneCelRef == '66666666666' || foneCelRef == '77777777777' ||                 
+                    foneCelRef == '88888888888' || foneCelRef == '99999999999'){
+                $("input[name=txtFoneRef]").removeClass("is-valid");
+                $("input[name=txtFoneRef]").addClass("is-invalid");
+                $("input[name=txtFoneRef]").focus();
+                $(".invalid-foneCel").html("Fone Inválido!");
+            }            
+            //Referência Conclusão
+            else if($("select[name=txtAddRefConclusao]").val() == 'n'){
+                proximo($(this));
+            }            
+            else if($("select[name=txtAddRefConclusao]").val() == 's'){
+                if($("select[name=txtParentescoRefConclusao]").val() == '0'){
+                    $("select[name=txtParentescoRefConclusao]").removeClass("is-valid");
+                    $("select[name=txtParentescoRefConclusao]").addClass("is-invalid");
+                    $("select[name=txtParentescoRefConclusao]").focus();
+                }
+                else if($("input[name=txtNomeRefConclusao]").val() == ''){
+                    $("input[name=txtNomeRefConclusao]").removeClass("is-valid");
+                    $("input[name=txtNomeRefConclusao]").addClass("is-invalid");
+                    $("input[name=txtNomeRefConclusao]").focus();                
+                }
+                else if($("input[name=txtSobrenomeRefConclusao]").val() == ''){
+                    $("input[name=txtSobrenomeRefConclusao]").removeClass("is-valid");
+                    $("input[name=txtSobrenomeRefConclusao]").addClass("is-invalid");
+                    $("input[name=txtSobrenomeRefConclusao]").focus();                
+                }
+                else if(cpfRefConclusao == ''){
+                    $("input[name=txtCpfRefConclusao]").removeClass("is-valid");
+                    $("input[name=txtCpfRefConclusao]").addClass("is-invalid");
+                    $("input[name=txtCpfRefConclusao]").focus();
+                    $(".invalid-cpf").html("Campo Obrigatório!");
+                    cpfOk = 0;
+                }
+                else if(cpfRefConclusao == '00000000000' || cpfRefConclusao == '11111111111' || cpfRefConclusao == '22222222222' || cpfRefConclusao == '33333333333' ||                 
+                        cpfRefConclusao == '44444444444' || cpfRefConclusao == '55555555555' || cpfRefConclusao == '66666666666' || cpfRefConclusao == '77777777777' ||                 
+                        cpfRefConclusao == '88888888888' || cpfRefConclusao == '99999999999'){
+                    $("input[name=txtCpfRefConclusao]").removeClass("is-valid");
+                    $("input[name=txtCpfRefConclusao]").addClass("is-invalid");
+                    $("input[name=txtCpfRefConclusao]").focus();
+                    $(".invalid-cpf").html("CPF Inválido!");
+                    cpfOk = 0;
+                }else if(cpfOk == 0){
+                    // Valida 1o digito	
+                    var add = 0;	
+                    for (var i=0; i < 9; i ++)		
+                        add += parseInt(cpfRefConclusao.charAt(i)) * (10 - i);	
+                        var rev = 11 - (add % 11);	
+                        if (rev == 10 || rev == 11)		
+                            rev = 0;	
+                        if (rev != parseInt(cpfRefConclusao.charAt(9))){
+                            $("input[name=txtCpfRefConclusao]").removeClass("is-valid");
+                            $("input[name=txtCpfRefConclusao]").addClass("is-invalid");
+                            $("input[name=txtCpfRefConclusao]").focus();
+                            $(".invalid-cpf").html("CPF Inválido!");
+                            cpfOk = 0;
+                        }else{
+                            $("input[name=txtCpfRefConclusao]").removeClass("is-invalid");
+                            $("input[name=txtCpfRefConclusao]").addClass("is-valid");
+                            cpfOk = 1;
+                        }
+                    // Valida 2o digito	
+                    add = 0;	
+                    for (var i = 0; i < 10; i ++)		
+                        add += parseInt(cpfRefConclusao.charAt(i)) * (11 - i);	
+                    rev = 11 - (add % 11);	
+                    if (rev == 10 || rev == 11)	
+                        rev = 0;	
+                    if (rev != parseInt(cpfRefConclusao.charAt(10))){
+                        $("input[name=txtCpfRefConclusao]").removeClass("is-valid");
+                        $("input[name=txtCpfRefConclusao]").addClass("is-invalid");
+                        $("input[name=txtCpfRefConclusao]").focus();
+                        $(".invalid-cpf").html("CPF Inválido!");
+                        cpfOk = 0;
+                    }else{
+                        $("input[name=txtCpfRefConclusao]").removeClass("is-invalid");
+                        $("input[name=txtCpfRefConclusao]").addClass("is-valid");
+                        cpfOk = 1;
+                    }    
+                }
+                else if($("input[name=txtEmailRefConclusao]").val() == ''){
+                    $("input[name=txtEmailRefConclusao]").removeClass("is-valid");
+                    $("input[name=txtEmailRefConclusao]").addClass("is-invalid");
+                    $("input[name=txtEmailRefConclusao]").focus();                
+                }
+                else if(foneCelRefConclusao == ''){
+                    $("input[name=txtFoneRefConclusao]").removeClass("is-valid");
+                    $("input[name=txtFoneRefConclusao]").addClass("is-invalid");
+                    $("input[name=txtFoneRefConclusao]").focus();
+                    $(".invalid-foneCel").html("Campo Obrigatório!");
+                }
+                else if(foneCelRefConclusao == '00000000000' || foneCelRefConclusao == '11111111111' || foneCelRefConclusao == '22222222222' || foneCelRefConclusao == '33333333333' ||                 
+                        foneCelRefConclusao == '44444444444' || foneCelRefConclusao == '55555555555' || foneCelRefConclusao == '66666666666' || foneCelRefConclusao == '77777777777' ||                 
+                        foneCelRefConclusao == '88888888888' || foneCelRefConclusao == '99999999999'){
+                    $("input[name=txtFoneRefConclusao]").removeClass("is-valid");
+                    $("input[name=txtFoneRefConclusao]").addClass("is-invalid");
+                    $("input[name=txtFoneRefConclusao]").focus();
+                    $(".invalid-foneCel").html("Fone Inválido!");
+                }
+                else{
+                    proximo($(this));
+                }
+            }
+        }
+        else if($("select[name=txtPossuiConjuge]").val() == 's'){
+            //Cônjuge            
+            if($("input[name=txtNomeConjuge]").val() == ''){
+                $("input[name=txtNomeConjuge]").removeClass("is-valid");
+                $("input[name=txtNomeConjuge]").addClass("is-invalid");
+                $("input[name=txtNomeConjuge]").focus();                
+            }
+            else if($("input[name=txtSobrenomeConjuge]").val() == ''){
+                $("input[name=txtSobrenomeConjuge]").removeClass("is-valid");
+                $("input[name=txtSobrenomeConjuge]").addClass("is-invalid");
+                $("input[name=txtSobrenomeConjuge]").focus();                
+            }
+            else if(cpfConjuge == ''){
+                $("input[name=txtCpfConjuge]").removeClass("is-valid");
+                $("input[name=txtCpfConjuge]").addClass("is-invalid");
+                $("input[name=txtCpfConjuge]").focus();
+                $(".invalid-cpf").html("Campo Obrigatório!");
+                cpfOk = 0;
+            }
+            else if(cpfConjuge == '00000000000' || cpfConjuge == '11111111111' || cpfConjuge == '22222222222' || cpfConjuge == '33333333333' ||                 
+                    cpfConjuge == '44444444444' || cpfConjuge == '55555555555' || cpfConjuge == '66666666666' || cpfConjuge == '77777777777' ||                 
+                    cpfConjuge == '88888888888' || cpfConjuge == '99999999999'){
+                $("input[name=txtCpfConjuge]").removeClass("is-valid");
+                $("input[name=txtCpfConjuge]").addClass("is-invalid");
+                $("input[name=txtCpfConjuge]").focus();
+                $(".invalid-cpf").html("CPF Inválido!");
+                cpfOk = 0;
+            }else if(cpfOk == 0){
+                // Valida 1o digito	
+                var add = 0;	
+                for (var i=0; i < 9; i ++)		
+                    add += parseInt(cpfConjuge.charAt(i)) * (10 - i);	
+                    var rev = 11 - (add % 11);	
+                    if (rev == 10 || rev == 11)		
+                        rev = 0;	
+                    if (rev != parseInt(cpfConjuge.charAt(9))){
+                        $("input[name=txtCpfConjuge]").removeClass("is-valid");
+                        $("input[name=txtCpfConjuge]").addClass("is-invalid");
+                        $("input[name=txtCpfConjuge]").focus();
+                        $(".invalid-cpf").html("CPF Inválido!");
+                        cpfOk = 0;
+                    }else{
+                        $("input[name=txtCpfConjuge]").removeClass("is-invalid");
+                        $("input[name=txtCpfConjuge]").addClass("is-valid");
+                        cpfOk = 1;
+                    }
+                // Valida 2o digito	
+                add = 0;	
+                for (var i = 0; i < 10; i ++)		
+                    add += parseInt(cpfConjuge.charAt(i)) * (11 - i);	
+                rev = 11 - (add % 11);	
+                if (rev == 10 || rev == 11)	
+                    rev = 0;	
+                if (rev != parseInt(cpfConjuge.charAt(10))){
+                    $("input[name=txtCpfConjuge]").removeClass("is-valid");
+                    $("input[name=txtCpfConjuge]").addClass("is-invalid");
+                    $("input[name=txtCpfConjuge]").focus();
+                    $(".invalid-cpf").html("CPF Inválido!");
+                    cpfOk = 0;
+                }else{
+                    $("input[name=txtCpfConjuge]").removeClass("is-invalid");
+                    $("input[name=txtCpfConjuge]").addClass("is-valid");
+                    cpfOk = 1;
+                }    
+            }
+            else if($("input[name=txtEmailConjuge]").val() == ''){
+                $("input[name=txtEmailConjuge]").removeClass("is-valid");
+                $("input[name=txtEmailConjuge]").addClass("is-invalid");
+                $("input[name=txtEmailConjuge]").focus();                
+            }
+            else if(foneCelConjuge == ''){
+                $("input[name=txtFoneConjuge]").removeClass("is-valid");
+                $("input[name=txtFoneConjuge]").addClass("is-invalid");
+                $("input[name=txtFoneConjuge]").focus();
+                $(".invalid-foneCel").html("Campo Obrigatório!");
+            }
+            else if(foneCelConjuge == '00000000000' || foneCelConjuge == '11111111111' || foneCelConjuge == '22222222222' || foneCelConjuge == '33333333333' ||                 
+                    foneCelConjuge == '44444444444' || foneCelConjuge == '55555555555' || foneCelConjuge == '66666666666' || foneCelConjuge == '77777777777' ||                 
+                    foneCelConjuge == '88888888888' || foneCelConjuge == '99999999999'){
+                $("input[name=txtFoneConjuge]").removeClass("is-valid");
+                $("input[name=txtFoneConjuge]").addClass("is-invalid");
+                $("input[name=txtFoneConjuge]").focus();
+                $(".invalid-foneCel").html("Fone Inválido!");
+            }            
+            //Referência
+            else if($("select[name=txtParentescoRef]").val() == '0'){
+                $("select[name=txtParentescoRef]").removeClass("is-valid");
+                $("select[name=txtParentescoRef]").addClass("is-invalid");
+                $("select[name=txtParentescoRef]").focus();
+            }
+            else if($("input[name=txtNomeRef]").val() == ''){
+                $("input[name=txtNomeRef]").removeClass("is-valid");
+                $("input[name=txtNomeRef]").addClass("is-invalid");
+                $("input[name=txtNomeRef]").focus();                
+            }
+            else if($("input[name=txtSobrenomeRef]").val() == ''){
+                $("input[name=txtSobrenomeRef]").removeClass("is-valid");
+                $("input[name=txtSobrenomeRef]").addClass("is-invalid");
+                $("input[name=txtSobrenomeRef]").focus();                
+            }
+            else if(cpfRef == ''){
+                $("input[name=txtCpfRef]").removeClass("is-valid");
+                $("input[name=txtCpfRef]").addClass("is-invalid");
+                $("input[name=txtCpfRef]").focus();
+                $(".invalid-cpf").html("Campo Obrigatório!");
+                cpfOk = 0;
+            }
+            else if(cpfRef == '00000000000' || cpfRef == '11111111111' || cpfRef == '22222222222' || cpfRef == '33333333333' ||                 
+                    cpfRef == '44444444444' || cpfRef == '55555555555' || cpfRef == '66666666666' || cpfRef == '77777777777' ||                 
+                    cpfRef == '88888888888' || cpfRef == '99999999999'){
+                $("input[name=txtCpfRef]").removeClass("is-valid");
+                $("input[name=txtCpfRef]").addClass("is-invalid");
+                $("input[name=txtCpfRef]").focus();
+                $(".invalid-cpf").html("CPF Inválido!");
+                cpfOk = 0;
+            }else if(cpfOk == 0){
+                // Valida 1o digito	
+                var add = 0;	
+                for (var i=0; i < 9; i ++)		
+                    add += parseInt(cpfRef.charAt(i)) * (10 - i);	
+                    var rev = 11 - (add % 11);	
+                    if (rev == 10 || rev == 11)		
+                        rev = 0;	
+                    if (rev != parseInt(cpfRef.charAt(9))){
+                        $("input[name=txtCpfRef]").removeClass("is-valid");
+                        $("input[name=txtCpfRef]").addClass("is-invalid");
+                        $("input[name=txtCpfRef]").focus();
+                        $(".invalid-cpf").html("CPF Inválido!");
+                        cpfOk = 0;
+                    }else{
+                        $("input[name=txtCpfRef]").removeClass("is-invalid");
+                        $("input[name=txtCpfRef]").addClass("is-valid");
+                        cpfOk = 1;
+                    }
+                // Valida 2o digito	
+                add = 0;	
+                for (var i = 0; i < 10; i ++)		
+                    add += parseInt(cpfRef.charAt(i)) * (11 - i);	
+                rev = 11 - (add % 11);	
+                if (rev == 10 || rev == 11)	
+                    rev = 0;	
+                if (rev != parseInt(cpfRef.charAt(10))){
+                    $("input[name=txtCpfRef]").removeClass("is-valid");
+                    $("input[name=txtCpfRef]").addClass("is-invalid");
+                    $("input[name=txtCpfRef]").focus();
+                    $(".invalid-cpf").html("CPF Inválido!");
+                    cpfOk = 0;
+                }else{
+                    $("input[name=txtCpfRef]").removeClass("is-invalid");
+                    $("input[name=txtCpfRef]").addClass("is-valid");
+                    cpfOk = 1;
+                }    
+            }
+            else if($("input[name=txtEmailRef]").val() == ''){
+                $("input[name=txtEmailRef]").removeClass("is-valid");
+                $("input[name=txtEmailRef]").addClass("is-invalid");
+                $("input[name=txtEmailRef]").focus();                
+            }
+            else if(foneCelRef == ''){
+                $("input[name=txtFoneRef]").removeClass("is-valid");
+                $("input[name=txtFoneRef]").addClass("is-invalid");
+                $("input[name=txtFoneRef]").focus();
+                $(".invalid-foneCel").html("Campo Obrigatório!");
+            }
+            else if(foneCelRef == '00000000000' || foneCelRef == '11111111111' || foneCelRef == '22222222222' || foneCelRef == '33333333333' ||                 
+                    foneCelRef == '44444444444' || foneCelRef == '55555555555' || foneCelRef == '66666666666' || foneCelRef == '77777777777' ||                 
+                    foneCelRef == '88888888888' || foneCelRef == '99999999999'){
+                $("input[name=txtFoneRef]").removeClass("is-valid");
+                $("input[name=txtFoneRef]").addClass("is-invalid");
+                $("input[name=txtFoneRef]").focus();
+                $(".invalid-foneCel").html("Fone Inválido!");
+            }            
+            //Referência Conclusão
+            else if($("select[name=txtAddRefConclusao]").val() == 'n'){
+                proximo($(this));
+            }
+            else if($("select[name=txtAddRefConclusao]").val() == 's'){
+                if($("select[name=txtParentescoRefConclusao]").val() == '0'){
+                    $("select[name=txtParentescoRefConclusao]").removeClass("is-valid");
+                    $("select[name=txtParentescoRefConclusao]").addClass("is-invalid");
+                    $("select[name=txtParentescoRefConclusao]").focus();
+                }
+                else if($("input[name=txtNomeRefConclusao]").val() == ''){
+                    $("input[name=txtNomeRefConclusao]").removeClass("is-valid");
+                    $("input[name=txtNomeRefConclusao]").addClass("is-invalid");
+                    $("input[name=txtNomeRefConclusao]").focus();                
+                }
+                else if($("input[name=txtSobrenomeRefConclusao]").val() == ''){
+                    $("input[name=txtSobrenomeRefConclusao]").removeClass("is-valid");
+                    $("input[name=txtSobrenomeRefConclusao]").addClass("is-invalid");
+                    $("input[name=txtSobrenomeRefConclusao]").focus();                
+                }
+                else if(cpfRefConclusao == ''){
+                    $("input[name=txtCpfRefConclusao]").removeClass("is-valid");
+                    $("input[name=txtCpfRefConclusao]").addClass("is-invalid");
+                    $("input[name=txtCpfRefConclusao]").focus();
+                    $(".invalid-cpf").html("Campo Obrigatório!");
+                    cpfOk = 0;
+                }
+                else if(cpfRefConclusao == '00000000000' || cpfRefConclusao == '11111111111' || cpfRefConclusao == '22222222222' || cpfRefConclusao == '33333333333' ||                 
+                        cpfRefConclusao == '44444444444' || cpfRefConclusao == '55555555555' || cpfRefConclusao == '66666666666' || cpfRefConclusao == '77777777777' ||                 
+                        cpfRefConclusao == '88888888888' || cpfRefConclusao == '99999999999'){
+                    $("input[name=txtCpfRefConclusao]").removeClass("is-valid");
+                    $("input[name=txtCpfRefConclusao]").addClass("is-invalid");
+                    $("input[name=txtCpfRefConclusao]").focus();
+                    $(".invalid-cpf").html("CPF Inválido!");
+                    cpfOk = 0;
+                }else if(cpfOk == 0){
+                    // Valida 1o digito	
+                    var add = 0;	
+                    for (var i=0; i < 9; i ++)		
+                        add += parseInt(cpfRefConclusao.charAt(i)) * (10 - i);	
+                        var rev = 11 - (add % 11);	
+                        if (rev == 10 || rev == 11)		
+                            rev = 0;	
+                        if (rev != parseInt(cpfRefConclusao.charAt(9))){
+                            $("input[name=txtCpfRefConclusao]").removeClass("is-valid");
+                            $("input[name=txtCpfRefConclusao]").addClass("is-invalid");
+                            $("input[name=txtCpfRefConclusao]").focus();
+                            $(".invalid-cpf").html("CPF Inválido!");
+                            cpfOk = 0;
+                        }else{
+                            $("input[name=txtCpfRefConclusao]").removeClass("is-invalid");
+                            $("input[name=txtCpfRefConclusao]").addClass("is-valid");
+                            cpfOk = 1;
+                        }
+                    // Valida 2o digito	
+                    add = 0;	
+                    for (var i = 0; i < 10; i ++)		
+                        add += parseInt(cpfRefConclusao.charAt(i)) * (11 - i);	
+                    rev = 11 - (add % 11);	
+                    if (rev == 10 || rev == 11)	
+                        rev = 0;	
+                    if (rev != parseInt(cpfRefConclusao.charAt(10))){
+                        $("input[name=txtCpfRefConclusao]").removeClass("is-valid");
+                        $("input[name=txtCpfRefConclusao]").addClass("is-invalid");
+                        $("input[name=txtCpfRefConclusao]").focus();
+                        $(".invalid-cpf").html("CPF Inválido!");
+                        cpfOk = 0;
+                    }else{
+                        $("input[name=txtCpfRefConclusao]").removeClass("is-invalid");
+                        $("input[name=txtCpfRefConclusao]").addClass("is-valid");
+                        cpfOk = 1;
+                    }    
+                }
+                else if($("input[name=txtEmailRefConclusao]").val() == ''){
+                    $("input[name=txtEmailRefConclusao]").removeClass("is-valid");
+                    $("input[name=txtEmailRefConclusao]").addClass("is-invalid");
+                    $("input[name=txtEmailRefConclusao]").focus();                
+                }
+                else if(foneCelRefConclusao == ''){
+                    $("input[name=txtFoneRefConclusao]").removeClass("is-valid");
+                    $("input[name=txtFoneRefConclusao]").addClass("is-invalid");
+                    $("input[name=txtFoneRefConclusao]").focus();
+                    $(".invalid-foneCel").html("Campo Obrigatório!");
+                }
+                else if(foneCelRefConclusao == '00000000000' || foneCelRefConclusao == '11111111111' || foneCelRefConclusao == '22222222222' || foneCelRefConclusao == '33333333333' ||                 
+                        foneCelRefConclusao == '44444444444' || foneCelRefConclusao == '55555555555' || foneCelRefConclusao == '66666666666' || foneCelRefConclusao == '77777777777' ||                 
+                        foneCelRefConclusao == '88888888888' || foneCelRefConclusao == '99999999999'){
+                    $("input[name=txtFoneRefConclusao]").removeClass("is-valid");
+                    $("input[name=txtFoneRefConclusao]").addClass("is-invalid");
+                    $("input[name=txtFoneRefConclusao]").focus();
+                    $(".invalid-foneCel").html("Fone Inválido!");
+                }
+                else{
+                    proximo($(this));
+                }
+            }
+        }
     });
 });

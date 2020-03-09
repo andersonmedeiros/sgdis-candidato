@@ -938,7 +938,6 @@
                                                         "<label for=\"txtParentescoRef\">Parentesco: <span class=\"campo-obrigatorio\">*</span></label>"+
                                                         "<select class=\"form-control\" id=\"txtParentescoRef\" name=\"txtParentescoRef\">"+
                                                             "<option value=\"0\" selected>Selecione um Parentesco...</option>"+
-                                                            "<option value=\"t\">Tetse</option>"+
                                                         "</select>"+
                                                         "<div class=\"valid-feedback\">Selva!</div>"+
                                                         "<div class=\"invalid-feedback\">Campo Obrigatório!</div>"+
@@ -997,7 +996,6 @@
                                                         "<label for=\"txtParentescoRefConclusao\">Parentesco: <span class=\"campo-obrigatorio\">*</span></label>"+
                                                         "<select class=\"form-control\" id=\"txtParentescoRefConclusao\" name=\"txtParentescoRefConclusao\">"+
                                                             "<option value=\"0\" selected>Selecione um Parentesco...</option>"+
-                                                            "<option value=\"t\">Teste</option>"+
                                                         "</select>"+
                                                         "<div class=\"valid-feedback\">Selva!</div>"+
                                                         "<div class=\"invalid-feedback\">Campo Obrigatório!</div>"+

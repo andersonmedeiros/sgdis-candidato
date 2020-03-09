@@ -43,6 +43,9 @@
     
     <convert converter="bean" match="bean.Comportamento" />
     <convert converter="bean" match="dao.ComportamentoDAO" />
+    
+    <convert converter="bean" match="bean.GrauParentesco" />
+    <convert converter="bean" match="dao.GrauParentescoDAO" />
        
         
     <convert converter="bean" match="bean.Cidade" />

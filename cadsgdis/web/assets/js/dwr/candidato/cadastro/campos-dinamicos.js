@@ -267,6 +267,17 @@ function montaSelectComportamento(comportamentos){
 }
 FacadeAjax.getComportamentos(montaSelectComportamento);
 
+function montaSelectParentesco(parentescos){
+    dwr.util.removeAllOptions("txtParentescoRef");
+    dwr.util.addOptions("txtParentescoRef", [{id: "0", nome: "Selecione um Grau de Parentesco..."}], "id", "nome");
+    dwr.util.addOptions("txtParentescoRef", parentescos, "id", "nome");
+    
+    dwr.util.removeAllOptions("txtParentescoRefConclusao");
+    dwr.util.addOptions("txtParentescoRefConclusao", [{id: "0", nome: "Selecione um Grau de Parentesco..."}], "id", "nome");
+    dwr.util.addOptions("txtParentescoRefConclusao", parentescos, "id", "nome");
+}
+FacadeAjax.getGrausParentesco(montaSelectParentesco);
+
 $(function(){
     $("input[name=txtAbrevOM]").val('');
     $("input[name=txtAbrevOM]").prop("readonly", true);    
