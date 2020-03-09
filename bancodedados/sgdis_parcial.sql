@@ -187,7 +187,17 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sgdis`.`EstadoCivil` (
   `id` INT(11) NOT NULL,
-  `nome` VARCHAR(45) NOT NULL,
+  `nome` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sgdis`.`Comportamento`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sgdis`.`Comportamento` (
+  `id` INT(11) NOT NULL,
+  `nome` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -203,11 +213,13 @@ CREATE TABLE IF NOT EXISTS `sgdis`.`Aluno` (
   `idOM` INT(11) NOT NULL,
   `idQasQms` INT(11) NOT NULL,
   `idEstadoCivil` INT(11) NOT NULL,
+  `idComportamento` INT NOT NULL,
   PRIMARY KEY (`identidade`),
   INDEX `fk_Aluno_OM1_idx` (`idOM` ASC),
   INDEX `fk_Aluno_PostoGraduacao_idx` (`idPostoGraduacao` ASC),
   INDEX `fk_Aluno_QasQms2_idx` (`idQasQms` ASC),
   INDEX `fk_Aluno_EstadoCivil1_idx` (`idEstadoCivil` ASC),
+  INDEX `fk_Aluno_Comportamento1_idx` (`idComportamento` ASC),
   CONSTRAINT `fk_Aluno_OM1`
     FOREIGN KEY (`idOM`)
     REFERENCES `sgdis`.`OM` (`id`)
@@ -226,6 +238,11 @@ CREATE TABLE IF NOT EXISTS `sgdis`.`Aluno` (
   CONSTRAINT `fk_Aluno_EstadoCivil1`
     FOREIGN KEY (`idEstadoCivil`)
     REFERENCES `sgdis`.`EstadoCivil` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Aluno_Comportamento1`
+    FOREIGN KEY (`idComportamento`)
+    REFERENCES `sgdis`.`Comportamento` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -302,6 +319,34 @@ CREATE TABLE IF NOT EXISTS `sgdis`.`Tentativa` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `sgdis`.`EscolaFormacao`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sgdis`.`EscolaFormacao` (
+  `id` INT(11) NOT NULL,
+  `nome` VARCHAR(50) NOT NULL,
+  `abreviatura` VARCHAR(10) NOT NULL,
+  `idForca` INT(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_EscolaFormacao_Forca1_idx` (`idForca` ASC),
+  CONSTRAINT `fk_EscolaFormacao_Forca1`
+    FOREIGN KEY (`idForca`)
+    REFERENCES `sgdis`.`Forca` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sgdis`.`GrauParentesco`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sgdis`.`GrauParentesco` (
+  `id` INT(11) NOT NULL,
+  `nome` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
