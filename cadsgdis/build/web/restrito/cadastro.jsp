@@ -752,7 +752,9 @@
                                                 "<div class=\"form-row\">"+                                
                                                     "<div class=\"form-group col-md-7\">"+
                                                         "<label for=\"txtFormEscNome\">Escola de Formação: <span class=\"campo-obrigatorio\">*</span></label>"+
-                                                        "<input type=\"text\" class=\"form-control\" id=\"txtFormEscNome\" name=\"txtFormEscNome\" placeholder=\"Ex.: Escola de Sargentos das Armas\">"+
+                                                        "<select class=\"form-control\" id=\"txtFormEscNome\" name=\"txtFormEscNome\">"+
+                                                            "<option value=\"0\">Selecione uma Escola...</option>"+
+                                                        "</select>"+
                                                         "<div class=\"valid-feedback\">Selva!</div>"+
                                                         "<div class=\"invalid-feedback\">Campo Obrigatório!</div>"+
                                                     "</div>"+
@@ -778,8 +780,7 @@
                                                     "<div class=\"form-group col-md-12\">"+
                                                         "<label for=\"txtCptmAl\">Comportamento: <span class=\"campo-obrigatorio\">*</span></label>"+
                                                         "<select class=\"form-control\" id=\"txtCptmAl\" name=\"txtCptmAl\">"+
-                                                            "<option value=\"0\" selected>Selecione um comportamento...</option>"+
-                                                            "<option value=\"t\">Teste</option>"+
+                                                            "<option value=\"0\" selected>Selecione um Comportamento...</option>"+
                                                         "</select>"+
                                                         "<div class=\"valid-feedback\">Selva!</div>"+
                                                         "<div class=\"invalid-feedback\">Campo Obrigatório!</div>"+

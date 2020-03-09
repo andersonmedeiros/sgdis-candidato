@@ -1818,7 +1818,7 @@ $(document).ready(function(){
     validSelectTReal("select[name=txtTraraVeiculo]");   
     validSelectVeiculos("select[name=txtTraraVeiculo]");   
     
-    //Etapa 2: DADOS INDIVIDUAIS
+    //Etapa 3: SAÚDE
     //Campo Select Fumante
     validSelect("select[name=txtFumante]");
     validSelectTReal("select[name=txtFumante]");

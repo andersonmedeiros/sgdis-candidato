@@ -1821,6 +1821,56 @@ $(document).ready(function(){
     validSelect("select[name=txtUsoTermErgSupAli]");
     validSelectTReal("select[name=txtUsoTermErgSupAli]");
     acionamentoForm("select[name=txtUsoTermErgSupAli]", "#divTermErgSupAli");
+    
+    //Etapa 4: DADOS MILITARES
+    //Campo Input Escola de Formação
+    validSelect("select[name=txtFormEscNome]");
+    validSelectTReal("select[name=txtFormEscNome]");
+    
+    //Campo Input Abreviatura
+    validInput("input[name=txtFormEscAbrev]");
+    validInputTReal("input[name=txtFormEscAbrev]");
+    
+    //Campo Input Turma
+    validAno("input[name=txtFormTurma]");
+    validAnoTReal("input[name=txtFormTurma]");
+    
+    //Campo Select Comportamento
+    validSelect("select[name=txtCptmAl]");
+    validSelectTReal("select[name=txtCptmAl]");
+    
+    //Campo Input Última Promoção
+    validDataUltProm("input[name=txtUltDataPracaAl]", "input[name=txtDataUltProm]");
+    validDataUltPromTReal("input[name=txtUltDataPracaAl]", "input[name=txtDataUltProm]");
+    
+    //Campo Select QA para Promoção
+    validSelect("select[name=txtQaProm]");
+    validSelectTReal("select[name=txtQaProm]");    
+    acionamentoForm("select[name=txtQaProm]", "#divQaQuando");
+    
+    //Campo Input QA Quando
+    validDataQaQuando("input[name=txtDataUltProm]", "input[name=txtQaQuandoProm]");
+    validDataQaQuandoTReal("input[name=txtDataUltProm]", "input[name=txtQaQuandoProm]");
+    
+    //Campo Input Data Último TAF
+    validDataUltTAF("input[name=txtUltDataPracaAl]", "input[name=txtDataUltTAF]");
+    validDataUltTAFTReal("input[name=txtUltDataPracaAl]", "input[name=txtDataUltTAF]");
+    
+    //Campo Select Menção
+    validSelect("select[name=txtMencaoTAF]");
+    validSelectTReal("select[name=txtMencaoTAF]");
+    
+    //Campo Input Função 1
+    validInput("input[name=txtFunc1]");
+    validInputTReal("input[name=txtFunc1]");
+    
+    //Campo Input Função 2
+    validInput("input[name=txtFunc2]");
+    validInputTReal("input[name=txtFunc2]");
+    
+    //Campo Input Função 3
+    validInput("input[name=txtFunc3]");
+    validInputTReal("input[name=txtFunc3]");
 });
 
 
@@ -2726,5 +2776,290 @@ $(function(){
                 proximo($(this));
             }
         }        
+    });
+    
+    //Etapa 4: DADOS MILITARES
+    $("button[name=btnProximo5]").click(function(){        
+        var ano = $("input[name=txtFormTurma]").val();
+        
+        var dataAtual = new Date();
+        var diaAtual = dataAtual.getDate();
+        var mesAtual = (dataAtual.getMonth() + 1);
+        var anoAtual = dataAtual.getFullYear();
+        
+        var dataUltProm = $("input[name=txtDataUltProm]").val();
+        var dataUltPromSplit = dataUltProm.split('-');        
+        var diaUltProm = dataUltPromSplit[2];
+        var mesUltProm = dataUltPromSplit[1];
+        var anoUltProm = dataUltPromSplit[0];
+        
+        var dataPracaAl = $("input[name=txtUltDataPracaAl]").val();
+        var dataPracaAlSplit = dataPracaAl.split('-');        
+        var diaPracaAl = dataPracaAlSplit[2];
+        var mesPracaAl = dataPracaAlSplit[1];
+        var anoPracaAl = dataPracaAlSplit[0];
+        
+        var dataQaQuando = $("input[name=txtQaQuandoProm]").val();
+        var dataQaQuandoSplit = dataQaQuando.split('-');        
+        var diaQaQuando = dataQaQuandoSplit[2];
+        var mesQaQuando = dataQaQuandoSplit[1];
+        var anoQaQuando = dataQaQuandoSplit[0];        
+
+        var dataUltTAF = $("input[name=txtDataUltTAF]").val();
+        var dataUltTAFSplit = dataUltTAF.split('-');        
+        var diaUltTAF = dataUltTAFSplit[2];
+        var mesUltTAF = dataUltTAFSplit[1];
+        var anoUltTAF = dataUltTAFSplit[0];
+        
+        if($("select[name=txtFormEscNome]").val() == '0'){
+            $("select[name=txtFormEscNome]").removeClass("is-valid");
+            $("select[name=txtFormEscNome]").addClass("is-invalid");
+            $("select[name=txtFormEscNome]").focus();
+        }
+        else if($("input[name=txtFormEscAbrev]").val() == ''){
+            $("input[name=txtFormEscAbrev]").removeClass("is-valid");
+            $("input[name=txtFormEscAbrev]").addClass("is-invalid");
+            $("input[name=txtFormEscAbrev]").focus();
+        }
+        else if(ano == ''){
+            $("input[name=txtFormTurma]").removeClass("is-valid");
+            $("input[name=txtFormTurma]").addClass("is-invalid");
+            $("input[name=txtFormTurma]").focus();
+            $(".invalid-ano").html("Campo Obrigatório!");
+        }
+        else if((ano != '') && (ano.length < 4)){
+            $("input[name=txtFormTurma]").removeClass("is-valid");
+            $("input[name=txtFormTurma]").addClass("is-invalid");
+            $("input[name=txtFormTurma]").focus();
+            $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+        }
+        else if($("select[name=txtCptmAl]").val() == '0'){
+            $("select[name=txtCptmAl]").removeClass("is-valid");
+            $("select[name=txtCptmAl]").addClass("is-invalid");
+            $("select[name=txtCptmAl]").focus();
+        }
+        else if(dataUltProm == ''){
+            $("input[name=txtDataUltProm]").removeClass("is-valid");
+            $("input[name=txtDataUltProm]").addClass("is-invalid");
+            $("input[name=txtDataUltProm]").focus();
+            $(".invalid-dataUltProm").html("Campo Obrigatório!");
+        }       
+        else if((anoUltProm == anoAtual) && (mesUltProm == mesAtual) && (diaUltProm > diaAtual)){
+            $("input[name=txtDataUltProm]").removeClass("is-valid");
+            $("input[name=txtDataUltProm]").addClass("is-invalid");
+            $("input[name=txtDataUltProm]").focus();
+            $(".invalid-dataUltProm").html("Data Inválida! Última promoção após data atual.");
+        }       
+        else if((anoUltProm == anoPracaAl) && (mesUltProm == mesPracaAl) && (diaUltProm < diaPracaAl)){
+            $("input[name=txtDataUltProm]").removeClass("is-valid");
+            $("input[name=txtDataUltProm]").addClass("is-invalid");
+            $("input[name=txtDataUltProm]").focus();
+            $(".invalid-dataUltProm").html("Data Inválida! Última promoção antes da data de praça.");
+        }       
+        else if((anoUltProm == anoAtual) && (mesUltProm > mesAtual)){
+            $("input[name=txtDataUltProm]").removeClass("is-valid");
+            $("input[name=txtDataUltProm]").addClass("is-invalid");
+            $("input[name=txtDataUltProm]").focus();
+            $(".invalid-dataUltProm").html("Data Inválida! Última promoção após data atual.");
+        }       
+        else if((anoUltProm == anoPracaAl) && (mesUltProm < mesPracaAl)){
+            $("input[name=txtDataUltProm]").removeClass("is-valid");
+            $("input[name=txtDataUltProm]").addClass("is-invalid");
+            $("input[name=txtDataUltProm]").focus();
+            $(".invalid-dataUltProm").html("Data Inválida! Última promoção antes da data de praça.");
+        }       
+        else if((anoUltProm > anoAtual)){
+            $("input[name=txtDataUltProm]").removeClass("is-valid");
+            $("input[name=txtDataUltProm]").addClass("is-invalid");
+            $("input[name=txtDataUltProm]").focus();
+            $(".invalid-dataUltProm").html("Data Inválida! Última promoção após data atual.");
+        }       
+        else if((anoUltProm < anoPracaAl)){
+            $("input[name=txtDataUltProm]").removeClass("is-valid");
+            $("input[name=txtDataUltProm]").addClass("is-invalid");
+            $("input[name=txtDataUltProm]").focus();
+            $(".invalid-dataUltProm").html("Data Inválida! Última promoção antes da data de praça.");
+        }
+        else if($("select[name=txtQaProm]").val() == '0'){
+            $("select[name=txtQaProm]").removeClass("is-valid");
+            $("select[name=txtQaProm]").addClass("is-invalid");
+            $("select[name=txtQaProm]").focus();
+        }
+        else if($("select[name=txtQaProm]").val() == 's'){
+            if(dataQaQuando == ''){
+                $("input[name=txtQaQuandoProm]").removeClass("is-valid");
+                $("input[name=txtQaQuandoProm]").addClass("is-invalid");
+                $("input[name=txtQaQuandoProm]").focus();
+                $(".invalid-dataQaQuando").html("Campo Obrigatório!");
+            }       
+            else if((anoQaQuando == anoAtual) && (mesQaQuando == mesAtual) && (diaQaQuando > diaAtual)){
+                $("input[name=txtQaQuandoProm]").removeClass("is-valid");
+                $("input[name=txtQaQuandoProm]").addClass("is-invalid");
+                $("input[name=txtQaQuandoProm]").focus();
+                $(".invalid-dataQaQuando").html("Data Inválida! Última promoção após data atual.");
+            }       
+            else if((anoQaQuando == anoUltProm) && (mesQaQuando == mesUltProm) && (diaQaQuando < diaUltProm)){
+                $("input[name=txtQaQuandoProm]").removeClass("is-valid");
+                $("input[name=txtQaQuandoProm]").addClass("is-invalid");
+                $("input[name=txtQaQuandoProm]").focus();
+                $(".invalid-dataQaQuando").html("Data Inválida! QA antes da última promoção.");
+            }       
+            else if((anoQaQuando == anoAtual) && (mesQaQuando > mesAtual)){
+                $("input[name=txtQaQuandoProm]").removeClass("is-valid");
+                $("input[name=txtQaQuandoProm]").addClass("is-invalid");
+                $("input[name=txtQaQuandoProm]").focus();
+                $(".invalid-dataQaQuando").html("Data Inválida! Última promoção após data atual.");
+            }       
+            else if((anoQaQuando == anoUltProm) && (mesQaQuando < mesUltProm)){
+                $("input[name=txtQaQuandoProm]").removeClass("is-valid");
+                $("input[name=txtQaQuandoProm]").addClass("is-invalid");
+                $("input[name=txtQaQuandoProm]").focus();
+                $(".invalid-dataQaQuando").html("Data Inválida! QA antes da última promoção.");
+            }       
+            else if((anoQaQuando > anoAtual)){
+                $("input[name=txtQaQuandoProm]").removeClass("is-valid");
+                $("input[name=txtQaQuandoProm]").addClass("is-invalid");
+                $("input[name=txtQaQuandoProm]").focus();
+                $(".invalid-dataQaQuando").html("Data Inválida! Última promoção após data atual.");
+            }       
+            else if((anoQaQuando < anoUltProm)){
+                $("input[name=txtQaQuandoProm]").removeClass("is-valid");
+                $("input[name=txtQaQuandoProm]").addClass("is-invalid");
+                $("input[name=txtQaQuandoProm]").focus();
+                $(".invalid-dataQaQuando").html("Data Inválida! QA antes da última promoção.");
+            }
+            else if(dataUltTAF == ''){
+                $("input[name=txtDataUltTAF]").removeClass("is-valid");
+                $("input[name=txtDataUltTAF]").addClass("is-invalid");
+                $("input[name=txtDataUltTAF]").focus();
+                $(".invalid-dataUltTAF").html("Campo Obrigatório!");
+            }       
+            else if((anoUltTAF == anoAtual) && (mesUltTAF == mesAtual) && (diaUltTAF > diaAtual)){
+                $("input[name=txtDataUltTAF]").removeClass("is-valid");
+                $("input[name=txtDataUltTAF]").addClass("is-invalid");
+                $("input[name=txtDataUltTAF]").focus();
+                $(".invalid-dataUltTAF").html("Data Inválida! Último TAF após data atual.");
+            }       
+            else if((anoUltTAF == anoPracaAl) && (mesUltTAF == mesPracaAl) && (diaUltTAF < diaPracaAl)){
+                $("input[name=txtDataUltTAF]").removeClass("is-valid");
+                $("input[name=txtDataUltTAF]").addClass("is-invalid");
+                $("input[name=txtDataUltTAF]").focus();
+                $(".invalid-dataUltTAF").html("Data Inválida! Último TAF antes da data de praça.");
+            }       
+            else if((anoUltTAF == anoAtual) && (mesUltTAF > mesAtual)){
+                $("input[name=txtDataUltTAF]").removeClass("is-valid");
+                $("input[name=txtDataUltTAF]").addClass("is-invalid");
+                $("input[name=txtDataUltTAF]").focus();
+                $(".invalid-dataUltTAF").html("Data Inválida! Último TAF após data atual.");
+            }       
+            else if((anoUltTAF == anoPracaAl) && (mesUltTAF < mesPracaAl)){
+                $("input[name=txtDataUltTAF]").removeClass("is-valid");
+                $("input[name=txtDataUltTAF]").addClass("is-invalid");
+                $("input[name=txtDataUltTAF]").focus();
+                $(".invalid-dataUltTAF").html("Data Inválida! Último TAF antes da data de praça.");
+            }       
+            else if((anoUltTAF > anoAtual)){
+                $("input[name=txtDataUltTAF]").removeClass("is-valid");
+                $("input[name=txtDataUltTAF]").addClass("is-invalid");
+                $("input[name=txtDataUltTAF]").focus();
+                $(".invalid-dataUltTAF").html("Data Inválida! Último TAF após data atual.");
+            }       
+            else if((anoUltTAF < anoPracaAl)){
+                $("input[name=txtDataUltTAF]").removeClass("is-valid");
+                $("input[name=txtDataUltTAF]").addClass("is-invalid");
+                $("input[name=txtDataUltTAF]").focus();
+                $(".invalid-dataUltTAF").html("Data Inválida! Último TAF antes da data de praça.");
+            }
+            else if($("select[name=txtMencaoTAF]").val() == '0'){
+                $("select[name=txtMencaoTAF]").removeClass("is-valid");
+                $("select[name=txtMencaoTAF]").addClass("is-invalid");
+                $("select[name=txtMencaoTAF]").focus();
+            }
+            else if($("input[name=txtFunc1]").val() == ''){
+                $("input[name=txtFunc1]").removeClass("is-valid");
+                $("input[name=txtFunc1]").addClass("is-invalid");
+                $("input[name=txtFunc1]").focus();                
+            }
+            else if($("input[name=txtFunc2]").val() == ''){
+                $("input[name=txtFunc2]").removeClass("is-valid");
+                $("input[name=txtFunc2]").addClass("is-invalid");
+                $("input[name=txtFunc2]").focus();                
+            }
+            else if($("input[name=txtFunc3]").val() == ''){
+                $("input[name=txtFunc3]").removeClass("is-valid");
+                $("input[name=txtFunc3]").addClass("is-invalid");
+                $("input[name=txtFunc3]").focus();                
+            }
+            else{
+                proximo($(this));
+            }
+        }
+        else if($("select[name=txtQaProm]").val() == 'n'){            
+            if(dataUltTAF == ''){
+                $("input[name=txtDataUltTAF]").removeClass("is-valid");
+                $("input[name=txtDataUltTAF]").addClass("is-invalid");
+                $("input[name=txtDataUltTAF]").focus();
+                $(".invalid-dataUltTAF").html("Campo Obrigatório!");
+            }       
+            else if((anoUltTAF == anoAtual) && (mesUltTAF == mesAtual) && (diaUltTAF > diaAtual)){
+                $("input[name=txtDataUltTAF]").removeClass("is-valid");
+                $("input[name=txtDataUltTAF]").addClass("is-invalid");
+                $("input[name=txtDataUltTAF]").focus();
+                $(".invalid-dataUltTAF").html("Data Inválida! Último TAF após data atual.");
+            }       
+            else if((anoUltTAF == anoPracaAl) && (mesUltTAF == mesPracaAl) && (diaUltTAF < diaPracaAl)){
+                $("input[name=txtDataUltTAF]").removeClass("is-valid");
+                $("input[name=txtDataUltTAF]").addClass("is-invalid");
+                $("input[name=txtDataUltTAF]").focus();
+                $(".invalid-dataUltTAF").html("Data Inválida! Último TAF antes da data de praça.");
+            }       
+            else if((anoUltTAF == anoAtual) && (mesUltTAF > mesAtual)){
+                $("input[name=txtDataUltTAF]").removeClass("is-valid");
+                $("input[name=txtDataUltTAF]").addClass("is-invalid");
+                $("input[name=txtDataUltTAF]").focus();
+                $(".invalid-dataUltTAF").html("Data Inválida! Último TAF após data atual.");
+            }       
+            else if((anoUltTAF == anoPracaAl) && (mesUltTAF < mesPracaAl)){
+                $("input[name=txtDataUltTAF]").removeClass("is-valid");
+                $("input[name=txtDataUltTAF]").addClass("is-invalid");
+                $("input[name=txtDataUltTAF]").focus();
+                $(".invalid-dataUltTAF").html("Data Inválida! Último TAF antes da data de praça.");
+            }       
+            else if((anoUltTAF > anoAtual)){
+                $("input[name=txtDataUltTAF]").removeClass("is-valid");
+                $("input[name=txtDataUltTAF]").addClass("is-invalid");
+                $("input[name=txtDataUltTAF]").focus();
+                $(".invalid-dataUltTAF").html("Data Inválida! Último TAF após data atual.");
+            }       
+            else if((anoUltTAF < anoPracaAl)){
+                $("input[name=txtDataUltTAF]").removeClass("is-valid");
+                $("input[name=txtDataUltTAF]").addClass("is-invalid");
+                $("input[name=txtDataUltTAF]").focus();
+                $(".invalid-dataUltTAF").html("Data Inválida! Último TAF antes da data de praça.");
+            }
+            else if($("select[name=txtMencaoTAF]").val() == '0'){
+                $("select[name=txtMencaoTAF]").removeClass("is-valid");
+                $("select[name=txtMencaoTAF]").addClass("is-invalid");
+                $("select[name=txtMencaoTAF]").focus();
+            }
+            else if($("input[name=txtFunc1]").val() == ''){
+                $("input[name=txtFunc1]").removeClass("is-valid");
+                $("input[name=txtFunc1]").addClass("is-invalid");
+                $("input[name=txtFunc1]").focus();                
+            }
+            else if($("input[name=txtFunc2]").val() == ''){
+                $("input[name=txtFunc2]").removeClass("is-valid");
+                $("input[name=txtFunc2]").addClass("is-invalid");
+                $("input[name=txtFunc2]").focus();                
+            }
+            else if($("input[name=txtFunc3]").val() == ''){
+                $("input[name=txtFunc3]").removeClass("is-valid");
+                $("input[name=txtFunc3]").addClass("is-invalid");
+                $("input[name=txtFunc3]").focus();                
+            }
+            else{
+                proximo($(this));
+            }
+        } 
     });
 });

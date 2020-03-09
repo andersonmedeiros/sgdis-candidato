@@ -123,9 +123,31 @@ function montaSelectDependenteForca(idForca){
             
             dwr.util.removeAllOptions("txtPGradAl");
             dwr.util.addOptions("txtPGradAl", [{id: "0", abreviatura: "Selecione um Posto/Graduação..."}], "id", "abreviatura");
-            dwr.util.addOptions("txtPGradAl", list, "id", "abreviatura");
-            
-            
+            dwr.util.addOptions("txtPGradAl", list, "id", "abreviatura"); 
+        } 
+    });
+    
+    FacadeAjax.getEscolasFormacao(idForca, {
+        callback: function(escolas){
+            dwr.util.removeAllOptions("txtFormEscNome");
+            dwr.util.addOptions("txtFormEscNome", [{id: "0", nome: "Selecione uma Escola..."}], "id", "nome");
+            dwr.util.addOptions("txtFormEscNome", escolas, "id", "nome");
+        } 
+    });
+}
+
+function montaSelectDependenteEscolaFormacao(idEscolaFormacao){
+    FacadeAjax.getAbreviaturaEscola(idEscolaFormacao, {
+        callback: function(abreviatura){
+            dwr.util.setValues({txtFormEscAbrev: abreviatura});
+            if((abreviatura == "") || (abreviatura == null)){
+                 $("input[name=txtFormEscAbrev]").removeClass("is-valid");
+                 $("input[name=txtFormEscAbrev]").removeClass("is-invalid");
+            }
+            else{
+                 $("input[name=txtFormEscAbrev]").addClass("is-valid");
+                 $("input[name=txtFormEscAbrev]").removeClass("is-invalid");
+            }
         } 
     });
 }
@@ -231,11 +253,30 @@ function montaSelectDependenteTitEleitorEstado(idEstado){
     });
 }
 
+function montaSelectEscolaFormacao(escolas){
+    dwr.util.removeAllOptions("txtFormEscNome");
+    dwr.util.addOptions("txtFormEscNome", [{id: "0", nome: "Selecione uma Escola..."}], "id", "nome");
+    dwr.util.addOptions("txtFormEscNome", escolas, "id", "nome");
+}
+FacadeAjax.getEstados(montaSelectTitEleitorEstado);
+
+function montaSelectComportamento(comportamentos){
+    dwr.util.removeAllOptions("txtCptmAl");
+    dwr.util.addOptions("txtCptmAl", [{id: "0", nome: "Selecione um Comportamento..."}], "id", "nome");
+    dwr.util.addOptions("txtCptmAl", comportamentos, "id", "nome");
+}
+FacadeAjax.getComportamentos(montaSelectComportamento);
+
 $(function(){
-    $("input[name=txtAbrevOM]").prop("readonly", true);
     $("input[name=txtAbrevOM]").val('');
+    $("input[name=txtAbrevOM]").prop("readonly", true);    
     $("input[name=txtAbrevOM]").removeClass("is-valid");
     $("input[name=txtAbrevOM]").removeClass("is-invalid");
+    
+    $("input[name=txtFormEscAbrev]").val('');
+    $("input[name=txtFormEscAbrev]").prop("readonly", true);
+    $("input[name=txtFormEscAbrev]").removeClass("is-valid");
+    $("input[name=txtFormEscAbrev]").removeClass("is-invalid");
     
     //ENDEREÇO OM
     limpaFormEndOM();
@@ -291,5 +332,18 @@ $("select[name=txtNatEstAl]").change(function(){
 
 $("select[name=txtTitEleitorEstAl]").change(function(){    
     montaSelectDependenteTitEleitorEstado(this.value);
+});
+
+$("select[name=txtFormEscNome]").change(function(){
+    if($("select[name=txtFormEscNome]").val() == '0'){
+        $("input[name=txtFormEscAbrev]").val("");
+        $("input[name=txtFormEscAbrev]").prop("readonly", true);
+        $("input[name=txtFormEscAbrev]").removeClass("is-valid");
+        $("input[name=txtFormEscAbrev]").removeClass("is-invalid");
+    }else{
+        $("input[name=txtFormEscAbrev]").prop("readonly", true);
+    }
+    
+    montaSelectDependenteEscolaFormacao(this.value);
 });
 

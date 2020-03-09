@@ -38,6 +38,13 @@
     <convert converter="bean" match="bean.QasQms" />
     <convert converter="bean" match="dao.QasQmsDAO" />
         
+    <convert converter="bean" match="bean.EscolaFormacao" />
+    <convert converter="bean" match="dao.EscolaFormacaoDAO" />
+    
+    <convert converter="bean" match="bean.Comportamento" />
+    <convert converter="bean" match="dao.ComportamentoDAO" />
+       
+        
     <convert converter="bean" match="bean.Cidade" />
     <convert converter="bean" match="dao.CidadeDAO" /> 
     <convert converter="bean" match="bean.EstadoCivil" />
