@@ -1,0 +1,15 @@
+id,nome
+1,Avô
+2,Avó
+3,Pai
+4,Mãe
+5,Irmão
+6,Irmã
+7,Tio
+8,Tia
+9,Filho
+10,Filha
+11,Primo
+12,Prima
+13,Sogro
+14,Sogra
