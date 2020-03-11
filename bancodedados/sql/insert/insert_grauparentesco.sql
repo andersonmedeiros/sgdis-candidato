@@ -1,15 +1,14 @@
-id,nome
-1,Avô
-2,Avó
-3,Pai
-4,Mãe
-5,Irmão
-6,Irmã
-7,Tio
-8,Tia
-9,Filho
-10,Filha
-11,Primo
-12,Prima
-13,Sogro
-14,Sogra
+INSERT INTO `sgdis`.`GrauParentesco` (`id`,`nome`) VALUES (1,'Avô');
+INSERT INTO `sgdis`.`GrauParentesco` (`id`,`nome`) VALUES (2,'Avó');
+INSERT INTO `sgdis`.`GrauParentesco` (`id`,`nome`) VALUES (3,'Pai');
+INSERT INTO `sgdis`.`GrauParentesco` (`id`,`nome`) VALUES (4,'Mãe');
+INSERT INTO `sgdis`.`GrauParentesco` (`id`,`nome`) VALUES (5,'Irmão');
+INSERT INTO `sgdis`.`GrauParentesco` (`id`,`nome`) VALUES (6,'Irmã');
+INSERT INTO `sgdis`.`GrauParentesco` (`id`,`nome`) VALUES (7,'Tio');
+INSERT INTO `sgdis`.`GrauParentesco` (`id`,`nome`) VALUES (8,'Tia');
+INSERT INTO `sgdis`.`GrauParentesco` (`id`,`nome`) VALUES (9,'Filho');
+INSERT INTO `sgdis`.`GrauParentesco` (`id`,`nome`) VALUES (10,'Filha');
+INSERT INTO `sgdis`.`GrauParentesco` (`id`,`nome`) VALUES (11,'Primo');
+INSERT INTO `sgdis`.`GrauParentesco` (`id`,`nome`) VALUES (12,'Prima');
+INSERT INTO `sgdis`.`GrauParentesco` (`id`,`nome`) VALUES (13,'Sogro');
+INSERT INTO `sgdis`.`GrauParentesco` (`id`,`nome`) VALUES (14,'Sogra');
