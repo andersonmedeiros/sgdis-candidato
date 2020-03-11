@@ -45,6 +45,11 @@ function limpaFormEndOM(){
     $("input[name=txtEndPtRefOM]").prop("readonly", true);
 }
 
+function removeValidacao(campo){
+    $(campo).removeClass("is-valid");
+    $(campo).removeClass("is-invalid");
+}
+
 function readonlyFormEndOM(){
     if(($("input[name=txtEndCepOM]").val()=="")||($("input[name=txtEndCepOM]").val()==null)){
         $("input[name=txtEndCepOM]").prop("readonly", false);
@@ -298,17 +303,25 @@ $(function(){
 $("select[name=txtForca]").change(function(){    
     $("select[name=txtEstadoForca]").val("0");
     $("select[name=txtEstadoForca] option:not(:selected)").remove();
-    $("select[name=txtEstadoForca]").removeClass("is-valid");
-    $("select[name=txtEstadoForca]").removeClass("is-invalid");
+    removeValidacao("select[name=txtEstadoForca]");
     
     $("select[name=txtNomeOM]").val("0");
     $('select[name=txtNomeOM] option:not(:selected)').remove();
-    $("select[name=txtNomeOM]").removeClass("is-valid");
-    $("select[name=txtNomeOM]").removeClass("is-invalid");
+    removeValidacao("select[name=txtNomeOM]");
     
     $("input[name=txtAbrevOM]").val('');
-    $("input[name=txtAbrevOM]").removeClass("is-valid");
-    $("input[name=txtAbrevOM]").removeClass("is-invalid");
+    removeValidacao("input[name=txtAbrevOM]");
+    
+    removeValidacao("select[name=txtPGradCmtOM]");
+    removeValidacao("select[name=txtPGradChImtoOM]");
+    removeValidacao("select[name=txtPGradAl]");
+    
+    
+    $("select[name=txtFormEscNome]").val("0");
+    removeValidacao("select[name=txtFormEscNome]");
+    
+    $("input[name=txtFormEscAbrev]").val('');
+    removeValidacao("input[name=txtFormEscAbrev]");
     
     limpaFormEndOM();
     montaSelectDependenteForca(this.value);

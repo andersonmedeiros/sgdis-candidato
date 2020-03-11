@@ -335,8 +335,12 @@ $("select[name=txtEndCurso]").change(function() {
         $("input[name=txtBairroEndCurso]").addClass("is-valid");
         $("input[name=txtBairroEndCurso]").prop("readonly", true);
         
-        $("input[name=txtCompEndCurso]").val("");
-        $("input[name=txtPtRefEndCurso]").val("");
+        
+        $("input[name=txtCompEndCurso]").val("até 773/774");
+        $("input[name=txtCompEndCurso]").removeClass("is-invalid");
+        $("input[name=txtCompEndCurso]").addClass("is-valid");
+        $("input[name=txtCompEndCurso]").prop("readonly", true);
+        
     }
     //Mesmo endereço de residêcnia
     else if($("select[name=txtEndCurso]").val() === "resid"){
@@ -348,7 +352,7 @@ $("select[name=txtEndCurso]").change(function() {
                 $("input[name=txtCepEndCurso]").prop("readonly", true);
             }
             else{
-                $("input[name=txtCepEndCurso]").val();
+                $("input[name=txtCepEndCurso]").val("");
                 $("input[name=txtCepEndCurso]").removeClass("is-invalid");
                 $("input[name=txtCepEndCurso]").removeClass("is-valid");
                 $("input[name=txtCepEndCurso]").prop("readonly", false);
