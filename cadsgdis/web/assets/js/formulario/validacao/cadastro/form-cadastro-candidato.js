@@ -2016,6 +2016,48 @@ $(document).ready(function(){
     //Campo Input Ponto de Referencia durante Curso
     validInput("input[name=txtPtRefEndCurso]");
     validInputNTReal("input[name=txtPtRefEndCurso]");
+    
+    //Etapa 7: CURSOS/ESTÁGIOS
+    //Campo Select Idiomas    
+    validSelect("select[name=txtHabIdiomas]");
+    validSelectTReal("select[name=txtHabIdiomas]");
+    acionamentoForm("select[name=txtHabIdiomas]" ,"#divIdiomas");
+    
+    //Campo Select Curso Aperfiçoamento
+    validSelect("select[name=txtPossuiCAperf]");
+    validSelectTReal("select[name=txtPossuiCAperf]");
+    acionamentoForm("select[name=txtPossuiCAperf]", "#divCAperf");
+        
+        //Campo Input Select Curso
+        validSelect("select[name=txtCAperf]");    
+        validSelectTReal("select[name=txtCAperf]");    
+        
+        //Campo Input Ano Conclusão Curso de Aperfeiçoamento            
+        validAno("input[name=txtAnoCAperf");
+        validAnoTReal("input[name=txtAnoCAperf");
+        
+    //Campo Select Curso Altos Estudos
+    validSelect("select[name=txtPossuiCAltEstudos]");
+    validSelectTReal("select[name=txtPossuiCAltEstudos]");
+    acionamentoForm("select[name=txtPossuiCAltEstudos]", "#divCAltEstudos");
+    
+        //Campo Input Select Curso
+        validSelect("select[name=txtCAltEstudos]");
+        validSelectTReal("select[name=txtCAltEstudos]");
+
+        //Campo Input Ano Conclusão Curso de Aperfeiçoamento
+        validAno("input[name=txtAnoCAltEstudos");
+        validAnoTReal("input[name=txtAnoCAltEstudos");
+    
+    //Campo Select Cursos Extensão ou Especialização
+    validSelect("select[name=txtPossuiCExtsEsp]");  
+    validSelectTReal("select[name=txtPossuiCExtsEsp]");  
+    acionamentoForm("select[name=txtPossuiCExtsEsp]", "#divCExtsEsp");
+        
+    //Campo Select Estágios Militares Operacionais
+    validSelect("select[name=txtPossuiEstMil]");
+    validSelectTReal("select[name=txtPossuiEstMil]");
+    acionamentoForm("select[name=txtPossuiEstMil]", "#divEstagios");
 });
 
 
@@ -3778,6 +3820,2214 @@ $(function(){
         }
         else{
             proximo($(this));
+        }
+    });
+    
+    //Etapa 7: CURSOS/ESTÁGIOS
+    $("button[name=btnProximo8]").click(function(){
+        if($("select[name=txtHabIdiomas]").val() == '0'){
+            $("select[name=txtHabIdiomas]").removeClass("is-valid");
+            $("select[name=txtHabIdiomas]").addClass("is-invalid");
+            $("select[name=txtHabIdiomas]").focus();
+        }
+        else if($("select[name=txtPossuiCAperf]").val() == '0'){
+            $("select[name=txtPossuiCAperf]").removeClass("is-valid");
+            $("select[name=txtPossuiCAperf]").addClass("is-invalid");
+            $("select[name=txtPossuiCAperf]").focus();
+        }
+        else if($("select[name=txtPossuiCAltEstudos]").val() == '0'){
+            $("select[name=txtPossuiCAltEstudos]").removeClass("is-valid");
+            $("select[name=txtPossuiCAltEstudos]").addClass("is-invalid");
+            $("select[name=txtPossuiCAltEstudos]").focus();
+        }
+        else if($("select[name=txtPossuiCExtsEsp]").val() == '0'){
+            $("select[name=txtPossuiCExtsEsp]").removeClass("is-valid");
+            $("select[name=txtPossuiCExtsEsp]").addClass("is-invalid");
+            $("select[name=txtPossuiCExtsEsp]").focus();
+        }        
+        else if($("select[name=txtPossuiEstMil]").val() == '0'){
+            $("select[name=txtPossuiEstMil]").removeClass("is-valid");
+            $("select[name=txtPossuiEstMil]").addClass("is-invalid");
+            $("select[name=txtPossuiEstMil]").focus();
+        }
+        //1
+        else if(($("select[name=txtHabIdiomas]").val() == 'n') && ($("select[name=txtPossuiCAperf]").val() == 'n') && ($("select[name=txtPossuiCAltEstudos]").val() == 'n')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 'n') && ($("select[name=txtPossuiEstMil]").val() == 'n')){
+            proximo($(this));
+        }
+        //2
+        else if(($("select[name=txtHabIdiomas]").val() == 's') && ($("select[name=txtPossuiCAperf]").val() == 'n') && ($("select[name=txtPossuiCAltEstudos]").val() == 'n')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 'n') && ($("select[name=txtPossuiEstMil]").val() == 'n')){
+            for(var i=0;i<($("input[name=txtIdioma").length);i++){
+                if($("input[name=txtIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIdioma]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtIplIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIplIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIplIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIplIdioma]").eq(i).focus();
+                    break;
+                }
+                else if(($("input[name=txtIplIdioma]").eq($("input[name=txtIplIdioma]").length-1).val()) != ''){
+                    proximo($(this));
+                }
+            }
+        }
+        //3
+        else if(($("select[name=txtHabIdiomas]").val() == 'n') && ($("select[name=txtPossuiCAperf]").val() == 's') && ($("select[name=txtPossuiCAltEstudos]").val() == 'n')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 'n') && ($("select[name=txtPossuiEstMil]").val() == 'n')){
+            if($("select[name=txtCAperf]").val() == '0' ){
+                $("select[name=txtCAperf]").removeClass("is-valid");
+                $("select[name=txtCAperf]").addClass("is-invalid");
+                $("select[name=txtCAperf]").focus();
+            }            
+            else if($("input[name=txtAnoCAperf]").val() == ''){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAperf]").val() != '') && ($("input[name=txtAnoCAperf]").val().length < 4)){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                proximo($(this));
+            }
+        }        
+        //4
+        else if(($("select[name=txtHabIdiomas]").val() == 'n') && ($("select[name=txtPossuiCAperf]").val() == 'n') && ($("select[name=txtPossuiCAltEstudos]").val() == 's')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 'n') && ($("select[name=txtPossuiEstMil]").val() == 'n')){
+            if($("select[name=txtCAltEstudos]").val() == '0' ){
+                $("select[name=txtCAltEstudos]").removeClass("is-valid");
+                $("select[name=txtCAltEstudos]").addClass("is-invalid");
+                $("select[name=txtCAltEstudos]").focus();
+            }
+            else if($("input[name=txtAnoCAltEstudos]").val() == ''){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAltEstudos]").val() != '') && ($("input[name=txtAnoCAltEstudos]").val().length < 4)){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                proximo($(this));
+            }
+        }
+        //5
+        else if(($("select[name=txtHabIdiomas]").val() == 'n') && ($("select[name=txtPossuiCAperf]").val() == 'n') && ($("select[name=txtPossuiCAltEstudos]").val() == 'n')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 's') && ($("select[name=txtPossuiEstMil]").val() == 'n')){
+            for(var i=0;i<($("select[name=txtTipoCExtsEsp").length);i++){
+                if($("select[name=txtTipoCExtsEsp]").eq(i).val() == '0' ){
+                    $("select[name=txtTipoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtCExtsEsp]").eq(i).val() == '' ){
+                    $("input[name=txtCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoCExtsEsp]").eq(i).val() == ''){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq(i).val() != '') && ($("input[name=txtAnoCExtsEsp]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq($("input[name=txtAnoCExtsEsp]").length-1).val()) != ''){
+                    proximo($(this));
+                }
+            }
+        }
+        //6
+        else if(($("select[name=txtHabIdiomas]").val() == 'n') && ($("select[name=txtPossuiCAperf]").val() == 'n') && ($("select[name=txtPossuiCAltEstudos]").val() == 'n')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 'n') && ($("select[name=txtPossuiEstMil]").val() == 's')){
+            for(var i=0;i<($("input[name=txtEstagio").length);i++){
+                if($("input[name=txtEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtEstagio]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq(i).val() != '') && ($("input[name=txtAnoEstagio]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq($("input[name=txtAnoEstagio]").length-1).val()) != ''){
+                    proximo($(this));
+                }
+            }
+        }
+        //7
+        else if(($("select[name=txtHabIdiomas]").val() == 'n') && ($("select[name=txtPossuiCAperf]").val() == 'n') && ($("select[name=txtPossuiCAltEstudos]").val() == 'n')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 's') && ($("select[name=txtPossuiEstMil]").val() == 's')){
+            var prontoCExtsEsp = 0;
+            var prontoEstMil = 0;
+            
+            for(var i=0;i<($("select[name=txtTipoCExtsEsp").length);i++){
+                if($("select[name=txtTipoCExtsEsp]").eq(i).val() == '0' ){
+                    $("select[name=txtTipoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtCExtsEsp]").eq(i).val() == '' ){
+                    $("input[name=txtCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoCExtsEsp]").eq(i).val() == ''){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq(i).val() != '') && ($("input[name=txtAnoCExtsEsp]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq($("input[name=txtAnoCExtsEsp]").length-1).val()) != ''){
+                    prontoCExtsEsp = 1;
+                }
+            }
+            for(var i=0;i<($("input[name=txtEstagio").length);i++){
+                if($("input[name=txtEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtEstagio]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq(i).val() != '') && ($("input[name=txtAnoEstagio]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq($("input[name=txtAnoEstagio]").length-1).val()) != ''){
+                    prontoEstMil = 1;
+                }        
+            }
+            if((prontoCExtsEsp == 1) && (prontoEstMil == 1)){
+                proximo($(this));
+            }
+        }
+        //8
+        else if(($("select[name=txtHabIdiomas]").val() == 'n') && ($("select[name=txtPossuiCAperf]").val() == 'n') && ($("select[name=txtPossuiCAltEstudos]").val() == 's')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 'n') && ($("select[name=txtPossuiEstMil]").val() == 's')){
+            var prontoCAltEstudos = 0;
+            var prontoEstMil = 0;
+            
+            if($("select[name=txtCAltEstudos]").val() == '0' ){
+                $("select[name=txtCAltEstudos]").removeClass("is-valid");
+                $("select[name=txtCAltEstudos]").addClass("is-invalid");
+                $("select[name=txtCAltEstudos]").focus();
+            }
+            else if($("input[name=txtAnoCAltEstudos]").val() == ''){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAltEstudos]").val() != '') && ($("input[name=txtAnoCAltEstudos]").val().length < 4)){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAltEstudos = 1;
+            }
+            for(var i=0;i<($("input[name=txtEstagio").length);i++){
+                if($("input[name=txtEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtEstagio]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq(i).val() != '') && ($("input[name=txtAnoEstagio]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq($("input[name=txtAnoEstagio]").length-1).val()) != ''){
+                    prontoEstMil = 1;
+                }        
+            }
+            if((prontoCAltEstudos == 1) && (prontoEstMil == 1)){
+                proximo($(this));
+            }
+        }
+        //9
+        else if(($("select[name=txtHabIdiomas]").val() == 'n') && ($("select[name=txtPossuiCAperf]").val() == 'n') && ($("select[name=txtPossuiCAltEstudos]").val() == 's')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 's') && ($("select[name=txtPossuiEstMil]").val() == 'n')){
+            var prontoCAltEstudos = 0;
+            var prontoCExtsEsp = 0;
+            
+            if($("select[name=txtCAltEstudos]").val() == '0' ){
+                $("select[name=txtCAltEstudos]").removeClass("is-valid");
+                $("select[name=txtCAltEstudos]").addClass("is-invalid");
+                $("select[name=txtCAltEstudos]").focus();
+            }
+            else if($("input[name=txtAnoCAltEstudos]").val() == ''){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAltEstudos]").val() != '') && ($("input[name=txtAnoCAltEstudos]").val().length < 4)){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAltEstudos = 1;
+            }
+            for(var i=0;i<($("select[name=txtTipoCExtsEsp").length);i++){
+                if($("select[name=txtTipoCExtsEsp]").eq(i).val() == '0' ){
+                    $("select[name=txtTipoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtCExtsEsp]").eq(i).val() == '' ){
+                    $("input[name=txtCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoCExtsEsp]").eq(i).val() == ''){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq(i).val() != '') && ($("input[name=txtAnoCExtsEsp]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq($("input[name=txtAnoCExtsEsp]").length-1).val()) != ''){
+                    prontoCExtsEsp = 1;
+                }
+            }
+            if((prontoCAltEstudos == 1) && (prontoCExtsEsp == 1)){
+                proximo($(this));
+            }
+        }
+        //10
+        else if(($("select[name=txtHabIdiomas]").val() == 'n') && ($("select[name=txtPossuiCAperf]").val() == 'n') && ($("select[name=txtPossuiCAltEstudos]").val() == 's')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 's') && ($("select[name=txtPossuiEstMil]").val() == 's')){
+            var prontoCAltEstudos = 0;
+            var prontoCExtsEsp = 0;
+            var prontoEstMil = 0;
+            
+            if($("select[name=txtCAltEstudos]").val() == '0' ){
+                $("select[name=txtCAltEstudos]").removeClass("is-valid");
+                $("select[name=txtCAltEstudos]").addClass("is-invalid");
+                $("select[name=txtCAltEstudos]").focus();
+            }
+            else if($("input[name=txtAnoCAltEstudos]").val() == ''){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAltEstudos]").val() != '') && ($("input[name=txtAnoCAltEstudos]").val().length < 4)){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAltEstudos = 1;
+            }
+            for(var i=0;i<($("select[name=txtTipoCExtsEsp").length);i++){
+                if($("select[name=txtTipoCExtsEsp]").eq(i).val() == '0' ){
+                    $("select[name=txtTipoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtCExtsEsp]").eq(i).val() == '' ){
+                    $("input[name=txtCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoCExtsEsp]").eq(i).val() == ''){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq(i).val() != '') && ($("input[name=txtAnoCExtsEsp]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq($("input[name=txtAnoCExtsEsp]").length-1).val()) != ''){
+                    prontoCExtsEsp = 1;
+                }
+            }
+            for(var i=0;i<($("input[name=txtEstagio").length);i++){
+                if($("input[name=txtEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtEstagio]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq(i).val() != '') && ($("input[name=txtAnoEstagio]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq($("input[name=txtAnoEstagio]").length-1).val()) != ''){
+                    prontoEstMil = 1;
+                }        
+            }
+            if((prontoCAltEstudos == 1) && (prontoCExtsEsp == 1) && (prontoEstMil == 1)){
+                proximo($(this));
+            }
+        }
+        //11
+        else if(($("select[name=txtHabIdiomas]").val() == 'n') && ($("select[name=txtPossuiCAperf]").val() == 's') && ($("select[name=txtPossuiCAltEstudos]").val() == 'n')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 'n') && ($("select[name=txtPossuiEstMil]").val() == 's')){
+            var prontoCAperf = 0;
+            var prontoEstMil = 0;
+            if($("select[name=txtCAperf]").val() == '0' ){
+                $("select[name=txtCAperf]").removeClass("is-valid");
+                $("select[name=txtCAperf]").addClass("is-invalid");
+                $("select[name=txtCAperf]").focus();
+            }
+            else if($("input[name=txtAnoCAperf]").val() == ''){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAperf]").val() != '') && ($("input[name=txtAnoCAperf]").val().length < 4)){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAperf = 1;
+            }
+            
+            for(var i=0;i<($("input[name=txtEstagio").length);i++){
+                if($("input[name=txtEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtEstagio]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq(i).val() != '') && ($("input[name=txtAnoEstagio]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq($("input[name=txtAnoEstagio]").length-1).val()) != ''){
+                    prontoEstMil = 1;
+                }        
+            }
+            if((prontoCAperf == 1) && (prontoEstMil == 1)){
+                proximo($(this));
+            }
+        }
+        //12
+        else if(($("select[name=txtHabIdiomas]").val() == 'n') && ($("select[name=txtPossuiCAperf]").val() == 's') && ($("select[name=txtPossuiCAltEstudos]").val() == 'n')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 's') && ($("select[name=txtPossuiEstMil]").val() == 'n')){
+            var prontoCAperf = 0;
+            var prontoCExtsEsp = 0;
+            if($("select[name=txtCAperf]").val() == '0' ){
+                $("select[name=txtCAperf]").removeClass("is-valid");
+                $("select[name=txtCAperf]").addClass("is-invalid");
+                $("select[name=txtCAperf]").focus();
+            }
+            else if($("input[name=txtAnoCAperf]").val() == ''){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAperf]").val() != '') && ($("input[name=txtAnoCAperf]").val().length < 4)){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAperf = 1;
+            }
+            
+            for(var i=0;i<($("select[name=txtTipoCExtsEsp").length);i++){
+                if($("select[name=txtTipoCExtsEsp]").eq(i).val() == '0' ){
+                    $("select[name=txtTipoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtCExtsEsp]").eq(i).val() == '' ){
+                    $("input[name=txtCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoCExtsEsp]").eq(i).val() == ''){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq(i).val() != '') && ($("input[name=txtAnoCExtsEsp]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq($("input[name=txtAnoCExtsEsp]").length-1).val()) != ''){
+                    prontoCExtsEsp = 1;
+                }
+            }
+            
+            if((prontoCAperf == 1) && (prontoCExtsEsp == 1)){
+                proximo($(this));
+            }
+        }
+        //13
+        else if(($("select[name=txtHabIdiomas]").val() == 'n') && ($("select[name=txtPossuiCAperf]").val() == 's') && ($("select[name=txtPossuiCAltEstudos]").val() == 'n')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 's') && ($("select[name=txtPossuiEstMil]").val() == 's')){
+            var prontoCAperf = 0;
+            var prontoCExtsEsp = 0;
+            var prontoEstMil = 0;
+            if($("select[name=txtCAperf]").val() == '0' ){
+                $("select[name=txtCAperf]").removeClass("is-valid");
+                $("select[name=txtCAperf]").addClass("is-invalid");
+                $("select[name=txtCAperf]").focus();
+            }
+            else if($("input[name=txtAnoCAperf]").val() == ''){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAperf]").val() != '') && ($("input[name=txtAnoCAperf]").val().length < 4)){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAperf = 1;
+            }
+            
+            for(var i=0;i<($("select[name=txtTipoCExtsEsp").length);i++){
+                if($("select[name=txtTipoCExtsEsp]").eq(i).val() == '0' ){
+                    $("select[name=txtTipoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtCExtsEsp]").eq(i).val() == '' ){
+                    $("input[name=txtCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoCExtsEsp]").eq(i).val() == ''){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq(i).val() != '') && ($("input[name=txtAnoCExtsEsp]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq($("input[name=txtAnoCExtsEsp]").length-1).val()) != ''){
+                    prontoCExtsEsp = 1;
+                }
+            }
+            
+            for(var i=0;i<($("input[name=txtEstagio").length);i++){
+                if($("input[name=txtEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtEstagio]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq(i).val() != '') && ($("input[name=txtAnoEstagio]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq($("input[name=txtAnoEstagio]").length-1).val()) != ''){
+                    prontoEstMil = 1;
+                }        
+            }
+            
+            if((prontoCAperf == 1) && (prontoCExtsEsp == 1) && (prontoEstMil == 1)){
+                proximo($(this));
+            }
+        }
+        //14
+        else if(($("select[name=txtHabIdiomas]").val() == 'n') && ($("select[name=txtPossuiCAperf]").val() == 's') && ($("select[name=txtPossuiCAltEstudos]").val() == 's')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 'n') && ($("select[name=txtPossuiEstMil]").val() == 'n')){
+            var prontoCAperf = 0;
+            var prontoCAltEstudos = 0;
+            if($("select[name=txtCAperf]").val() == '0' ){
+                $("select[name=txtCAperf]").removeClass("is-valid");
+                $("select[name=txtCAperf]").addClass("is-invalid");
+                $("select[name=txtCAperf]").focus();
+            }
+            else if($("input[name=txtAnoCAperf]").val() == ''){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAperf]").val() != '') && ($("input[name=txtAnoCAperf]").val().length < 4)){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAperf = 1;
+            }
+            
+            if($("select[name=txtCAltEstudos]").val() == '0' ){
+                $("select[name=txtCAltEstudos]").removeClass("is-valid");
+                $("select[name=txtCAltEstudos]").addClass("is-invalid");
+                $("select[name=txtCAltEstudos]").focus();
+            }
+            else if($("input[name=txtAnoCAltEstudos]").val() == ''){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAltEstudos]").val() != '') && ($("input[name=txtAnoCAltEstudos]").val().length < 4)){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAltEstudos = 1;
+            }
+            
+            if((prontoCAperf == 1) && (prontoCAltEstudos == 1)){
+                proximo($(this));
+            }
+        }
+        //15
+        else if(($("select[name=txtHabIdiomas]").val() == 'n') && ($("select[name=txtPossuiCAperf]").val() == 's') && ($("select[name=txtPossuiCAltEstudos]").val() == 's')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 'n') && ($("select[name=txtPossuiEstMil]").val() == 's')){
+            var prontoCAperf = 0;
+            var prontoCAltEstudos = 0;
+            var prontoEstMil = 0;
+            
+            if($("select[name=txtCAperf]").val() == '0' ){
+                $("select[name=txtCAperf]").removeClass("is-valid");
+                $("select[name=txtCAperf]").addClass("is-invalid");
+                $("select[name=txtCAperf]").focus();
+            }
+            else if($("input[name=txtAnoCAperf]").val() == ''){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAperf]").val() != '') && ($("input[name=txtAnoCAperf]").val().length < 4)){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAperf = 1;
+            }
+            
+            if($("select[name=txtCAltEstudos]").val() == '0' ){
+                $("select[name=txtCAltEstudos]").removeClass("is-valid");
+                $("select[name=txtCAltEstudos]").addClass("is-invalid");
+                $("select[name=txtCAltEstudos]").focus();
+            }
+            else if($("input[name=txtAnoCAltEstudos]").val() == ''){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAltEstudos]").val() != '') && ($("input[name=txtAnoCAltEstudos]").val().length < 4)){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAltEstudos = 1;
+            }
+            
+            for(var i=0;i<($("input[name=txtEstagio").length);i++){
+                if($("input[name=txtEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtEstagio]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq(i).val() != '') && ($("input[name=txtAnoEstagio]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq($("input[name=txtAnoEstagio]").length-1).val()) != ''){
+                    prontoEstMil = 1;
+                }        
+            }
+            
+            if((prontoCAperf == 1) && (prontoCAltEstudos == 1) && (prontoEstMil == 1)){
+                proximo($(this));
+            }
+        }
+        //16
+        else if(($("select[name=txtHabIdiomas]").val() == 'n') && ($("select[name=txtPossuiCAperf]").val() == 's') && ($("select[name=txtPossuiCAltEstudos]").val() == 's')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 's') && ($("select[name=txtPossuiEstMil]").val() == 'n')){
+            var prontoCAperf = 0;
+            var prontoCAltEstudos = 0;
+            var prontoCExtsEsp = 0;
+            
+            if($("select[name=txtCAperf]").val() == '0' ){
+                $("select[name=txtCAperf]").removeClass("is-valid");
+                $("select[name=txtCAperf]").addClass("is-invalid");
+                $("select[name=txtCAperf]").focus();
+            }
+            else if($("input[name=txtAnoCAperf]").val() == ''){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAperf]").val() != '') && ($("input[name=txtAnoCAperf]").val().length < 4)){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAperf = 1;
+            }
+            
+            if($("select[name=txtCAltEstudos]").val() == '0' ){
+                $("select[name=txtCAltEstudos]").removeClass("is-valid");
+                $("select[name=txtCAltEstudos]").addClass("is-invalid");
+                $("select[name=txtCAltEstudos]").focus();
+            }
+            else if($("input[name=txtAnoCAltEstudos]").val() == ''){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAltEstudos]").val() != '') && ($("input[name=txtAnoCAltEstudos]").val().length < 4)){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAltEstudos = 1;
+            }
+            
+            for(var i=0;i<($("select[name=txtTipoCExtsEsp").length);i++){
+                if($("select[name=txtTipoCExtsEsp]").eq(i).val() == '0' ){
+                    $("select[name=txtTipoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtCExtsEsp]").eq(i).val() == '' ){
+                    $("input[name=txtCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoCExtsEsp]").eq(i).val() == ''){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq(i).val() != '') && ($("input[name=txtAnoCExtsEsp]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq($("input[name=txtAnoCExtsEsp]").length-1).val()) != ''){
+                    prontoCExtsEsp = 1;
+                }
+            }
+            
+            if((prontoCAperf == 1) && (prontoCAltEstudos == 1) && (prontoCExtsEsp == 1)){
+                proximo($(this));
+            }
+        }
+        //17
+        else if(($("select[name=txtHabIdiomas]").val() == 'n') && ($("select[name=txtPossuiCAperf]").val() == 's') && ($("select[name=txtPossuiCAltEstudos]").val() == 's')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 's') && ($("select[name=txtPossuiEstMil]").val() == 's')){
+            var prontoCAperf = 0;
+            var prontoCAltEstudos = 0;
+            var prontoCExtsEsp = 0;
+            var prontoEstMil = 0;
+            
+            if($("select[name=txtCAperf]").val() == '0' ){
+                $("select[name=txtCAperf]").removeClass("is-valid");
+                $("select[name=txtCAperf]").addClass("is-invalid");
+                $("select[name=txtCAperf]").focus();
+            }
+            else if($("input[name=txtAnoCAperf]").val() == ''){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAperf]").val() != '') && ($("input[name=txtAnoCAperf]").val().length < 4)){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAperf = 1;
+            }
+            
+            if($("select[name=txtCAltEstudos]").val() == '0' ){
+                $("select[name=txtCAltEstudos]").removeClass("is-valid");
+                $("select[name=txtCAltEstudos]").addClass("is-invalid");
+                $("select[name=txtCAltEstudos]").focus();
+            }
+            else if($("input[name=txtAnoCAltEstudos]").val() == ''){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAltEstudos]").val() != '') && ($("input[name=txtAnoCAltEstudos]").val().length < 4)){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAltEstudos = 1;
+            }
+            
+            for(var i=0;i<($("select[name=txtTipoCExtsEsp").length);i++){
+                if($("select[name=txtTipoCExtsEsp]").eq(i).val() == '0' ){
+                    $("select[name=txtTipoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtCExtsEsp]").eq(i).val() == '' ){
+                    $("input[name=txtCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoCExtsEsp]").eq(i).val() == ''){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq(i).val() != '') && ($("input[name=txtAnoCExtsEsp]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq($("input[name=txtAnoCExtsEsp]").length-1).val()) != ''){
+                    prontoCExtsEsp = 1;
+                }
+            }
+            
+            for(var i=0;i<($("input[name=txtEstagio").length);i++){
+                if($("input[name=txtEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtEstagio]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq(i).val() != '') && ($("input[name=txtAnoEstagio]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq($("input[name=txtAnoEstagio]").length-1).val()) != ''){
+                    prontoEstMil = 1;
+                }        
+            }
+            
+            if((prontoCAperf == 1) && (prontoCAltEstudos == 1) && (prontoCExtsEsp == 1) && (prontoEstMil == 1)){
+                proximo($(this));
+            }
+        }
+        //18
+        else if(($("select[name=txtHabIdiomas]").val() == 's') && ($("select[name=txtPossuiCAperf]").val() == 'n') && ($("select[name=txtPossuiCAltEstudos]").val() == 'n')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 'n') && ($("select[name=txtPossuiEstMil]").val() == 's')){
+            var prontoIdiomas = 0;
+            var prontoEstMil = 0;
+            
+            for(var i=0;i<($("input[name=txtIdioma").length);i++){
+                if($("input[name=txtIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIdioma]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtIplIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIplIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIplIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIplIdioma]").eq(i).focus();
+                    break;
+                }
+                else if(($("input[name=txtIplIdioma]").eq($("input[name=txtIplIdioma]").length-1).val()) != ''){
+                    prontoIdiomas = 1;
+                }
+            }
+            
+            for(var i=0;i<($("input[name=txtEstagio").length);i++){
+                if($("input[name=txtEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtEstagio]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq(i).val() != '') && ($("input[name=txtAnoEstagio]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq($("input[name=txtAnoEstagio]").length-1).val()) != ''){
+                    prontoEstMil = 1;
+                }        
+            }
+            
+            if((prontoIdiomas == 1) && (prontoEstMil == 1)){
+                proximo($(this));
+            }
+        }
+        //19
+        else if(($("select[name=txtHabIdiomas]").val() == 's') && ($("select[name=txtPossuiCAperf]").val() == 'n') && ($("select[name=txtPossuiCAltEstudos]").val() == 'n')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 's') && ($("select[name=txtPossuiEstMil]").val() == 'n')){
+            var prontoIdiomas = 0;
+            var prontoCExtsEsp = 0;
+            
+            for(var i=0;i<($("input[name=txtIdioma").length);i++){
+                if($("input[name=txtIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIdioma]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtIplIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIplIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIplIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIplIdioma]").eq(i).focus();
+                    break;
+                }
+                else if(($("input[name=txtIplIdioma]").eq($("input[name=txtIplIdioma]").length-1).val()) != ''){
+                    prontoIdiomas = 1;
+                }
+            }
+            
+            for(var i=0;i<($("select[name=txtTipoCExtsEsp").length);i++){
+                if($("select[name=txtTipoCExtsEsp]").eq(i).val() == '0' ){
+                    $("select[name=txtTipoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtCExtsEsp]").eq(i).val() == '' ){
+                    $("input[name=txtCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoCExtsEsp]").eq(i).val() == ''){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq(i).val() != '') && ($("input[name=txtAnoCExtsEsp]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq($("input[name=txtAnoCExtsEsp]").length-1).val()) != ''){
+                    prontoCExtsEsp = 1;
+                }
+            }
+            
+            if((prontoIdiomas == 1) && (prontoCExtsEsp == 1)){
+                proximo($(this));
+            }
+        }
+        
+        //20
+        else if(($("select[name=txtHabIdiomas]").val() == 's') && ($("select[name=txtPossuiCAperf]").val() == 'n') && ($("select[name=txtPossuiCAltEstudos]").val() == 'n')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 's') && ($("select[name=txtPossuiEstMil]").val() == 's')){
+            var prontoIdiomas = 0;
+            var prontoCExtsEsp = 0;
+            var prontoEstMil = 0;
+            
+            for(var i=0;i<($("input[name=txtIdioma").length);i++){
+                if($("input[name=txtIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIdioma]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtIplIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIplIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIplIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIplIdioma]").eq(i).focus();
+                    break;
+                }
+                else if(($("input[name=txtIplIdioma]").eq($("input[name=txtIplIdioma]").length-1).val()) != ''){
+                    prontoIdiomas = 1;
+                }
+            }
+            
+            for(var i=0;i<($("select[name=txtTipoCExtsEsp").length);i++){
+                if($("select[name=txtTipoCExtsEsp]").eq(i).val() == '0' ){
+                    $("select[name=txtTipoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtCExtsEsp]").eq(i).val() == '' ){
+                    $("input[name=txtCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoCExtsEsp]").eq(i).val() == ''){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq(i).val() != '') && ($("input[name=txtAnoCExtsEsp]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq($("input[name=txtAnoCExtsEsp]").length-1).val()) != ''){
+                    prontoCExtsEsp = 1;
+                }
+            }
+            
+            for(var i=0;i<($("input[name=txtEstagio").length);i++){
+                if($("input[name=txtEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtEstagio]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq(i).val() != '') && ($("input[name=txtAnoEstagio]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq($("input[name=txtAnoEstagio]").length-1).val()) != ''){
+                    prontoEstMil = 1;
+                }        
+            }
+            
+            if((prontoIdiomas == 1) && (prontoCExtsEsp == 1) && (prontoEstMil == 1)){
+                proximo($(this));
+            }
+        }
+        
+        //21
+        else if(($("select[name=txtHabIdiomas]").val() == 's') && ($("select[name=txtPossuiCAperf]").val() == 'n') && ($("select[name=txtPossuiCAltEstudos]").val() == 's')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 'n') && ($("select[name=txtPossuiEstMil]").val() == 'n')){
+            var prontoIdiomas = 0;
+            var prontoCAltEstudos = 0;
+            
+            for(var i=0;i<($("input[name=txtIdioma").length);i++){
+                if($("input[name=txtIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIdioma]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtIplIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIplIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIplIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIplIdioma]").eq(i).focus();
+                    break;
+                }
+                else if(($("input[name=txtIplIdioma]").eq($("input[name=txtIplIdioma]").length-1).val()) != ''){
+                    prontoIdiomas = 1;
+                }
+            }
+            
+            if($("select[name=txtCAltEstudos]").val() == '0' ){
+                $("select[name=txtCAltEstudos]").removeClass("is-valid");
+                $("select[name=txtCAltEstudos]").addClass("is-invalid");
+                $("select[name=txtCAltEstudos]").focus();
+            }
+            else if($("input[name=txtAnoCAltEstudos]").val() == ''){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAltEstudos]").val() != '') && ($("input[name=txtAnoCAltEstudos]").val().length < 4)){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAltEstudos = 1;
+            }
+            
+            if((prontoIdiomas == 1) && (prontoCAltEstudos == 1)){
+                proximo($(this));
+            }
+        }
+        //22
+        else if(($("select[name=txtHabIdiomas]").val() == 's') && ($("select[name=txtPossuiCAperf]").val() == 'n') && ($("select[name=txtPossuiCAltEstudos]").val() == 's')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 'n') && ($("select[name=txtPossuiEstMil]").val() == 's')){
+            var prontoIdiomas = 0;
+            var prontoCAltEstudos = 0;
+            var prontoEstMil = 0;
+            
+            for(var i=0;i<($("input[name=txtIdioma").length);i++){
+                if($("input[name=txtIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIdioma]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtIplIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIplIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIplIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIplIdioma]").eq(i).focus();
+                    break;
+                }
+                else if(($("input[name=txtIplIdioma]").eq($("input[name=txtIplIdioma]").length-1).val()) != ''){
+                    prontoIdiomas = 1;
+                }
+            }
+            
+            if($("select[name=txtCAltEstudos]").val() == '0' ){
+                $("select[name=txtCAltEstudos]").removeClass("is-valid");
+                $("select[name=txtCAltEstudos]").addClass("is-invalid");
+                $("select[name=txtCAltEstudos]").focus();
+            }
+            else if($("input[name=txtAnoCAltEstudos]").val() == ''){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAltEstudos]").val() != '') && ($("input[name=txtAnoCAltEstudos]").val().length < 4)){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAltEstudos = 1;
+            }
+            
+            for(var i=0;i<($("input[name=txtEstagio").length);i++){
+                if($("input[name=txtEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtEstagio]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq(i).val() != '') && ($("input[name=txtAnoEstagio]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq($("input[name=txtAnoEstagio]").length-1).val()) != ''){
+                    prontoEstMil = 1;
+                }        
+            }
+            
+            if((prontoIdiomas == 1) && (prontoCAltEstudos == 1) && (prontoEstMil == 1)){
+                proximo($(this));
+            }
+        }
+        //23
+        else if(($("select[name=txtHabIdiomas]").val() == 's') && ($("select[name=txtPossuiCAperf]").val() == 'n') && ($("select[name=txtPossuiCAltEstudos]").val() == 's')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 's') && ($("select[name=txtPossuiEstMil]").val() == 'n')){
+            var prontoIdiomas = 0;
+            var prontoCAltEstudos = 0;
+            var prontoCExtsEsp = 0;
+            
+            for(var i=0;i<($("input[name=txtIdioma").length);i++){
+                if($("input[name=txtIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIdioma]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtIplIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIplIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIplIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIplIdioma]").eq(i).focus();
+                    break;
+                }
+                else if(($("input[name=txtIplIdioma]").eq($("input[name=txtIplIdioma]").length-1).val()) != ''){
+                    prontoIdiomas = 1;
+                }
+            }
+            
+            if($("select[name=txtCAltEstudos]").val() == '0' ){
+                $("select[name=txtCAltEstudos]").removeClass("is-valid");
+                $("select[name=txtCAltEstudos]").addClass("is-invalid");
+                $("select[name=txtCAltEstudos]").focus();
+            }
+            else if($("input[name=txtAnoCAltEstudos]").val() == ''){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAltEstudos]").val() != '') && ($("input[name=txtAnoCAltEstudos]").val().length < 4)){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAltEstudos = 1;
+            }
+            
+            for(var i=0;i<($("select[name=txtTipoCExtsEsp").length);i++){
+                if($("select[name=txtTipoCExtsEsp]").eq(i).val() == '0' ){
+                    $("select[name=txtTipoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtCExtsEsp]").eq(i).val() == '' ){
+                    $("input[name=txtCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoCExtsEsp]").eq(i).val() == ''){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq(i).val() != '') && ($("input[name=txtAnoCExtsEsp]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq($("input[name=txtAnoCExtsEsp]").length-1).val()) != ''){
+                    prontoCExtsEsp = 1;
+                }
+            }     
+            
+            if((prontoIdiomas == 1) && (prontoCAltEstudos == 1) && (prontoCExtsEsp == 1)){
+                proximo($(this));
+            }
+        }
+        //24
+        else if(($("select[name=txtHabIdiomas]").val() == 's') && ($("select[name=txtPossuiCAperf]").val() == 'n') && ($("select[name=txtPossuiCAltEstudos]").val() == 's')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 's') && ($("select[name=txtPossuiEstMil]").val() == 's')){
+            var prontoIdiomas = 0;
+            var prontoCAltEstudos = 0;
+            var prontoCExtsEsp = 0;
+            var prontoEstMil = 0;
+            
+            for(var i=0;i<($("input[name=txtIdioma").length);i++){
+                if($("input[name=txtIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIdioma]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtIplIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIplIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIplIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIplIdioma]").eq(i).focus();
+                    break;
+                }
+                else if(($("input[name=txtIplIdioma]").eq($("input[name=txtIplIdioma]").length-1).val()) != ''){
+                    prontoIdiomas = 1;
+                }
+            }
+            
+            if($("select[name=txtCAltEstudos]").val() == '0' ){
+                $("select[name=txtCAltEstudos]").removeClass("is-valid");
+                $("select[name=txtCAltEstudos]").addClass("is-invalid");
+                $("select[name=txtCAltEstudos]").focus();
+            }
+            else if($("input[name=txtAnoCAltEstudos]").val() == ''){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAltEstudos]").val() != '') && ($("input[name=txtAnoCAltEstudos]").val().length < 4)){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAltEstudos = 1;
+            }
+            
+            for(var i=0;i<($("select[name=txtTipoCExtsEsp").length);i++){
+                if($("select[name=txtTipoCExtsEsp]").eq(i).val() == '0' ){
+                    $("select[name=txtTipoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtCExtsEsp]").eq(i).val() == '' ){
+                    $("input[name=txtCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoCExtsEsp]").eq(i).val() == ''){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq(i).val() != '') && ($("input[name=txtAnoCExtsEsp]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq($("input[name=txtAnoCExtsEsp]").length-1).val()) != ''){
+                    prontoCExtsEsp = 1;
+                }
+            }
+            
+            for(var i=0;i<($("input[name=txtEstagio").length);i++){
+                if($("input[name=txtEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtEstagio]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq(i).val() != '') && ($("input[name=txtAnoEstagio]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq($("input[name=txtAnoEstagio]").length-1).val()) != ''){
+                    prontoEstMil = 1;
+                }        
+            }
+            
+            if((prontoIdiomas == 1) && (prontoCAltEstudos == 1) && (prontoCExtsEsp == 1) && (prontoEstMil == 1)){
+                proximo($(this));
+            }
+        }
+        //25
+        else if(($("select[name=txtHabIdiomas]").val() == 's') && ($("select[name=txtPossuiCAperf]").val() == 's') && ($("select[name=txtPossuiCAltEstudos]").val() == 'n')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 'n') && ($("select[name=txtPossuiEstMil]").val() == 'n')){
+            var prontoIdiomas = 0;
+            var prontoCAperf = 0;
+            
+            for(var i=0;i<($("input[name=txtIdioma").length);i++){
+                if($("input[name=txtIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIdioma]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtIplIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIplIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIplIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIplIdioma]").eq(i).focus();
+                    break;
+                }
+                else if(($("input[name=txtIplIdioma]").eq($("input[name=txtIplIdioma]").length-1).val()) != ''){
+                    prontoIdiomas = 1;
+                }
+            }
+            
+            if($("select[name=txtCAperf]").val() == '0' ){
+                $("select[name=txtCAperf]").removeClass("is-valid");
+                $("select[name=txtCAperf]").addClass("is-invalid");
+                $("select[name=txtCAperf]").focus();
+            }
+            else if($("input[name=txtAnoCAperf]").val() == ''){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAperf]").val() != '') && ($("input[name=txtAnoCAperf]").val().length < 4)){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAperf = 1;
+            }
+            
+            if((prontoIdiomas == 1) && (prontoCAperf == 1)){
+                proximo($(this));
+            }
+        }
+        //26
+        else if(($("select[name=txtHabIdiomas]").val() == 's') && ($("select[name=txtPossuiCAperf]").val() == 's') && ($("select[name=txtPossuiCAltEstudos]").val() == 'n')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 'n') && ($("select[name=txtPossuiEstMil]").val() == 's')){
+            var prontoIdiomas = 0;
+            var prontoCAperf = 0;
+            var prontoEstMil = 0;
+            
+            for(var i=0;i<($("input[name=txtIdioma").length);i++){
+                if($("input[name=txtIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIdioma]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtIplIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIplIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIplIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIplIdioma]").eq(i).focus();
+                    break;
+                }
+                else if(($("input[name=txtIplIdioma]").eq($("input[name=txtIplIdioma]").length-1).val()) != ''){
+                    prontoIdiomas = 1;
+                }
+            }
+            
+            if($("select[name=txtCAperf]").val() == '0' ){
+                $("select[name=txtCAperf]").removeClass("is-valid");
+                $("select[name=txtCAperf]").addClass("is-invalid");
+                $("select[name=txtCAperf]").focus();
+            }
+            else if($("input[name=txtAnoCAperf]").val() == ''){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAperf]").val() != '') && ($("input[name=txtAnoCAperf]").val().length < 4)){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAperf = 1;
+            }
+            
+            for(var i=0;i<($("input[name=txtEstagio").length);i++){
+                if($("input[name=txtEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtEstagio]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq(i).val() != '') && ($("input[name=txtAnoEstagio]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq($("input[name=txtAnoEstagio]").length-1).val()) != ''){
+                    prontoEstMil = 1;
+                }        
+            }
+            
+            if((prontoIdiomas == 1) && (prontoCAperf == 1) && (prontoEstMil == 1)){
+                proximo($(this));
+            }
+        }
+        //27
+        else if(($("select[name=txtHabIdiomas]").val() == 's') && ($("select[name=txtPossuiCAperf]").val() == 's') && ($("select[name=txtPossuiCAltEstudos]").val() == 'n')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 's') && ($("select[name=txtPossuiEstMil]").val() == 'n')){
+            var prontoIdiomas = 0;
+            var prontoCAperf = 0;
+            var prontoCExtsEsp = 0;
+            
+            for(var i=0;i<($("input[name=txtIdioma").length);i++){
+                if($("input[name=txtIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIdioma]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtIplIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIplIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIplIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIplIdioma]").eq(i).focus();
+                    break;
+                }
+                else if(($("input[name=txtIplIdioma]").eq($("input[name=txtIplIdioma]").length-1).val()) != ''){
+                    prontoIdiomas = 1;
+                }
+            }
+            
+            if($("select[name=txtCAperf]").val() == '0' ){
+                $("select[name=txtCAperf]").removeClass("is-valid");
+                $("select[name=txtCAperf]").addClass("is-invalid");
+                $("select[name=txtCAperf]").focus();
+            }
+            else if($("input[name=txtAnoCAperf]").val() == ''){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAperf]").val() != '') && ($("input[name=txtAnoCAperf]").val().length < 4)){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAperf = 1;
+            }
+            
+            for(var i=0;i<($("select[name=txtTipoCExtsEsp").length);i++){
+                if($("select[name=txtTipoCExtsEsp]").eq(i).val() == '0' ){
+                    $("select[name=txtTipoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtCExtsEsp]").eq(i).val() == '' ){
+                    $("input[name=txtCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoCExtsEsp]").eq(i).val() == ''){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq(i).val() != '') && ($("input[name=txtAnoCExtsEsp]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq($("input[name=txtAnoCExtsEsp]").length-1).val()) != ''){
+                    prontoCExtsEsp = 1;
+                }
+            }
+            
+            if((prontoIdiomas == 1) && (prontoCAperf == 1) && (prontoCExtsEsp == 1)){
+                proximo($(this));
+            }
+        }
+        //28
+        else if(($("select[name=txtHabIdiomas]").val() == 's') && ($("select[name=txtPossuiCAperf]").val() == 's') && ($("select[name=txtPossuiCAltEstudos]").val() == 'n')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 's') && ($("select[name=txtPossuiEstMil]").val() == 's')){
+            var prontoIdiomas = 0;
+            var prontoCAperf = 0;
+            var prontoCExtsEsp = 0;
+            var prontoEstMil = 0;
+            
+            for(var i=0;i<($("input[name=txtIdioma").length);i++){
+                if($("input[name=txtIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIdioma]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtIplIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIplIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIplIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIplIdioma]").eq(i).focus();
+                    break;
+                }
+                else if(($("input[name=txtIplIdioma]").eq($("input[name=txtIplIdioma]").length-1).val()) != ''){
+                    prontoIdiomas = 1;
+                }
+            }
+            
+            if($("select[name=txtCAperf]").val() == '0' ){
+                $("select[name=txtCAperf]").removeClass("is-valid");
+                $("select[name=txtCAperf]").addClass("is-invalid");
+                $("select[name=txtCAperf]").focus();
+            }
+            else if($("input[name=txtAnoCAperf]").val() == ''){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAperf]").val() != '') && ($("input[name=txtAnoCAperf]").val().length < 4)){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAperf = 1;
+            }
+            
+            for(var i=0;i<($("select[name=txtTipoCExtsEsp").length);i++){
+                if($("select[name=txtTipoCExtsEsp]").eq(i).val() == '0' ){
+                    $("select[name=txtTipoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtCExtsEsp]").eq(i).val() == '' ){
+                    $("input[name=txtCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoCExtsEsp]").eq(i).val() == ''){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq(i).val() != '') && ($("input[name=txtAnoCExtsEsp]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq($("input[name=txtAnoCExtsEsp]").length-1).val()) != ''){
+                    prontoCExtsEsp = 1;
+                }
+            }
+            
+            for(var i=0;i<($("input[name=txtEstagio").length);i++){
+                if($("input[name=txtEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtEstagio]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq(i).val() != '') && ($("input[name=txtAnoEstagio]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq($("input[name=txtAnoEstagio]").length-1).val()) != ''){
+                    prontoEstMil = 1;
+                }        
+            }
+            
+            if((prontoIdiomas == 1) && (prontoCAperf == 1) && (prontoCExtsEsp == 1) && (prontoEstMil == 1)){
+                proximo($(this));
+            }
+        }
+        //29
+        else if(($("select[name=txtHabIdiomas]").val() == 's') && ($("select[name=txtPossuiCAperf]").val() == 's') && ($("select[name=txtPossuiCAltEstudos]").val() == 's')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 'n') && ($("select[name=txtPossuiEstMil]").val() == 'n')){
+            var prontoIdiomas = 0;
+            var prontoCAperf = 0;
+            var prontoCAltEstudos = 0;
+            
+            for(var i=0;i<($("input[name=txtIdioma").length);i++){
+                if($("input[name=txtIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIdioma]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtIplIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIplIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIplIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIplIdioma]").eq(i).focus();
+                    break;
+                }
+                else if(($("input[name=txtIplIdioma]").eq($("input[name=txtIplIdioma]").length-1).val()) != ''){
+                    prontoIdiomas = 1;
+                }
+            }
+            
+            if($("select[name=txtCAperf]").val() == '0' ){
+                $("select[name=txtCAperf]").removeClass("is-valid");
+                $("select[name=txtCAperf]").addClass("is-invalid");
+                $("select[name=txtCAperf]").focus();
+            }
+            else if($("input[name=txtAnoCAperf]").val() == ''){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAperf]").val() != '') && ($("input[name=txtAnoCAperf]").val().length < 4)){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAperf = 1;
+            }
+            
+            if($("select[name=txtCAltEstudos]").val() == '0' ){
+                $("select[name=txtCAltEstudos]").removeClass("is-valid");
+                $("select[name=txtCAltEstudos]").addClass("is-invalid");
+                $("select[name=txtCAltEstudos]").focus();
+            }
+            else if($("input[name=txtAnoCAltEstudos]").val() == ''){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAltEstudos]").val() != '') && ($("input[name=txtAnoCAltEstudos]").val().length < 4)){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAltEstudos = 1;
+            }
+            
+            if((prontoIdiomas == 1) && (prontoCAperf == 1) && (prontoCAltEstudos == 1)){
+                proximo($(this));
+            }
+        }
+        //30
+        else if(($("select[name=txtHabIdiomas]").val() == 's') && ($("select[name=txtPossuiCAperf]").val() == 's') && ($("select[name=txtPossuiCAltEstudos]").val() == 's')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 'n') && ($("select[name=txtPossuiEstMil]").val() == 's')){
+            var prontoIdiomas = 0;
+            var prontoCAperf = 0;
+            var prontoCAltEstudos = 0;
+            var prontoEstMil = 0;
+            
+            for(var i=0;i<($("input[name=txtIdioma").length);i++){
+                if($("input[name=txtIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIdioma]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtIplIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIplIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIplIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIplIdioma]").eq(i).focus();
+                    break;
+                }
+                else if(($("input[name=txtIplIdioma]").eq($("input[name=txtIplIdioma]").length-1).val()) != ''){
+                    prontoIdiomas = 1;
+                }
+            }
+            
+            if($("select[name=txtCAperf]").val() == '0' ){
+                $("select[name=txtCAperf]").removeClass("is-valid");
+                $("select[name=txtCAperf]").addClass("is-invalid");
+                $("select[name=txtCAperf]").focus();
+            }
+            else if($("input[name=txtAnoCAperf]").val() == ''){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAperf]").val() != '') && ($("input[name=txtAnoCAperf]").val().length < 4)){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAperf = 1;
+            }
+            
+            if($("select[name=txtCAltEstudos]").val() == '0' ){
+                $("select[name=txtCAltEstudos]").removeClass("is-valid");
+                $("select[name=txtCAltEstudos]").addClass("is-invalid");
+                $("select[name=txtCAltEstudos]").focus();
+            }
+            else if($("input[name=txtAnoCAltEstudos]").val() == ''){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAltEstudos]").val() != '') && ($("input[name=txtAnoCAltEstudos]").val().length < 4)){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAltEstudos = 1;
+            }
+            
+            for(var i=0;i<($("input[name=txtEstagio").length);i++){
+                if($("input[name=txtEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtEstagio]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq(i).val() != '') && ($("input[name=txtAnoEstagio]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq($("input[name=txtAnoEstagio]").length-1).val()) != ''){
+                    prontoEstMil = 1;
+                }        
+            }
+            
+            if((prontoIdiomas == 1) && (prontoCAperf == 1) && (prontoCAltEstudos == 1) && (prontoEstMil == 1)){
+                proximo($(this));
+            }
+        }
+        //31
+        else if(($("select[name=txtHabIdiomas]").val() == 's') && ($("select[name=txtPossuiCAperf]").val() == 's') && ($("select[name=txtPossuiCAltEstudos]").val() == 's')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 's') && ($("select[name=txtPossuiEstMil]").val() == 'n')){
+            var prontoIdiomas = 0;
+            var prontoCAperf = 0;
+            var prontoCAltEstudos = 0;
+            var prontoCExtsEsp = 0;
+            
+            for(var i=0;i<($("input[name=txtIdioma").length);i++){
+                if($("input[name=txtIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIdioma]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtIplIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIplIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIplIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIplIdioma]").eq(i).focus();
+                    break;
+                }
+                else if(($("input[name=txtIplIdioma]").eq($("input[name=txtIplIdioma]").length-1).val()) != ''){
+                    prontoIdiomas = 1;
+                }
+            }
+            
+            if($("select[name=txtCAperf]").val() == '0' ){
+                $("select[name=txtCAperf]").removeClass("is-valid");
+                $("select[name=txtCAperf]").addClass("is-invalid");
+                $("select[name=txtCAperf]").focus();
+            }
+            else if($("input[name=txtAnoCAperf]").val() == ''){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAperf]").val() != '') && ($("input[name=txtAnoCAperf]").val().length < 4)){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAperf = 1;
+            }
+            
+            if($("select[name=txtCAltEstudos]").val() == '0' ){
+                $("select[name=txtCAltEstudos]").removeClass("is-valid");
+                $("select[name=txtCAltEstudos]").addClass("is-invalid");
+                $("select[name=txtCAltEstudos]").focus();
+            }
+            else if($("input[name=txtAnoCAltEstudos]").val() == ''){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAltEstudos]").val() != '') && ($("input[name=txtAnoCAltEstudos]").val().length < 4)){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAltEstudos = 1;
+            }
+            
+            for(var i=0;i<($("select[name=txtTipoCExtsEsp").length);i++){
+                if($("select[name=txtTipoCExtsEsp]").eq(i).val() == '0' ){
+                    $("select[name=txtTipoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtCExtsEsp]").eq(i).val() == '' ){
+                    $("input[name=txtCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoCExtsEsp]").eq(i).val() == ''){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq(i).val() != '') && ($("input[name=txtAnoCExtsEsp]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq($("input[name=txtAnoCExtsEsp]").length-1).val()) != ''){
+                    prontoCExtsEsp = 1;
+                }
+            }
+            
+            if((prontoIdiomas == 1) && (prontoCAperf == 1) && (prontoCAltEstudos == 1) && (prontoCExtsEsp == 1)){
+                proximo($(this));
+            }
+        }
+        //32
+        else if(($("select[name=txtHabIdiomas]").val() == 's') && ($("select[name=txtPossuiCAperf]").val() == 's') && ($("select[name=txtPossuiCAltEstudos]").val() == 's')
+                && ($("select[name=txtPossuiCExtsEsp]").val() == 's') && ($("select[name=txtPossuiEstMil]").val() == 's')){
+            var prontoIdiomas = 0;
+            var prontoCAperf = 0;
+            var prontoCAltEstudos = 0;
+            var prontoCExtsEsp = 0;
+            var prontoEstMil = 0;
+            
+            for(var i=0;i<($("input[name=txtIdioma").length);i++){
+                if($("input[name=txtIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIdioma]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtIplIdioma]").eq(i).val() == '' ){
+                    $("input[name=txtIplIdioma]").eq(i).removeClass("is-valid");
+                    $("input[name=txtIplIdioma]").eq(i).addClass("is-invalid");
+                    $("input[name=txtIplIdioma]").eq(i).focus();
+                    break;
+                }
+                else if(($("input[name=txtIplIdioma]").eq($("input[name=txtIplIdioma]").length-1).val()) != ''){
+                    prontoIdiomas = 1;
+                }
+            }
+            
+            if($("select[name=txtCAperf]").val() == '0' ){
+                $("select[name=txtCAperf]").removeClass("is-valid");
+                $("select[name=txtCAperf]").addClass("is-invalid");
+                $("select[name=txtCAperf]").focus();
+            }
+            else if($("input[name=txtAnoCAperf]").val() == ''){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAperf]").val() != '') && ($("input[name=txtAnoCAperf]").val().length < 4)){
+                $("input[name=txtAnoCAperf]").removeClass("is-valid");
+                $("input[name=txtAnoCAperf]").addClass("is-invalid");
+                $("input[name=txtAnoCAperf]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAperf = 1;
+            }
+            
+            if($("select[name=txtCAltEstudos]").val() == '0' ){
+                $("select[name=txtCAltEstudos]").removeClass("is-valid");
+                $("select[name=txtCAltEstudos]").addClass("is-invalid");
+                $("select[name=txtCAltEstudos]").focus();
+            }
+            else if($("input[name=txtAnoCAltEstudos]").val() == ''){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("Campo Obrigatório!");
+            }
+            else if(($("input[name=txtAnoCAltEstudos]").val() != '') && ($("input[name=txtAnoCAltEstudos]").val().length < 4)){
+                $("input[name=txtAnoCAltEstudos]").removeClass("is-valid");
+                $("input[name=txtAnoCAltEstudos]").addClass("is-invalid");
+                $("input[name=txtAnoCAltEstudos]").focus();
+                $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+            }
+            else{
+                prontoCAltEstudos = 1;
+            }
+            
+            for(var i=0;i<($("select[name=txtTipoCExtsEsp").length);i++){
+                if($("select[name=txtTipoCExtsEsp]").eq(i).val() == '0' ){
+                    $("select[name=txtTipoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("select[name=txtTipoCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtCExtsEsp]").eq(i).val() == '' ){
+                    $("input[name=txtCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtCExtsEsp]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoCExtsEsp]").eq(i).val() == ''){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq(i).val() != '') && ($("input[name=txtAnoCExtsEsp]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoCExtsEsp]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoCExtsEsp]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoCExtsEsp]").eq($("input[name=txtAnoCExtsEsp]").length-1).val()) != ''){
+                    prontoCExtsEsp = 1;
+                }
+            }
+            
+            for(var i=0;i<($("input[name=txtEstagio").length);i++){
+                if($("input[name=txtEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtEstagio]").eq(i).focus();
+                    break;
+                }
+                else if($("input[name=txtAnoEstagio]").eq(i).val() == '' ){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("Campo Obrigatório!");
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq(i).val() != '') && ($("input[name=txtAnoEstagio]").eq(i).val().length < 4)){
+                    $("input[name=txtAnoEstagio]").eq(i).removeClass("is-valid");
+                    $("input[name=txtAnoEstagio]").eq(i).addClass("is-invalid");
+                    $("input[name=txtAnoEstagio]").eq(i).focus();
+                    $(".invalid-ano").html("O ano é formado 4 caracteres!");   
+                    break;
+                }
+                else if(($("input[name=txtAnoEstagio]").eq($("input[name=txtAnoEstagio]").length-1).val()) != ''){
+                    prontoEstMil = 1;
+                }        
+            }
+            
+            if((prontoIdiomas == 1) && (prontoCAperf == 1) && (prontoCAltEstudos == 1) && (prontoCExtsEsp == 1) && (prontoEstMil == 1)){
+                proximo($(this));
+            }
         }
     });
 });

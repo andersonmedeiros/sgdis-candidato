@@ -314,8 +314,7 @@ $("select[name=txtForca]").change(function(){
     
     removeValidacao("select[name=txtPGradCmtOM]");
     removeValidacao("select[name=txtPGradChImtoOM]");
-    removeValidacao("select[name=txtPGradAl]");
-    
+    removeValidacao("select[name=txtPGradAl]");    
     
     $("select[name=txtFormEscNome]").val("0");
     removeValidacao("select[name=txtFormEscNome]");

@@ -75,7 +75,7 @@
             <%
                 HttpSession sessao = request.getSession();
                 String curso = String.valueOf(sessao.getAttribute("curso"));
-                String categoria = String.valueOf(sessao.getAttribute("categoria"));
+                int categoria = Integer.parseInt(String.valueOf(sessao.getAttribute("categoria")));
                 
                 
                 ForcaDAO forcaDAO = new ForcaDAO();
@@ -1233,10 +1233,18 @@
                                                     "<div class=\"form-group col-md-8\">"+
                                                         "<label for=\"txtCAperf\">Curso: <span class=\"campo-obrigatorio\">*</span></label>"+
                                                         "<select class=\"form-control\" id=\"txtCAperf\" name=\"txtCAperf\">"+
-                                                            "<option value=\"0\" selected>Selecione o curso...</option>"+
-                                                            "<option value=\"esao\">ESAO</option>"+
-                                                            "<option value=\"easa\">EASA</option>"+
-                                                        "</select>"+
+                                                            "<option value=\"0\" selected>Selecione o curso...</option>");
+                                                            if((categoria == 1) || (categoria == 2)){
+                                                                out.println("<option value=\"esao\">ESAO</option>");
+                                                            }
+                                                            else if(categoria == 3){
+                                                                out.println("<option value=\"easa\">EASA</option>");
+                                                            }
+                                                            else if(categoria == 4){
+                                                                out.println("<option value=\"esao\">ESAO</option>");
+                                                                out.println("<option value=\"easa\">EASA</option>");
+                                                            }
+                                            out.println("</select>"+
                                                         "<div class=\"valid-feedback\">Selva!</div>"+
                                                         "<div class=\"invalid-feedback\">Campo Obrigatório!</div>"+
                                                     "</div>"+
@@ -1270,11 +1278,21 @@
                                                     "<div class=\"form-group col-md-8\">"+
                                                         "<label for=\"txtCAltEstudos\">Curso: <span class=\"campo-obrigatorio\">*</span></label>"+
                                                         "<select class=\"form-control\" id=\"txtCAltEstudos\" name=\"txtCAltEstudos\">"+
-                                                            "<option value=\"0\" selected>Selecione o curso...</option>"+
-                                                            "<option value=\"eceme\">ECEME</option>"+
-                                                            "<option value=\"cgaem\">CGAEM</option>"+
-                                                            "<option value=\"chqao\">CHQAO</option>"+
-                                                        "</select>"+
+                                                            "<option value=\"0\" selected>Selecione o curso...</option>");
+                                                            if((categoria == 1) || (categoria == 2)){
+                                                                out.println("<option value=\"eceme\">ECEME</option>");
+                                                                out.println("<option value=\"cgaem\">CGAEM</option>");
+                                                            }
+                                                            else if(categoria == 3){
+                                                                out.println("<option value=\"chqao\">CHQAO</option>");
+                                                            }
+                                                            else if(categoria == 4){
+                                                                out.println("<option value=\"eceme\">ECEME</option>");
+                                                                out.println("<option value=\"cgaem\">CGAEM</option>");
+                                                                out.println("<option value=\"chqao\">CHQAO</option>");
+                                                            }
+                                                            
+                                            out.println("</select>"+
                                                         "<div class=\"valid-feedback\">Selva!</div>"+
                                                         "<div class=\"invalid-feedback\">Campo Obrigatório!</div>"+
                                                     "</div>"+
