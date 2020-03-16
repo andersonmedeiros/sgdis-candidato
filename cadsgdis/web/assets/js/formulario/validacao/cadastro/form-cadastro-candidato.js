@@ -2058,6 +2058,47 @@ $(document).ready(function(){
     validSelect("select[name=txtPossuiEstMil]");
     validSelectTReal("select[name=txtPossuiEstMil]");
     acionamentoForm("select[name=txtPossuiEstMil]", "#divEstagios");
+    
+    //Etapa 8: PREPARAÇÃO
+    //Campo Select Preparação Física
+    validSelect("select[name=txtPrepFisica]");
+    validSelectTReal("select[name=txtPrepFisica]");
+    
+    //Campo Select Apoio Familiar
+    validSelect("select[name=txtApoioFam]");
+    validSelectTReal("select[name=txtApoioFam]");
+    
+    //Campo Select Apoio de sua OM
+    validSelect("select[name=txtApoioOM]");
+    validSelectTReal("select[name=txtApoioOM]");
+    
+    //Campo Select OM Curso de preparação
+    validSelect("select[name=txtCPrepCOS]");
+    validSelectTReal("select[name=txtCPrepCOS]");
+    
+    //Campo Select Problemas comprometer seu rendimento
+    validSelect("select[name=txtProbRend]");
+    validSelectTReal("select[name=txtProbRend]");
+    
+    //Campo Select Tempo de Preparação
+    validSelect("select[name=txtTempoPrep]");
+    validSelectTReal("select[name=txtTempoPrep]");
+    
+    //Campo Select Preparo intelectual no assunto de Doutrina de Operações na Selva
+    validSelect("select[name=txtDedicacaoDoutOPS]");
+    validSelectTReal("select[name=txtDedicacaoDoutOPS]");
+    
+    //Campo Input Fator Motivação
+    validInput("input[name=txtFatorMotivacao]");
+    validInputTReal("input[name=txtFatorMotivacao]");
+    
+    //Campo Select Consultou Site
+    validSelect("select[name=txtCsltSite]");
+    validSelectTReal("select[name=txtCsltSite]");
+    
+    //Campo Select Consultou Ambiente Virtual do Aluno
+    validSelect("select[name=txtCsltAmbVirtAl]");
+    validSelectTReal("select[name=txtCsltAmbVirtAl]");
 });
 
 
@@ -6028,6 +6069,67 @@ $(function(){
             if((prontoIdiomas == 1) && (prontoCAperf == 1) && (prontoCAltEstudos == 1) && (prontoCExtsEsp == 1) && (prontoEstMil == 1)){
                 proximo($(this));
             }
+        }
+    });
+    
+    //Etapa 8: PREPARAÇÃO 
+    $("button[name=btnProximo9]").click(function(){
+        if($("select[name=txtPrepFisica]").val() == '0'){
+            $("select[name=txtPrepFisica]").removeClass("is-valid");
+            $("select[name=txtPrepFisica]").addClass("is-invalid");
+            $("select[name=txtPrepFisica]").focus();
+        }
+        else if($("select[name=txtApoioFam]").val() == '0'){
+            $("select[name=txtApoioFam]").removeClass("is-valid");
+            $("select[name=txtApoioFam]").addClass("is-invalid");
+            $("select[name=txtApoioFam]").focus();
+        }
+        else if($("select[name=txtApoioOM]").val() == '0'){
+            $("select[name=txtApoioOM]").removeClass("is-valid");
+            $("select[name=txtApoioOM]").addClass("is-invalid");
+            $("select[name=txtApoioOM]").focus();
+        }
+        else if($("select[name=txtCPrepCOS]").val() == '0'){
+            $("select[name=txtCPrepCOS]").removeClass("is-valid");
+            $("select[name=txtCPrepCOS]").addClass("is-invalid");
+            $("select[name=txtCPrepCOS]").focus();
+        }
+        else if($("select[name=txtCPrepCOS]").val() == '0'){
+            $("select[name=txtCPrepCOS]").removeClass("is-valid");
+            $("select[name=txtCPrepCOS]").addClass("is-invalid");
+            $("select[name=txtCPrepCOS]").focus();
+        }
+        else if($("select[name=txtProbRend]").val() == '0'){
+            $("select[name=txtProbRend]").removeClass("is-valid");
+            $("select[name=txtProbRend]").addClass("is-invalid");
+            $("select[name=txtProbRend]").focus();
+        }
+        else if($("select[name=txtTempoPrep]").val() == '0'){
+            $("select[name=txtTempoPrep]").removeClass("is-valid");
+            $("select[name=txtTempoPrep]").addClass("is-invalid");
+            $("select[name=txtTempoPrep]").focus();
+        }
+        else if($("select[name=txtDedicacaoDoutOPS]").val() == '0'){
+            $("select[name=txtDedicacaoDoutOPS]").removeClass("is-valid");
+            $("select[name=txtDedicacaoDoutOPS]").addClass("is-invalid");
+            $("select[name=txtDedicacaoDoutOPS]").focus();
+        }
+        else if($("input[name=txtFatorMotivacao]").val() == ''){
+            $("input[name=txtFatorMotivacao]").removeClass("is-valid");
+            $("input[name=txtFatorMotivacao]").addClass("is-invalid");
+            $("input[name=txtFatorMotivacao]").focus();
+        }
+        else if($("select[name=txtCsltSite]").val() == '0'){
+            $("select[name=txtCsltSite]").removeClass("is-valid");
+            $("select[name=txtCsltSite]").addClass("is-invalid");
+            $("select[name=txtCsltSite]").focus();
+        }
+        else if($("select[name=txtCsltAmbVirtAl]").val() == '0'){
+            $("select[name=txtCsltAmbVirtAl]").removeClass("is-valid");
+            $("select[name=txtCsltAmbVirtAl]").addClass("is-invalid");
+            $("select[name=txtCsltAmbVirtAl]").focus();
+        }else{
+            proximo($(this));
         }
     });
 });
