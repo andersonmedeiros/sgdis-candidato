@@ -32,6 +32,9 @@ public class OmDAO {
     private final static String GETOM = "select * " +
                                              "from OM " +
                                              "where id = ?";
+    private final static String GETOMAMAZONIA = "select * " +
+                                             "from OM " +
+                                             "where idForca = ? and (idEstado = 1 or idEstado = 3 or idEstado = 21 or idEstado = 22)";
     
     public static List<Om> getOmsByForcaAndEstado(int idForca, int idEstado){
         Connection conn = null;
@@ -44,6 +47,37 @@ public class OmDAO {
             pstm = conn.prepareStatement(GETOMBYFORCAANDESTADO);
             pstm.setInt(1, idForca);
             pstm.setInt(2, idEstado);
+           
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+               Om om = new Om();
+               
+               om.setId(rs.getInt("id"));
+               om.setNome(rs.getString("nome"));
+               om.setAbreviatura(rs.getString("abreviatura"));
+               om.setNumEndereco(rs.getString("numendereco"));
+               om.setIdForca(rs.getInt("idForca"));
+               om.setIdEstado(rs.getInt("idEstado"));
+               om.setIdEndereco(rs.getInt("idEndereco"));
+                
+               oms.add(om);
+            }
+            ConnectionFactory.fechaConexao(conn, pstm, rs);
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());           
+        }
+        return oms;
+    }
+    public static List<Om> getOmsAmazonia(int idForca){
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        List<Om> oms = new ArrayList<>();
+        
+        try {
+            conn = ConnectionFactory.getConnection();
+            pstm = conn.prepareStatement(GETOMAMAZONIA);
+            pstm.setInt(1, idForca);
            
             rs = pstm.executeQuery();
             while (rs.next()) {

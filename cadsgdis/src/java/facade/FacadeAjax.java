@@ -100,6 +100,12 @@ public class FacadeAjax {
         return listResult;
     }
     
+    public List getOmsAmazonia(int idForca) throws Throwable, Exception{
+        List<Om> listResult = new ArrayList();
+        listResult = OmDAO.getOmsAmazonia(idForca);
+        return listResult;
+    }
+    
     public String getAbreviaturaOM(int idOM) throws Throwable, Exception{
         String abreviatura = OmDAO.getAbreviaturaOM(idOM);
         return abreviatura;
@@ -109,6 +115,8 @@ public class FacadeAjax {
         Om om = OmDAO.getOM(idOM);
         return om;
     }
+    
+    
     
     public Endereco getEnderecoByOM(int idOM) throws Throwable, Exception{
         Endereco endereco = EnderecoDAO.getEnderecoByOm(idOM);
