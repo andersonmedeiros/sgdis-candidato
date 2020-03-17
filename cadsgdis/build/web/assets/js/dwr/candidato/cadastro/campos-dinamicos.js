@@ -356,11 +356,15 @@ $("select[name=txtNomeOM]").change(function(){
     montaSelectDependenteOM(this.value);
 });
 
-$("select[name=txtNatEstAl]").change(function(){    
+$("select[name=txtNatEstAl]").change(function(){
+    $("select[name=txtNatCidAl]").removeClass("is-valid");
+    $("select[name=txtNatCidAl]").removeClass("is-invalid");
     montaSelectDependenteNatEstado(this.value);
 });
 
-$("select[name=txtTitEleitorEstAl]").change(function(){    
+$("select[name=txtTitEleitorEstAl]").change(function(){
+    $("select[name=txtTitEleitorCidAl]").removeClass("is-valid");
+    $("select[name=txtTitEleitorCidAl]").removeClass("is-invalid");
     montaSelectDependenteTitEleitorEstado(this.value);
 });
 
