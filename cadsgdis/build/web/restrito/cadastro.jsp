@@ -491,7 +491,7 @@
                                                         "<label for=\"txtEmailAl\">Email: <span class=\"campo-obrigatorio\">*</span></label>"+
                                                         "<input type=\"text\" class=\"form-control\" id=\"txtEmailAl\" name=\"txtEmailAl\" placeholder=\"Ex.: fulanodetal@gmail.com\">"+
                                                         "<div class=\"valid-feedback\">Selva!</div>"+
-                                                        "<div class=\"invalid-feedback invalid-emailAl\">Campo Obrigatório!</div>"+
+                                                        "<div class=\"invalid-feedback invalid-email\">Campo Obrigatório!</div>"+
                                                     "</div>"+
 
                                                     "<div class=\"form-group col-md-4\">"+
@@ -919,7 +919,7 @@
                                                         "<label for=\"txtEmailConjuge\">Email: <span class=\"campo-obrigatorio\">*</span></label>"+
                                                         "<input type=\"email\" class=\"form-control\" id=\"txtEmailConjuge\" name=\"txtEmailConjuge\" placeholder=\"Ex.: fulanodetal@gmail.com\">"+
                                                         "<div class=\"valid-feedback\">Selva!</div>"+
-                                                        "<div class=\"invalid-feedback\">Campo Obrigatório!</div>"+
+                                                        "<div class=\"invalid-feedback invalid-email\">Campo Obrigatório!</div>"+
                                                     "</div>"+                                  
                                                     "<div class=\"form-group col-md-4\">"+
                                                         "<label for=\"txtFoneConjuge\">Fone: <span class=\"campo-obrigatorio\">*</span></label>"+
@@ -966,7 +966,7 @@
                                                         "<label for=\"txtEmailRef\">Email: <span class=\"campo-obrigatorio\">*</span></label>"+
                                                         "<input type=\"email\" class=\"form-control\" id=\"txtEmailRef\" name=\"txtEmailRef\" placeholder=\"Ex.: fulanodetal@gmail.com\">"+
                                                         "<div class=\"valid-feedback\">Selva!</div>"+
-                                                        "<div class=\"invalid-feedback\">Campo Obrigatório!</div>"+
+                                                        "<div class=\"invalid-feedback invalid-email\">Campo Obrigatório!</div>"+
                                                     "</div>"+ 
                                                     "<div class=\"form-group col-md-3\">"+
                                                         "<label for=\"txtFoneRef\">Fone: <span class=\"campo-obrigatorio\">*</span></label>"+
@@ -1024,7 +1024,7 @@
                                                         "<label for=\"txtEmailRefConclusao\">Email: <span class=\"campo-obrigatorio\">*</span></label>"+
                                                         "<input type=\"email\" class=\"form-control\" id=\"txtEmailRefConclusao\" name=\"txtEmailRefConclusao\" placeholder=\"Ex.: fulanodetal@gmail.com\">"+
                                                         "<div class=\"valid-feedback\">Selva!</div>"+
-                                                        "<div class=\"invalid-feedback\">Campo Obrigatório!</div>"+
+                                                        "<div class=\"invalid-feedback invalid-email\">Campo Obrigatório!</div>"+
                                                     "</div>"+ 
                                                     "<div class=\"form-group col-md-3\">"+
                                                         "<label for=\"txtFoneRefConclusao\">Fone: <span class=\"campo-obrigatorio\">*</span></label>"+

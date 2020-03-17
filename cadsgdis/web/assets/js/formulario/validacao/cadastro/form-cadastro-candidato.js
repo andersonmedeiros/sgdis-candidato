@@ -395,26 +395,17 @@ function validAno(campo){
 };
 
 //EMAIL
-function validEmailAl(campo){
-    var email = $(campo).val();
-    var usuario = $(campo).val().substring(0, $(campo).val().value.indexOf("@"));
-    var dominio = $(campo).val().value.substring($(campo).val().value.indexOf("@")+ 1, $(campo).val().value.length);
-
-    if(email == ''){
-        $(campo).removeClass("is-valid");
-        $(campo).addClass("is-invalid");
-        $(".invalid-emailAl").html("Campo Obrigatório!");
-    } 
-    else if ((usuario.length >= 1) && (dominio.length >= 3) && (usuario.search("@") == -1) && (dominio.search("@") == -1) &&
-             (usuario.search(" ") == -1) && (dominio.search(" ") == -1) && (dominio.search(".") != -1) && (dominio.indexOf(".") >= 1)&& 
-             (dominio.lastIndexOf(".") < dominio.length - 1)) {
-        $(campo).removeClass("is-valid");
-        $(campo).addClass("is-invalid");
-        $(".invalid-emailAl").html("Email Inválido!");   
-    }
-    else{
+function validEmail(campo){
+    var filtro = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]+$/;
+    var email = $(campo).val(); 
+    if(filtro.test(email)){
         $(campo).removeClass("is-invalid");
         $(campo).addClass("is-valid");
+    }
+    else{            
+        $(campo).removeClass("is-valid");
+        $(campo).addClass("is-invalid");
+        $(".invalid-email").html("Email Inválido!");
     }
 };
 
@@ -1200,42 +1191,23 @@ function validAnoTReal(campo){
 };
 
 //EMAIL
-function validEmailAlTReal(campo){
+function validEmailTReal(campo){
     $(campo).change(function(){
-        
+        var filtro = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]+$/;
         var email = $(campo).val();
-        var exclude="/[^@-.w]|^[_@.-]|[._-]{2}|[@.]{2}|(@)[^@]*1/";
-        var check="/@[w-]+./";
-        var checkend="/.[a-zA-Z]{2,3}$/";
         if(email == ''){
             $(campo).removeClass("is-valid");
             $(campo).addClass("is-invalid");
-            $(".invalid-emailAl").html("Campo Obrigatório!");
-        }
-        else if(((email.search(exclude) != -1)||(email.search(check)) == -1)||(email.search(checkend) == -1)){
-            $(campo).removeClass("is-valid");
-            $(campo).addClass("is-invalid");
-            $(".invalid-emailAl").html("Email Inválido!");
-        }
-        /*var usuario = $(campo).val().substring(0, $(campo).val().value.indexOf("@"));
-        var dominio = $(campo).val().value.substring($(campo).val().value.indexOf("@")+ 1, $(campo).val().value.length);
-        
-        if(email == ''){
-            $(campo).removeClass("is-valid");
-            $(campo).addClass("is-invalid");
-            $(".invalid-emailAl").html("Campo Obrigatório!");
-        } 
-        else if ((usuario.length >= 1) && (dominio.length >= 3) && (usuario.search("@") == -1) && (dominio.search("@") == -1) &&
-                 (usuario.search(" ") == -1) && (dominio.search(" ") == -1) && (dominio.search(".") != -1) && (dominio.indexOf(".") >= 1)&& 
-                 (dominio.lastIndexOf(".") < dominio.length - 1)) {
-            $(campo).removeClass("is-valid");
-            $(campo).addClass("is-invalid");
-            $(".invalid-emailAl").html("Email Inválido!");   
-        }*/
-        else{
-            alert(email);
+            $(".invalid-email").html("Campo Obrigatório!");
+        }        
+        else if(filtro.test(email)){
             $(campo).removeClass("is-invalid");
             $(campo).addClass("is-valid");
+        }
+        else{            
+            $(campo).removeClass("is-valid");
+            $(campo).addClass("is-invalid");
+            $(".invalid-email").html("Email Inválido!");
         }
     });
 };
@@ -1760,8 +1732,8 @@ $(document).ready(function(){
     validInputTReal("input[name=txtContaAl]");
     
     //Campo Input Email
-    //validEmailAl("input[name=txtEmailAl]");
-    //validEmailAlTReal("input[name=txtEmailAl]");
+    validEmail("input[name=txtEmailAl]");
+    validEmailTReal("input[name=txtEmailAl]");
     
     //Campo Input Fone
     validFoneCel("input[name=txtFoneAl]");
@@ -1891,7 +1863,8 @@ $(document).ready(function(){
     validCPFTReal("input[name=txtCpfConjuge]");
     
     //Campo Input Email Cônjuge
-    //$("input[name=txtEmailConjuge]");
+    validEmail("input[name=txtEmailConjuge]");
+    validEmailTReal("input[name=txtEmailConjuge]");
     
     //Campo Input Fone Cônjuge
     validFoneCel("input[name=txtFoneConjuge]");
@@ -1914,7 +1887,8 @@ $(document).ready(function(){
     validCPFTReal("input[name=txtCpfRef]");
     
     //Campo Input Email Referência
-    //if($("input[name=txtEmailRef]");
+    validEmail("input[name=txtEmailRef]");
+    validEmailTReal("input[name=txtEmailRef]");
     
     //Campo Input Fone Referência
     validFoneCel("input[name=txtFoneRef]");
@@ -1942,7 +1916,8 @@ $(document).ready(function(){
     validCPFTReal("input[name=txtCpfRefConclusao]");
     
     //Campo Input Email Referência Conclusão
-    //if($("input[name=txtEmailRefConclusao]");
+    validEmail("input[name=txtEmailRefConclusao]");
+    validEmailTReal("input[name=txtEmailRefConclusao]");
     
     //Campo Input Fone Referência Conclusão
     validFoneCel("input[name=txtFoneRefConclusao]");
@@ -2287,6 +2262,9 @@ $(function(){
         
         var foneCel = $("input[name=txtFoneAl]").val().replace("-","").replace("(","").replace(")","").replace(" ","");
         
+        var filtro = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]+$/;
+        var emailAl = $("input[name=txtEmailAl]").val();               
+        
         var numCNH = $("input[name=txtCNHNumAl]").val().replace(" ","").replace(" ","").replace(" ","");        
         var dataValCNH = $("input[name=txtCNHDataValAl]").val();
         var dataValCNHSplit = dataValCNH.split('-');        
@@ -2580,7 +2558,18 @@ $(function(){
             $("input[name=txtContaAl]").addClass("is-invalid");
             $("input[name=txtContaAl]").focus();
         }
-        //Email
+        else if(emailAl == ''){
+            $("input[name=txtEmailAl]").removeClass("is-valid");
+            $("input[name=txtEmailAl]").addClass("is-invalid");
+            $("input[name=txtEmailAl]").focus();
+            $(".invalid-email").html("Campo Obrigatório!");
+        }        
+        else if(filtro.test(emailAl) == false){
+            $("input[name=txtEmailAl]").removeClass("is-valid");
+            $("input[name=txtEmailAl]").addClass("is-invalid");
+            $("input[name=txtEmailAl]").focus();
+            $(".invalid-email").html("Email Inválido!");
+        }
         else if(foneCel == ''){
             $("input[name=txtFoneAl]").removeClass("is-valid");
             $("input[name=txtFoneAl]").addClass("is-invalid");
@@ -3299,15 +3288,18 @@ $(function(){
     
     //Etapa 5: DADOS FAMILIARES
     $("button[name=btnProximo6]").click(function(){
+        var filtro = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]+$/; 
         var cpfConjuge = $("input[name=txtCpfConjuge]").val().replace(".","").replace(".","").replace("-","");
-        var foneCelConjuge = $("input[name=txtFoneConjuge]").val().replace("-","").replace("(","").replace(")","").replace(" ","");
+        var foneCelConjuge = $("input[name=txtFoneConjuge]").val().replace("-","").replace("(","").replace(")","").replace(" ","");          
+        var emailConjuge = $("input[name=txtEmailConjuge]").val();        
         
         var cpfRef = $("input[name=txtCpfRef]").val().replace(".","").replace(".","").replace("-","");        
         var foneCelRef = $("input[name=txtFoneRef]").val().replace("-","").replace("(","").replace(")","").replace(" ","");
+        var emailRef = $("input[name=txtEmailRef]").val();        
         
         var cpfRefConclusao = $("input[name=txtCpfRefConclusao]").val().replace(".","").replace(".","").replace("-","");        
         var foneCelRefConclusao = $("input[name=txtFoneRefConclusao]").val().replace("-","").replace("(","").replace(")","").replace(" ","");
-        
+        var emailRefConclusao = $("input[name=txtEmailRefConclusao]").val();
         
         if($("select[name=txtPossuiConjuge]").val() == '0'){
             $("select[name=txtPossuiConjuge]").removeClass("is-valid");
@@ -3389,10 +3381,17 @@ $(function(){
                     cpfOk = 1;
                 }    
             }
-            else if($("input[name=txtEmailRef]").val() == ''){
+            else if(emailRef == ''){
                 $("input[name=txtEmailRef]").removeClass("is-valid");
                 $("input[name=txtEmailRef]").addClass("is-invalid");
-                $("input[name=txtEmailRef]").focus();                
+                $("input[name=txtEmailRef]").focus();
+                $(".invalid-email").html("Campo Obrigatório!");
+            }        
+            else if(filtro.test(emailRef) == false){
+                $("input[name=txtEmailRef]").removeClass("is-valid");
+                $("input[name=txtEmailRef]").addClass("is-invalid");
+                $("input[name=txtEmailRef]").focus();
+                $(".invalid-email").html("Email Inválido!");
             }            
             else if(foneCelRef == ''){
                 $("input[name=txtFoneRef]").removeClass("is-valid");
@@ -3481,10 +3480,17 @@ $(function(){
                         cpfOk = 1;
                     }    
                 }
-                else if($("input[name=txtEmailRefConclusao]").val() == ''){
+                else if(emailRefConclusao == ''){
                     $("input[name=txtEmailRefConclusao]").removeClass("is-valid");
                     $("input[name=txtEmailRefConclusao]").addClass("is-invalid");
-                    $("input[name=txtEmailRefConclusao]").focus();                
+                    $("input[name=txtEmailRefConclusao]").focus();
+                    $(".invalid-email").html("Campo Obrigatório!");
+                }        
+                else if(filtro.test(emailRefConclusao) == false){
+                    $("input[name=txtEmailRefConclusao]").removeClass("is-valid");
+                    $("input[name=txtEmailRefConclusao]").addClass("is-invalid");
+                    $("input[name=txtEmailRefConclusao]").focus();
+                    $(".invalid-email").html("Email Inválido!");
                 }
                 else if(foneCelRefConclusao == ''){
                     $("input[name=txtFoneRefConclusao]").removeClass("is-valid");
@@ -3570,10 +3576,17 @@ $(function(){
                     cpfOk = 1;
                 }    
             }
-            else if($("input[name=txtEmailConjuge]").val() == ''){
+            else if(emailConjuge == ''){
                 $("input[name=txtEmailConjuge]").removeClass("is-valid");
                 $("input[name=txtEmailConjuge]").addClass("is-invalid");
-                $("input[name=txtEmailConjuge]").focus();                
+                $("input[name=txtEmailConjuge]").focus();
+                $(".invalid-email").html("Campo Obrigatório!");
+            }        
+            else if(filtro.test(emailConjuge) == false){
+                $("input[name=txtEmailConjuge]").removeClass("is-valid");
+                $("input[name=txtEmailConjuge]").addClass("is-invalid");
+                $("input[name=txtEmailConjuge]").focus();
+                $(".invalid-email").html("Email Inválido!");
             }
             else if(foneCelConjuge == ''){
                 $("input[name=txtFoneConjuge]").removeClass("is-valid");
@@ -3658,10 +3671,17 @@ $(function(){
                     cpfOk = 1;
                 }    
             }
-            else if($("input[name=txtEmailRef]").val() == ''){
+            else if(emailRef == ''){
                 $("input[name=txtEmailRef]").removeClass("is-valid");
                 $("input[name=txtEmailRef]").addClass("is-invalid");
-                $("input[name=txtEmailRef]").focus();                
+                $("input[name=txtEmailRef]").focus();
+                $(".invalid-email").html("Campo Obrigatório!");
+            }        
+            else if(filtro.test(emailRef) == false){
+                $("input[name=txtEmailRef]").removeClass("is-valid");
+                $("input[name=txtEmailRef]").addClass("is-invalid");
+                $("input[name=txtEmailRef]").focus();
+                $(".invalid-email").html("Email Inválido!");
             }
             else if(foneCelRef == ''){
                 $("input[name=txtFoneRef]").removeClass("is-valid");
@@ -3750,10 +3770,17 @@ $(function(){
                         cpfOk = 1;
                     }    
                 }
-                else if($("input[name=txtEmailRefConclusao]").val() == ''){
+                else if(emailRefConclusao == ''){
                     $("input[name=txtEmailRefConclusao]").removeClass("is-valid");
                     $("input[name=txtEmailRefConclusao]").addClass("is-invalid");
-                    $("input[name=txtEmailRefConclusao]").focus();                
+                    $("input[name=txtEmailRefConclusao]").focus();
+                    $(".invalid-email").html("Campo Obrigatório!");
+                }        
+                else if(filtro.test(emailRefConclusao) == false){
+                    $("input[name=txtEmailRefConclusao]").removeClass("is-valid");
+                    $("input[name=txtEmailRefConclusao]").addClass("is-invalid");
+                    $("input[name=txtEmailRefConclusao]").focus();
+                    $(".invalid-email").html("Email Inválido!");
                 }
                 else if(foneCelRefConclusao == ''){
                     $("input[name=txtFoneRefConclusao]").removeClass("is-valid");
