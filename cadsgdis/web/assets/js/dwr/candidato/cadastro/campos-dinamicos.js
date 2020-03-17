@@ -283,6 +283,13 @@ function montaSelectParentesco(parentescos){
 }
 FacadeAjax.getGrausParentesco(montaSelectParentesco);
 
+/*function montaSelectOMAmazonia(oms){
+    dwr.util.removeAllOptions("txtOMNomeSvAmz");
+    dwr.util.addOptions("txtOMNomeSvAmz", [{id: "0", nome: "Selecione uma OM..."}], "id", "nome");
+    dwr.util.addOptions("txtOMNomeSvAmz", oms, "id", "nome");
+}
+FacadeAjax.getOmsAmazonia(montaSelectOMAmazonia);*/
+
 $(function(){
     $("input[name=txtAbrevOM]").val('');
     $("input[name=txtAbrevOM]").prop("readonly", true);    

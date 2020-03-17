@@ -2099,6 +2099,12 @@ $(document).ready(function(){
     //Campo Select Consultou Ambiente Virtual do Aluno
     validSelect("select[name=txtCsltAmbVirtAl]");
     validSelectTReal("select[name=txtCsltAmbVirtAl]");
+    
+    //Etapa 9: VIVÊNCIA NA AMAZÔNIA
+    //Campo Select Já serviu na Amazônia
+    validSelect("select[name=txtSvAmz]");
+    validSelectTReal("select[name=txtSvAmz]");
+    acionamentoForm("select[name=txtSvAmz]", "#divSvAmz");
 });
 
 
@@ -6131,5 +6137,167 @@ $(function(){
         }else{
             proximo($(this));
         }
+    });
+    
+    //Etapa 9: VIVÊNCIA NA AMAZÔNIA
+    $("button[name=btnSalvar]").click(function(){
+        var dataAtual = new Date();
+        var diaAtual = dataAtual.getDate();
+        var mesAtual = (dataAtual.getMonth() + 1);
+        var anoAtual = dataAtual.getFullYear();
+        
+        if($("select[name=txtSvAmz]").val() == '0'){
+            $("select[name=txtSvAmz]").removeClass("is-valid");
+            $("select[name=txtSvAmz]").addClass("is-invalid");
+            $("select[name=txtSvAmz]").focus();
+            return false;
+        }
+        else if($("select[name=txtSvAmz]").val() == 'n'){
+            $("select[name=txtSvAmz]").removeClass("is-invalid");
+            $("select[name=txtSvAmz]").addClass("is-valid");
+            return true;
+        }   
+        else if($("select[name=txtSvAmz]").val() == 's'){
+            $("select[name=txtSvAmz]").removeClass("is-invalid");
+            $("select[name=txtSvAmz]").addClass("is-valid");
+            
+            if(($("select[name=txtOMNomeSvAmz").length) == 0){
+                return false;
+            }
+            
+            for(var i=0;i<($("select[name=txtOMNomeSvAmz").length);i++){                
+                var dataInicio = $("input[name=txtDInOMSvAmz]").eq(i).val();
+                var dataInicioSplit = dataInicio.split('-');        
+                var diaInicio = dataInicioSplit[2];
+                var mesInicio = dataInicioSplit[1];
+                var anoInicio = dataInicioSplit[0];
+                
+                var dataFim = $("input[name=txtDFimOMSvAmz]").eq(i).val();
+                var dataFimSplit = dataFim.split('-');        
+                var diaFim = dataFimSplit[2];
+                var mesFim = dataFimSplit[1];
+                var anoFim = dataFimSplit[0];
+                
+                if($("select[name=txtOMNomeSvAmz]").eq(i).val() == '0' ){
+                    $("select[name=txtOMNomeSvAmz]").eq(i).removeClass("is-valid");
+                    $("select[name=txtOMNomeSvAmz]").eq(i).addClass("is-invalid");
+                    $("select[name=txtOMNomeSvAmz]").eq(i).focus();
+                    return false;
+                    break;
+                }    
+                else if(dataInicio == ''){
+                    $("input[name=txtDInOMSvAmz]").eq(i).removeClass("is-valid");
+                    $("input[name=txtDInOMSvAmz]").eq(i).addClass("is-invalid");
+                    $("input[name=txtDInOMSvAmz]").eq(i).focus();
+                    $(".invalid-dataInicio").html("Campo Obrigatório!");
+                    return false;
+                    break;
+                }       
+                else if((anoInicio == anoAtual) && (mesInicio == mesAtual) && (diaInicio > diaAtual)){
+                    $("input[name=txtDInOMSvAmz]").eq(i).removeClass("is-valid");
+                    $("input[name=txtDInOMSvAmz]").eq(i).addClass("is-invalid");
+                    $("input[name=txtDInOMSvAmz]").eq(i).eq(i).focus();
+                    $(".invalid-dataInicio").html("Data Inválida! Início após data atual.");
+                    return false;
+                    break;
+                }       
+                else if((anoInicio == anoAtual) && (mesInicio > mesAtual)){
+                    $("input[name=txtDInOMSvAmz]").eq(i).removeClass("is-valid");
+                    $("input[name=txtDInOMSvAmz]").eq(i).addClass("is-invalid");
+                    $("input[name=txtDInOMSvAmz]").eq(i).focus();
+                    $(".invalid-dataInicio").html("Data Inválida! Início após data atual.");
+                    return false;
+                    break;
+                }       
+                else if((anoInicio > anoAtual)){
+                    $("input[name=txtDInOMSvAmz]").eq(i).removeClass("is-valid");
+                    $("input[name=txtDInOMSvAmz]").eq(i).addClass("is-invalid");
+                    $("input[name=txtDInOMSvAmz]").eq(i).focus();
+                    $(".invalid-dataInicio").html("Data Inválida! Início após data atual.");
+                    return false;
+                    break;
+                }
+                else if(dataFim == ''){
+                    $("input[name=txtDFimOMSvAmz]").eq(i).removeClass("is-valid");
+                    $("input[name=txtDFimOMSvAmz]").eq(i).addClass("is-invalid");
+                    $("input[name=txtDFimOMSvAmz]").eq(i).focus();
+                    $(".invalid-dataFim").html("Campo Obrigatório!");
+                    return false;
+                    break;
+                }       
+                else if((anoFim == anoAtual) && (mesFim == mesAtual) && (diaFim > diaAtual)){
+                    $("input[name=txtDFimOMSvAmz]").eq(i).removeClass("is-valid");
+                    $("input[name=txtDFimOMSvAmz]").eq(i).addClass("is-invalid");
+                    $("input[name=txtDFimOMSvAmz]").eq(i).focus();
+                    $(".invalid-dataFim").html("Data Inválida! Fim após data atual.");
+                    return false;
+                    break;
+                }       
+                else if((anoFim == anoAtual) && (mesFim > mesAtual)){
+                    $("input[name=txtDFimOMSvAmz]").eq(i).removeClass("is-valid");
+                    $("input[name=txtDFimOMSvAmz]").eq(i).addClass("is-invalid");
+                    $("input[name=txtDFimOMSvAmz]").eq(i).focus();
+                    $(".invalid-dataFim").html("Data Inválida! Fim após data atual.");
+                    return false;
+                    break;
+                }       
+                else if((anoFim > anoAtual)){
+                    $("input[name=txtDFimOMSvAmz]").eq(i).removeClass("is-valid");
+                    $("input[name=txtDFimOMSvAmz]").eq(i).addClass("is-invalid");
+                    $("input[name=txtDFimOMSvAmz]").eq(i).focus();
+                    $(".invalid-dataFim").html("Data Inválida! Fim após data atual.");
+                    return false;
+                    break;
+                }         
+                else if((anoFim == anoInicio) && (mesFim == mesInicio) && (diaFim < diaInicio)){
+                    $("input[name=txtDFimOMSvAmz]").eq(i).removeClass("is-valid");
+                    $("input[name=txtDFimOMSvAmz]").eq(i).addClass("is-invalid");
+                    $("input[name=txtDFimOMSvAmz]").eq(i).focus();
+                    $(".invalid-dataFim").html("Data Inválida! Fim antes da data de início.");
+                    return false;
+                    break;
+                }       
+                else if((anoFim == anoInicio) && (mesFim < mesInicio)){
+                    $("input[name=txtDFimOMSvAmz]").eq(i).removeClass("is-valid");
+                    $("input[name=txtDFimOMSvAmz]").eq(i).addClass("is-invalid");
+                    $("input[name=txtDFimOMSvAmz]").eq(i).focus();
+                    $(".invalid-dataFim").html("Data Inválida! Fim antes da data de início.");
+                    return false;
+                    break;
+                }       
+                else if((anoFim < anoInicio)){
+                    $("input[name=txtDFimOMSvAmz]").eq(i).removeClass("is-valid");
+                    $("input[name=txtDFimOMSvAmz]").eq(i).addClass("is-invalid");
+                    $("input[name=txtDFimOMSvAmz]").eq(i).focus();
+                    $(".invalid-dataFim").html("Data Inválida! Fim antes da data de início.");
+                    return false;
+                    break;
+                }
+                else if($("input[name=txtFunc1OMSvAmz]").eq(i).val() == '' ){
+                    $("input[name=txtFunc1OMSvAmz]").eq(i).removeClass("is-valid");
+                    $("input[name=txtFunc1OMSvAmz]").eq(i).addClass("is-invalid");
+                    $("input[name=txtFunc1OMSvAmz]").eq(i).focus();
+                    return false;
+                    break;
+                }
+                else if($("input[name=txtFunc2OMSvAmz]").eq(i).val() == '' ){
+                    $("input[name=txtFunc2OMSvAmz]").eq(i).removeClass("is-valid");
+                    $("input[name=txtFunc2OMSvAmz]").eq(i).addClass("is-invalid");
+                    $("input[name=txtFunc2OMSvAmz]").eq(i).focus();
+                    return false;
+                    break;
+                }
+                else if($("input[name=txtFunc3OMSvAmz]").eq(i).val() == '' ){
+                    $("input[name=txtFunc3OMSvAmz]").eq(i).removeClass("is-valid");
+                    $("input[name=txtFunc3OMSvAmz]").eq(i).addClass("is-invalid");
+                    $("input[name=txtFunc3OMSvAmz]").eq(i).focus();
+                    return false;
+                    break;
+                }
+                else if(($("input[name=txtFunc3OMSvAmz]").eq($("input[name=txtFunc3OMSvAmz]").length-1).val()) != ''){
+                    return true;
+                }
+            }            
+        }   
     });
 });

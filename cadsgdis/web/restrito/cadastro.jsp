@@ -1507,7 +1507,7 @@
                                                 "<div id=\"fieldsetSvAmz\" class=\"fieldset-interno\"></div>"+
                                                 "<button type=\"button\" id=\"btnAddSvAmz\" name=\"btnAddSvAmz\" class=\"btn btn-success\" style=\"margin-left: 0; font-weight: bold; \">+</button>"+
                                             "</div>"+
-                                            "<div class=\"header-interno\">"+
+                                            /*"<div class=\"header-interno\">"+
                                                 "<h5 class=\"title-interno\">Tentativas</h5>"+
                                             "</div>"+
                                             "<div class=\"fieldset-interno\">"+           
@@ -1541,7 +1541,7 @@
                                                         "<div id=\"fieldsetTentC\" class=\"form-row col-md-12\"></div>"+                            
                                                     "</div>"+
                                                 "</div>"+
-                                            "</div>"+
+                                            "</div>"+*/
                                         "</div>"+
                                         "<button type=\"button\" name=\"btnAnterior\" class=\"btn btn-dark anterior acao\">Anterior</button>"+
                                         "<button type=\"submit\" name=\"btnSalvar\" class=\"btn btn-success acao\">Salvar</button>"+        
