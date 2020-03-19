@@ -397,15 +397,17 @@ function validAno(campo){
 //EMAIL
 function validEmail(campo){
     var filtro = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]+$/;
-    var email = $(campo).val(); 
-    if(filtro.test(email)){
-        $(campo).removeClass("is-invalid");
-        $(campo).addClass("is-valid");
+    var email = $(campo).val();
+    if(email == ''){
     }
-    else{            
+    else if(filtro.test(email) == false){
         $(campo).removeClass("is-valid");
         $(campo).addClass("is-invalid");
         $(".invalid-email").html("Email Inválido!");
+    }
+    else{     
+        $(campo).removeClass("is-invalid");
+        $(campo).addClass("is-valid");
     }
 };
 
