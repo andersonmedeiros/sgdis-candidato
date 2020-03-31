@@ -25,6 +25,58 @@ function validInput(campo){
         $(campo).addClass("is-valid");
     }
 };
+function validAgencia(campo){
+    $(campo).change(function(){
+        if(($(campo).val() != "00000000") && $(campo).val() != ''){
+            $(campo).removeClass("is-invalid");
+            $(campo).addClass("is-valid");
+        }
+        else if(($(campo).val() == "00000000")){
+            $(campo).val("");
+            $(campo).removeClass("is-invalid");
+            $(campo).removeClass("is-valid");
+        }
+    });
+};
+function validDvAgencia(campo){
+    $(campo).change(function(){
+        if(($(campo).val() != "00") && $(campo).val() != ''){
+            $(campo).removeClass("is-invalid");
+            $(campo).addClass("is-valid");
+        }
+        else if(($(campo).val() == "00")){
+            $(campo).val("");
+            $(campo).removeClass("is-invalid");
+            $(campo).removeClass("is-valid");
+        }
+    });
+};
+function validConta(campo){
+    $(campo).change(function(){
+        if(($(campo).val() != "000000000000") && $(campo).val() != ''){
+            $(campo).removeClass("is-invalid");
+            $(campo).addClass("is-valid");
+        }
+        else if(($(campo).val() == "000000000000")){
+            $(campo).val("");
+            $(campo).removeClass("is-invalid");
+            $(campo).removeClass("is-valid");
+        }
+    });
+};
+function validDvConta(campo){
+    $(campo).change(function(){
+        if(($(campo).val() != "00") && $(campo).val() != ''){
+            $(campo).removeClass("is-invalid");
+            $(campo).addClass("is-valid");
+        }
+        else if(($(campo).val() == "00")){
+            $(campo).val("");
+            $(campo).removeClass("is-invalid");
+            $(campo).removeClass("is-valid");
+        }
+    });
+};
 
 //FONE
 function validFone(campo){
@@ -749,6 +801,75 @@ function validSelectTReal(campo){
 //INPUT
 function validInputTReal(campo){
     $(campo).change(function(){
+        if($(campo).val() == "00000000"){
+            $(campo).val('');
+            $(campo).removeClass("is-valid");
+            $(campo).addClass("is-invalid");
+        }
+        if($(campo).val() != ''){
+            $(campo).removeClass("is-invalid");
+            $(campo).addClass("is-valid");
+        }else{
+            $(campo).removeClass("is-valid");
+            $(campo).addClass("is-invalid");
+        }
+    });
+};
+function validAgenciaTReal(campo){
+    $(campo).change(function(){
+        if($(campo).val() == "00000000"){
+            $(campo).val('');
+            $(campo).removeClass("is-valid");
+            $(campo).addClass("is-invalid");
+        }
+        if($(campo).val() != ''){
+            $(campo).removeClass("is-invalid");
+            $(campo).addClass("is-valid");
+        }else{
+            $(campo).removeClass("is-valid");
+            $(campo).addClass("is-invalid");
+        }
+    });
+};
+function validDvAgenciaTReal(campo){
+    $(campo).change(function(){
+        if($(campo).val() == "00"){
+            $(campo).val('');
+            $(campo).removeClass("is-valid");
+            $(campo).addClass("is-invalid");
+        }
+        if($(campo).val() != ''){
+            $(campo).removeClass("is-invalid");
+            $(campo).addClass("is-valid");
+        }else{
+            $(campo).removeClass("is-valid");
+            $(campo).addClass("is-invalid");
+        }
+    });
+};
+function validContaTReal(campo){
+    $(campo).change(function(){
+        if($(campo).val() == "000000000000"){
+            $(campo).val('');
+            $(campo).removeClass("is-valid");
+            $(campo).addClass("is-invalid");
+        }
+        if($(campo).val() != ''){
+            $(campo).removeClass("is-invalid");
+            $(campo).addClass("is-valid");
+        }else{
+            $(campo).removeClass("is-valid");
+            $(campo).addClass("is-invalid");
+        }
+    });
+};
+function validDvContaTReal(campo){
+    $(campo).change(function(){
+        if($(campo).val() == "00"){
+            $(campo).val('');
+            $(campo).removeClass("is-valid");
+            $(campo).addClass("is-invalid");
+        }
         if($(campo).val() != ''){
             $(campo).removeClass("is-invalid");
             $(campo).addClass("is-valid");
@@ -1726,12 +1847,30 @@ $(document).ready(function(){
     validInputTReal("input[name=txtBancoAl]");
     
     //Campo Input Agência
-    validInput("input[name=txtAgenciaAl]");
-    validInputTReal("input[name=txtAgenciaAl]");
+    $("input[name=txtAgenciaAl]").keyup(function() {
+        this.value = ("00000000" + this.value).slice(-8);        
+    });    
+    validAgencia("input[name=txtAgenciaAl]");
+    validAgenciaTReal("input[name=txtAgenciaAl]");
+    
+    $("input[name=txtDvAgenciaAl]").keyup(function() {
+        this.value = ("00" + this.value).slice(-2);        
+    });
+    validDvAgencia("input[name=txtDvAgenciaAl]");
+    validDvAgenciaTReal("input[name=txtDvAgenciaAl]");
     
     //Campo Input Conta
-    validInput("input[name=txtContaAl]");
-    validInputTReal("input[name=txtContaAl]");
+    $("input[name=txtContaAl]").keyup(function() {
+        this.value = ("000000000000" + this.value).slice(-12);        
+    });  
+    validConta("input[name=txtContaAl]");
+    validContaTReal("input[name=txtContaAl]");
+    
+    $("input[name=txtDvContaAl]").keyup(function() {
+        this.value = ("00" + this.value).slice(-2);        
+    });
+    validDvConta("input[name=txtDvContaAl]");
+    validDvContaTReal("input[name=txtDvContaAl]");
     
     //Campo Input Email
     validEmail("input[name=txtEmailAl]");
@@ -2555,10 +2694,40 @@ $(function(){
             $("input[name=txtAgenciaAl]").addClass("is-invalid");
             $("input[name=txtAgenciaAl]").focus();
         }
+        else if($("input[name=txtAgenciaAl]").val() == '00000000'){
+            $("input[name=txtAgenciaAl]").removeClass("is-valid");
+            $("input[name=txtAgenciaAl]").addClass("is-invalid");
+            $("input[name=txtAgenciaAl]").focus();
+        }
+        else if($("input[name=txtDvAgenciaAl]").val() == ''){
+            $("input[name=txtDvAgenciaAl]").removeClass("is-valid");
+            $("input[name=txtDvAgenciaAl]").addClass("is-invalid");
+            $("input[name=txtDvAgenciaAl]").focus();
+        }
+        else if($("input[name=txtDvAgenciaAl]").val() == '00'){
+            $("input[name=txtDvAgenciaAl]").removeClass("is-valid");
+            $("input[name=txtDvAgenciaAl]").addClass("is-invalid");
+            $("input[name=txtDvAgenciaAl]").focus();
+        }
         else if($("input[name=txtContaAl]").val() == ''){
             $("input[name=txtContaAl]").removeClass("is-valid");
             $("input[name=txtContaAl]").addClass("is-invalid");
             $("input[name=txtContaAl]").focus();
+        }
+        else if($("input[name=txtContaAl]").val() == '000000000000'){
+            $("input[name=txtContaAl]").removeClass("is-valid");
+            $("input[name=txtContaAl]").addClass("is-invalid");
+            $("input[name=txtContaAl]").focus();
+        }
+        else if($("input[name=txtDvContaAl]").val() == ''){
+            $("input[name=txtDvContaAl]").removeClass("is-valid");
+            $("input[name=txtDvContaAl]").addClass("is-invalid");
+            $("input[name=txtDvContaAl]").focus();
+        }
+        else if($("input[name=txtDvContaAl]").val() == '00'){
+            $("input[name=txtDvContaAl]").removeClass("is-valid");
+            $("input[name=txtDvContaAl]").addClass("is-invalid");
+            $("input[name=txtDvContaAl]").focus();
         }
         else if(emailAl == ''){
             $("input[name=txtEmailAl]").removeClass("is-valid");

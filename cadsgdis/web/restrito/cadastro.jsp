@@ -468,15 +468,27 @@
                                                         "<div class=\"valid-feedback\">Selva!</div>"+
                                                         "<div class=\"invalid-feedback\">Campo Obrigatório!</div>"+
                                                     "</div>"+
-                                                    "<div class=\"form-group col-md-4\">"+
+                                                    "<div class=\"form-group col-md-3\">"+
                                                         "<label for=\"txtAgenciaAl\">Agência: <span class=\"campo-obrigatorio\">*</span></label>"+
-                                                        "<input type=\"text\" class=\"form-control agencia-banco\" id=\"txtAgenciaAl\" name=\"txtAgenciaAl\" placeholder=\"Ex.: 0000-0\">"+
+                                                        "<input type=\"text\" class=\"form-control agencia-banco\" id=\"txtAgenciaAl\" name=\"txtAgenciaAl\" placeholder=\"Ex.: 00000000\">"+
                                                         "<div class=\"valid-feedback\">Selva!</div>"+
                                                         "<div class=\"invalid-feedback\">Campo Obrigatório!</div>"+
                                                     "</div>"+                                                     
-                                                    "<div class=\"form-group col-md-4\">"+
+                                                    "<div class=\"form-group col-md-1\">"+
+                                                        "<label for=\"txtDvAgenciaAl\">DV: <span class=\"campo-obrigatorio\">*</span></label>"+
+                                                        "<input type=\"text\" class=\"form-control agencia-banco\" id=\"txtDvAgenciaAl\" name=\"txtDvAgenciaAl\" placeholder=\"Ex.: 00\">"+
+                                                        "<div class=\"valid-feedback\">Selva!</div>"+
+                                                        "<div class=\"invalid-feedback\">Campo Obrigatório!</div>"+
+                                                    "</div>"+                                                     
+                                                    "<div class=\"form-group col-md-3\">"+
                                                         "<label for=\"txtContaAl\">Conta: <span class=\"campo-obrigatorio\">*</span></label>"+
-                                                        "<input type=\"text\" class=\"form-control conta-banco\" id=\"txtContaAl\" name=\"txtContaAl\" placeholder=\"Ex.: 00000000000-0\">"+
+                                                        "<input type=\"text\" class=\"form-control conta-banco\" id=\"txtContaAl\" name=\"txtContaAl\" placeholder=\"Ex.: 000000000000\">"+
+                                                        "<div class=\"valid-feedback\">Selva!</div>"+
+                                                        "<div class=\"invalid-feedback\">Campo Obrigatório!</div>"+
+                                                    "</div>"+                                                     
+                                                    "<div class=\"form-group col-md-1\">"+
+                                                        "<label for=\"txtDvContaAl\">DV: <span class=\"campo-obrigatorio\">*</span></label>"+
+                                                        "<input type=\"text\" class=\"form-control conta-banco\" id=\"txtDvContaAl\" name=\"txtDvContaAl\" placeholder=\"Ex.: 00\">"+
                                                         "<div class=\"valid-feedback\">Selva!</div>"+
                                                         "<div class=\"invalid-feedback\">Campo Obrigatório!</div>"+
                                                     "</div>"+                                                     
